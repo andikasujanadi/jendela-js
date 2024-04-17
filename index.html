@@ -11,75 +11,288 @@
             height: 100vh;
             overflow: hidden;
         }
-        .windows{
+        .jendela{
             position: absolute;
             height: 200px;
-            width: 200px;;
-            background-color: azure;
+            width: 200px;
             user-select: none;
             top:calc(50% - 100px);
             left:calc(50% - 100px);
         }
-        .windows>.head{
-            background-color: red;
+        .jendela .header{
+            position: relative;
         }
+        .jendela .topHandle{
+            position: absolute;
+            display: block;
+            height: 6px;
+            width: 100%;
+            z-index: 3;
+            cursor: n-resize;
+        }
+        .jendela .bottomHandle{
+            position: absolute;
+            display: block;
+            height: 6px;
+            width: 100%;
+            top: 100%;
+            z-index: 3;
+            cursor: s-resize;
+        }
+        .jendela .startHandle{
+            position: absolute;
+            display: block;
+            height: calc(100% - 6px);
+            width: 6px;
+            top: 6px;
+            right: 100%;
+            z-index: 3;
+            cursor: w-resize;
+        }
+        .jendela .endHandle{
+            position: absolute;
+            display: block;
+            height: calc(100% - 6px);
+            width: 6px;
+            top: 6px;
+            left: 100%;
+            z-index: 3;
+            cursor: e-resize;
+        }
+        .jendela .cornerHandle{
+            position: absolute;
+            display: block;
+            height: 6px;
+            width: 6px;
+            z-index: 3;
+        }
+        .nwHandle{
+            top:0;
+            right:100%;
+            cursor: text;
+            cursor: nw-resize;
+        }
+        .neHandle{
+            top:0;
+            left:100%;
+            cursor: ne-resize;
+        }
+        .swHandle{
+            top:100%;
+            right:100%;
+            cursor: sw-resize;
+        }
+        .seHandle{
+            top:100%;
+            left:100%;
+            cursor: se-resize;
+        }
+        .jendela-debug{
+            background-color: gainsboro;
+            .header{
+                background-color: red;
+                padding-top: 6px;
+            }
+            .topHandle{
+                background-color: green;
+            }
+            .bottomHandle{
+                background-color: green;
+            }
+            .startHandle{
+                background-color: yellow;
+            }
+            .endHandle{
+                background-color: yellow;
+            }
+            .cornerHandle{
+                background-color: blue;
+            }
+        }
+
+        .jendela-classic{
+            background-color: #FCFCFC;
+            border: #D4D0C8 solid 4px;
+            .header{
+                background: rgb(12,38,108);
+                background: linear-gradient(90deg, rgba(12,38,108,1) 0%, rgba(185,219,255,1) 100%);
+                padding: 6px;
+                color: white;
+            }
+        }
+        .jendela-xp{
+            border: #004BEB solid 4px;
+            border-width: 1px 4px 4px 4px;
+            border-radius: 11px 11px 0px 0px;
+            .header{
+                padding: 6px;
+                background: rgb(61,149,255);
+                background: linear-gradient(180deg, rgba(61,149,255,1) 5%, rgba(0,81,229,1) 15%, rgba(0,81,229,1) 30%, rgba(0,94,245,1) 65%, rgba(0,102,255,1) 89%, rgba(0,59,224,1) 95%);
+                color: white;
+                border-radius: 6px 6px 0px 0px;
+            }
+        }
+        .jendela-8{
+            background-color: #FFFFFF;
+            border: #00000036 solid 1px;
+            box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.20);
+            .header{
+                background: #88d3ff;
+                padding: 6px;
+                color: black;
+                text-align: center;
+            }
+        }
+        .jendela-10{
+            background-color: #FFFFFF;
+            border: #74c0ff solid 1px;
+            box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.20);
+            .header{
+                background: #f5f5f5;
+                padding: 6px;
+                color: black;
+            }
+        }
+        .jendela-11{
+            background-color: #FFFFFF;
+            border: #00000036 solid 1px;
+            border-radius: 8px;
+            box-shadow: 0px 16px 20px 0px rgba(0,0,0,0.25);
+            .header{
+                background: rgb(240, 249, 255);
+                padding: 6px;
+                color: black;
+                border-radius: 8px 8px 0px 0px;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div id="w1" class="windows">
-        <div class="head">
+    <div id="w1" class="jendela jendela-xp">
+        <div class="header">
             judul
         </div>
         <div class="body">
             oke
         </div>
     </div>
+    <script>
+        // document.body.insertAdjacentHTML('afterbegin', `<div class="windows">oke</div>`);
+        dragElement(document.querySelector("#w1"));
+    
+        function dragElement(element) {
+            element.insertAdjacentHTML('afterbegin',`<div class="topHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="bottomHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="startHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="endHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="nwHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="neHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="swHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin',`<div class="seHandle cornerHandle"></div>`);
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            var action = 'idle';
+            if (element.querySelector(".header")) {
+                element.querySelector(".bottomHandle").onmousedown = resizeS;
+                element.querySelector(".topHandle").onmousedown = resizeN;
+                element.querySelector(".endHandle").onmousedown = resizeE;
+                element.querySelector(".startHandle").onmousedown = resizeW;
+                element.querySelector(".nwHandle").onmousedown = resizeNW;
+                element.querySelector(".neHandle").onmousedown = resizeNE;
+                element.querySelector(".swHandle").onmousedown = resizeSW;
+                element.querySelector(".seHandle").onmousedown = resizeSE;
+                element.querySelector(".header").onmousedown = dragMouseDown;
+            } else {
+                element.onmousedown = dragMouseDown;
+            }
+            
+            function resizeS(e) {
+                action = 'resize-s';
+                dragMouseDown(e);
+            }
+            function resizeN(e) {
+                action = 'resize-n';
+                dragMouseDown(e);
+            }
+            function resizeE(e) {
+                action = 'resize-e';
+                dragMouseDown(e);
+            }
+            function resizeW(e) {
+                action = 'resize-w';
+                dragMouseDown(e);
+            }
+            function resizeNW(e) {
+                action = 'resize-nw';
+                dragMouseDown(e);
+            }
+            function resizeNE(e) {
+                action = 'resize-ne';
+                dragMouseDown(e);
+            }
+            function resizeSW(e) {
+                action = 'resize-sw';
+                dragMouseDown(e);
+            }
+            function resizeSE(e) {
+                action = 'resize-se';
+                dragMouseDown(e);
+            }
+    
+            function dragMouseDown(e) {
+                if(action == 'idle'){
+                    action = 'move';
+                }
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+    
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;            
+                    pos2 = pos4 - e.clientY;            
+                    pos3 = e.clientX;            
+                    pos4 = e.clientY;            
+                // set the element's new position:
+                if(action != 'resize-w' && action != 'resize-e'){
+                    element.style.top = (element.offsetTop - pos2) + "px";
+                }
+                if(action != 'resize-n' && action != 'resize-s'){
+                    element.style.left = (element.offsetLeft - pos1) + "px";
+                }
+    
+                if(action != 'move'){
+                    if(action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne'){
+                        element.style.height = (element.clientHeight + pos2) + "px";
+                    }
+                    if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
+                        element.style.top = (element.offsetTop + pos2) + "px";
+                        element.style.height = (element.clientHeight - pos2) + "px";
+                    }
+                    if(action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw'){
+                        element.style.width = (element.clientWidth + pos1) + "px";
+                    }
+                    if(action == 'resize-e' || action == 'resize-ne' || action == 'resize-se'){
+                        element.style.left = (element.offsetLeft + pos1) + "px";
+                        element.style.width = (element.clientWidth - pos1) + "px";
+                    }
+                }
+            }
+    
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                disableMove = false;
+                action = 'idle';
+            }
+        }
+    </script>
 </body>
-<script>
-    // document.body.insertAdjacentHTML('afterbegin', `<div class="windows">oke</div>`);
-    // Make the DIV element draggable:
-    dragElement(document.querySelector("#w1"));
-
-    function dragElement(element) {
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        if (element.querySelector(".head")) {
-            // if present, the header is where you move the DIV from:
-            element.querySelector(".head").onmousedown = dragMouseDown;
-        } else {
-            // otherwise, move the DIV from anywhere inside the DIV:
-            element.onmousedown = dragMouseDown;
-        }
-
-        function dragMouseDown(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // get the mouse cursor position at startup:
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            // call a function whenever the cursor moves:
-            document.onmousemove = elementDrag;
-        }
-
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // calculate the new cursor position:
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            // set the element's new position:
-            element.style.top = (element.offsetTop - pos2) + "px";
-            element.style.left = (element.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            // stop moving when mouse button is released:
-            document.onmouseup = null;
-            document.onmousemove = null;
-            console.log("awkey");
-        }
-    }
-</script>
 </html>
