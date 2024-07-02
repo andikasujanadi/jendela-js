@@ -30,6 +30,15 @@
             z-index: 3;
             cursor: n-resize;
         }
+        .jendela.fixTop .topHandle{
+            position: absolute;
+            display: block;
+            bottom: 100%;
+            height: 6px;
+            width: 100%;
+            z-index: 3;
+            cursor: n-resize;
+        }
         .jendela .bottomHandle{
             position: absolute;
             display: block;
@@ -49,12 +58,32 @@
             z-index: 3;
             cursor: w-resize;
         }
+        .jendela.fixTop .startHandle{
+            position: absolute;
+            display: block;
+            height: 100%;
+            width: 6px;
+            top: 0;
+            right: 100%;
+            z-index: 3;
+            cursor: w-resize;
+        }
         .jendela .endHandle{
             position: absolute;
             display: block;
             height: calc(100% - 6px);
             width: 6px;
             top: 6px;
+            left: 100%;
+            z-index: 3;
+            cursor: e-resize;
+        }
+        .jendela.fixTop .endHandle{
+            position: absolute;
+            display: block;
+            height: 100%;
+            width: 6px;
+            top: 0;
             left: 100%;
             z-index: 3;
             cursor: e-resize;
@@ -69,11 +98,23 @@
         .nwHandle{
             top:0;
             right:100%;
-            cursor: text;
             cursor: nw-resize;
         }
+        .fixTop .nwHandle{
+            bottom:100%;
+            top: unset;
+            right:100%;
+            cursor: nw-resize;
+        }
+        
         .neHandle{
             top:0;
+            left:100%;
+            cursor: ne-resize;
+        }
+        .fixTop .neHandle{
+            bottom:100%;
+            top: unset;
             left:100%;
             cursor: ne-resize;
         }
@@ -169,7 +210,7 @@
     </style>
 </head>
 <body>
-    <div id="w1" class="jendela jendela-xp">
+    <div id="w1" class="jendela fixTop jendela-classic">
         <div class="header">
             judul
         </div>
@@ -270,7 +311,14 @@
     
                 if(action != 'move'){
                     if(action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne'){
-                        element.style.height = (element.clientHeight + pos2) + "px";
+                        // limit height
+                        newHeight = element.clientHeight + pos2;
+                        if(newHeight >= 200){
+                            element.style.height = (newHeight) + "px";
+                        }
+                        else{
+                            element.style.height = "200px";
+                        }
                     }
                     if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
                         element.style.top = (element.offsetTop + pos2) + "px";
