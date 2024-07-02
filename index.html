@@ -233,6 +233,7 @@
             element.insertAdjacentHTML('afterbegin',`<div class="seHandle cornerHandle"></div>`);
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             var action = 'idle';
+            var minHeight = 200, minWidth = 200;
             if (element.querySelector(".header")) {
                 element.querySelector(".bottomHandle").onmousedown = resizeS;
                 element.querySelector(".topHandle").onmousedown = resizeN;
@@ -311,25 +312,38 @@
     
                 if(action != 'move'){
                     if(action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne'){
-                        // limit height
-                        newHeight = element.clientHeight + pos2;
-                        if(newHeight >= 200){
-                            element.style.height = (newHeight) + "px";
+                        if(element.clientHeight + pos2 >= minHeight){
+                            element.style.height = `${element.clientHeight + pos2}px`;
                         }
                         else{
-                            element.style.height = "200px";
+                            element.style.height = `${minHeight}px`;
                         }
                     }
                     if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
-                        element.style.top = (element.offsetTop + pos2) + "px";
-                        element.style.height = (element.clientHeight - pos2) + "px";
+                        if(element.clientHeight - pos2 >= minHeight){
+                            element.style.top = `${element.offsetTop + pos2}px`;
+                            element.style.height = `${element.clientHeight - pos2}px`;
+                        }
+                        else{
+                            element.style.height = `${minHeight}px`;
+                        }
                     }
                     if(action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw'){
-                        element.style.width = (element.clientWidth + pos1) + "px";
+                        if(element.clientWidth + pos1 >= minWidth){
+                            element.style.width = (element.clientWidth + pos1) + "px";
+                        }
+                        else{
+                            element.style.width = `${minWidth}px`;
+                        }
                     }
                     if(action == 'resize-e' || action == 'resize-ne' || action == 'resize-se'){
-                        element.style.left = (element.offsetLeft + pos1) + "px";
-                        element.style.width = (element.clientWidth - pos1) + "px";
+                        if(element.clientWidth - pos1 >= minWidth){
+                            element.style.left = (element.offsetLeft + pos1) + "px";
+                            element.style.width = (element.clientWidth - pos1) + "px";
+                        }
+                        else{
+                            element.style.width = `${minWidth}px`;
+                        }
                     }
                 }
             }
