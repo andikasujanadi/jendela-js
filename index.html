@@ -300,10 +300,10 @@
                 e = e || window.event;
                 e.preventDefault();
                 // calculate the new cursor position:
-                    pos1 = pos3 - e.clientX;            
-                    pos2 = pos4 - e.clientY;            
-                    pos3 = e.clientX;            
-                    pos4 = e.clientY;            
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
                 // set the element's new position:
                 if(action != 'resize-w' && action != 'resize-e'){
                     element.style.top = (element.offsetTop - pos2) + "px";
