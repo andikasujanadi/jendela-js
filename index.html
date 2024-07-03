@@ -315,50 +315,45 @@
     
                 if(action != 'move'){
                     if(action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne'){
-                        if(element.clientHeight + pos2 >= minHeight){
-                            if(offsetY>=0){
-                                element.style.height = `${element.clientHeight + pos2}px`;
-                            }
-                            else{
-                                element.style.height = `${minHeight}px`;
-                                element.style.top = `${element.offsetTop + pos2}px`;
-                                offsetY += pos2;
-                            }
+                        if(element.clientHeight + pos2 >= minHeight && offsetY>=0){
+                            element.style.height = `${element.clientHeight + pos2}px`;
                         }
                         else{
                             element.style.height = `${minHeight}px`;
                             element.style.top = `${element.offsetTop + pos2}px`;
                             offsetY += pos2;
-                            console.log(offsetY);
                         }
                     }
                     if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
-                        if(element.clientHeight - pos2 >= minHeight){
+                        if(element.clientHeight - pos2 >= minHeight && offsetY<=0){
                             element.style.top = `${element.offsetTop + pos2}px`;
                             element.style.height = `${element.clientHeight - pos2}px`;
                         }
                         else{
                             element.style.height = `${minHeight}px`;
                             element.style.top = `${element.offsetTop + pos2}px`;
+                            offsetY += pos2;
                         }
                     }
                     if(action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw'){
-                        if(element.clientWidth + pos1 >= minWidth){
+                        if(element.clientWidth + pos1 >= minWidth && offsetX>=0){
                             element.style.width = (element.clientWidth + pos1) + "px";
                         }
                         else{
                             element.style.width = `${minWidth}px`;
                             element.style.left = (element.offsetLeft + pos1) + "px";
+                            offsetX += pos1;
                         }
                     }
                     if(action == 'resize-e' || action == 'resize-ne' || action == 'resize-se'){
-                        if(element.clientWidth - pos1 >= minWidth){
+                        if(element.clientWidth - pos1 >= minWidth && offsetX<=0){
                             element.style.left = (element.offsetLeft + pos1) + "px";
                             element.style.width = (element.clientWidth - pos1) + "px";
                         }
                         else{
                             element.style.width = `${minWidth}px`;
                             element.style.left = (element.offsetLeft + pos1) + "px";
+                            offsetX += pos1;
                         }
                     }
                 }
@@ -369,6 +364,8 @@
                 document.onmousemove = null;
                 disableMove = false;
                 action = 'idle';
+                offsetX = 0;
+                offsetY = 0;
             }
         }
     </script>
