@@ -236,6 +236,7 @@
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             var action = 'idle';
             var minHeight = 200, minWidth = 200;
+            var offsetX = 0, offsetY = 0;
             if (element.querySelector(".header")) {
                 element.querySelector(".bottomHandle").onmousedown = resizeS;
                 element.querySelector(".topHandle").onmousedown = resizeN;
@@ -315,12 +316,20 @@
                 if(action != 'move'){
                     if(action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne'){
                         if(element.clientHeight + pos2 >= minHeight){
-                            element.style.height = `${element.clientHeight + pos2}px`;
+                            if(offsetY>=0){
+                                element.style.height = `${element.clientHeight + pos2}px`;
+                            }
+                            else{
+                                element.style.height = `${minHeight}px`;
+                                element.style.top = `${element.offsetTop + pos2}px`;
+                                offsetY += pos2;
+                            }
                         }
                         else{
                             element.style.height = `${minHeight}px`;
                             element.style.top = `${element.offsetTop + pos2}px`;
-                            console.log("a");
+                            offsetY += pos2;
+                            console.log(offsetY);
                         }
                     }
                     if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
