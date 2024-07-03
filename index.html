@@ -317,6 +317,8 @@
                         }
                         else{
                             element.style.height = `${minHeight}px`;
+                            element.style.top = `${element.offsetTop + pos2}px`;
+                            console.log("a");
                         }
                     }
                     if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
@@ -326,6 +328,7 @@
                         }
                         else{
                             element.style.height = `${minHeight}px`;
+                            element.style.top = `${element.offsetTop + pos2}px`;
                         }
                     }
                     if(action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw'){
@@ -334,6 +337,7 @@
                         }
                         else{
                             element.style.width = `${minWidth}px`;
+                            element.style.left = (element.offsetLeft + pos1) + "px";
                         }
                     }
                     if(action == 'resize-e' || action == 'resize-ne' || action == 'resize-se'){
@@ -343,6 +347,7 @@
                         }
                         else{
                             element.style.width = `${minWidth}px`;
+                            element.style.left = (element.offsetLeft + pos1) + "px";
                         }
                     }
                 }
