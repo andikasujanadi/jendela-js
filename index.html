@@ -10,7 +10,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background: #000;
+            background: #FFF;
         }
         .jendela{
             position: absolute;
@@ -25,6 +25,17 @@
         }
         .jendela .header{
             position: relative;
+            display: flex;
+        }
+        
+        .jendela .header .headerButton{
+            position: absolute;
+            background-color: chocolate;
+            height: 100%;
+            width: 24px;
+            top:0;
+            right: 0;
+            cursor: pointer;
         }
         .jendela .topHandle{
             position: absolute;
@@ -215,9 +226,10 @@
     </style>
 </head>
 <body>
-    <div id="w1" class="jendela fixTop jendela-classic">
+    <div id="w1" class="jendela fixTop jendela-debug">
         <div class="header">
             judul
+            <div class="headerButton" onmouseup="console.log('aaa')"></div>
         </div>
         <div class="body">
             oke
@@ -250,6 +262,7 @@
                 element.querySelector(".swHandle").onmousedown = resizeSW;
                 element.querySelector(".seHandle").onmousedown = resizeSE;
                 element.querySelector(".header").onmousedown = dragMouseDown;
+                element.querySelector(".headerButton").onmousedown = preventDrag;
             } else {
                 element.onmousedown = dragMouseDown;
             }
@@ -286,6 +299,10 @@
                 action = 'resize-se';
                 dragMouseDown(e);
             }
+            function preventDrag(e){
+                action = 'dontmove';
+                dragMouseDown(e);
+            }
     
             function dragMouseDown(e) {
                 if(action == 'idle'){
@@ -309,11 +326,13 @@
                     pos3 = e.clientX;
                     pos4 = e.clientY;
                 // set the element's new position:
-                if(action != 'resize-w' && action != 'resize-e'){
-                    element.style.top = (element.offsetTop - pos2) + "px";
-                }
-                if(action != 'resize-n' && action != 'resize-s'){
-                    element.style.left = (element.offsetLeft - pos1) + "px";
+                if(action != 'dontmove'){
+                    if(action != 'resize-w' && action != 'resize-e'){
+                        element.style.top = (element.offsetTop - pos2) + "px";
+                    }
+                    if(action != 'resize-n' && action != 'resize-s'){
+                        element.style.left = (element.offsetLeft - pos1) + "px";
+                    }
                 }
     
                 if(action != 'move'){
