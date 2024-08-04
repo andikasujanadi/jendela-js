@@ -27,13 +27,15 @@
             position: relative;
             display: flex;
         }
-        
+        .jendela .header .title{
+            margin-right:auto;
+        }
         .jendela .header .headerButton{
-            position: absolute;
-            background-color: chocolate;
+            position: relative;
             height: 100%;
             width: 24px;
-            top:0;
+            height: 24px;
+            margin-top:-6px;
             right: 0;
             cursor: pointer;
         }
@@ -164,6 +166,15 @@
             .cornerHandle{
                 background-color: blue;
             }
+            .headerButtonMinimize{
+                background-color: cornflowerblue;
+            }
+            .headerButtonResize{
+                background-color: darkseagreen;
+            }
+            .headerButtonClose{
+                background-color: gold;
+            }
         }
 
         .jendela-classic{
@@ -228,8 +239,12 @@
 <body>
     <div id="w1" class="jendela fixTop jendela-debug">
         <div class="header">
-            judul
-            <div class="headerButton" onmouseup="console.log('aaa')"></div>
+            <div class="title">
+                judul
+            </div>
+            <div class="headerButton headerButtonMinimize" onmouseup="console.log('aaa')"></div>
+            <div class="headerButton headerButtonResize" onmouseup="console.log('bbb')"></div>
+            <div class="headerButton headerButtonClose" onmouseup="console.log('ccc')"></div>
         </div>
         <div class="body">
             oke
