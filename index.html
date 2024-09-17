@@ -206,15 +206,34 @@
             .headerButton:active{
                 border-color: #747270 #ebe8e3 #ebe8e3 #747270;
             }
-            /* .headerButtonMinimize{
-                background-color: #D4D0C8;
+            .headerButtonMinimize:after{
+                position: absolute;
+                display: inline-block;
+                content: "\005f";
+                margin-left: 4px;
+                font-size: 23px;
+                line-height: 5px;
+                color: #000000;
             }
-            .headerButtonResize{
-                background-color: #D4D0C8;
+            .headerButtonResize:after{
+                position: absolute;
+                display: inline-block;
+                content: "\25fb";
+                margin-left: 0px;
+                font-size: 23px;
+                line-height: 20px;
+                color: #000000;
             }
-            .headerButtonClose{
-                background-color: #D4D0C8;
-            } */
+            .headerButtonClose:after{
+                position: absolute;
+                display: inline-block;
+                content: "\00d7";
+                margin-left: 2px;
+                font-size: 25px;
+                line-height: 22px;
+                color: #000000;
+                font-weight: 900;
+            }
         }
         .jendela-xp{
             background-color: #FFFFFF;
