@@ -30,12 +30,14 @@
         .jendela .header .title{
             margin-right:auto;
         }
-        .jendela .header .headerButton{
+        .jendela .header .headerButtonContainer{
+            display: flex;
+        }
+        .jendela .header .headerButtonContainer .headerButton{
             position: relative;
             height: 100%;
             width: 24px;
             height: 24px;
-            margin-top:-6px;
             right: 0;
             cursor: pointer;
         }
@@ -183,8 +185,24 @@
             .header{
                 background: rgb(12,38,108);
                 background: linear-gradient(90deg, rgba(12,38,108,1) 0%, rgba(185,219,255,1) 100%);
-                padding: 6px;
                 color: white;
+            }
+            .title{
+                padding: 6px;
+            }
+            .headerButtonContainer{
+                padding-top: 3px;
+                padding-right: 3px;
+                gap: 3px;
+            }
+            .headerButtonMinimize{
+                background-color: #D4D0C8;
+            }
+            .headerButtonResize{
+                background-color: #D4D0C8;
+            }
+            .headerButtonClose{
+                background-color: #D4D0C8;
             }
         }
         .jendela-xp{
@@ -237,14 +255,16 @@
     </style>
 </head>
 <body>
-    <div id="w1" class="jendela fixTop jendela-debug">
+    <div id="w1" class="jendela fixTop jendela-classic">
         <div class="header">
             <div class="title">
                 judul
             </div>
-            <div class="headerButton headerButtonMinimize" onmouseup="console.log('aaa')"></div>
-            <div class="headerButton headerButtonResize" onmouseup="console.log('bbb')"></div>
-            <div class="headerButton headerButtonClose" onmouseup="console.log('ccc')"></div>
+            <div class="headerButtonContainer">
+                <div class="headerButton headerButtonMinimize" onmouseup="console.log('aaa')"></div>
+                <div class="headerButton headerButtonResize" onmouseup="console.log('bbb')"></div>
+                <div class="headerButton headerButtonClose" onmouseup="console.log('ccc')"></div>
+            </div>
         </div>
         <div class="body">
             oke
