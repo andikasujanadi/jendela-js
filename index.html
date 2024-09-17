@@ -308,7 +308,11 @@
                 element.querySelector(".swHandle").onmousedown = resizeSW;
                 element.querySelector(".seHandle").onmousedown = resizeSE;
                 element.querySelector(".header").onmousedown = dragMouseDown;
-                element.querySelector(".headerButton").onmousedown = preventDrag;
+                b = element.querySelectorAll(".headerButton");
+                for (let i = 0; i < b.length; i++) {
+                    const e = b[i];
+                    e.onmousedown = preventDrag;
+                }
             } else {
                 element.onmousedown = dragMouseDown;
             }
