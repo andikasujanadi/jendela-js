@@ -247,6 +247,75 @@
                 color: white;
                 border-radius: 6px 6px 0px 0px;
             }
+            .title{
+                padding-top: 5px;
+            }
+            .header{
+                padding-right: 0px;
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+            .headerButtonContainer{
+                padding-top: 2px;
+                padding-right: 2px;
+                gap: 2px;
+            }
+            .headerButton{
+                width: 20px!important;
+                height: 20px!important;
+                background-color: #3a79ff;
+                background: linear-gradient(180deg, rgba(61,149,255,1) 0%, rgba(0,102,255,1) 50%);
+                border-style: solid;
+                border-width: 1px;
+                border-color: #ffffff;
+                border-radius: 4px;
+                box-shadow: #004BEB -1px -1px 2px 2px inset;
+            }
+            .headerButton:hover{
+                -webkit-filter: brightness(1.4);
+                filter: brightness(1.4);
+            }
+            .headerButton:active{
+                box-shadow: #004BEB 1px 1px 2px 2px inset;
+                -webkit-filter: brightness(0.8);
+                filter: brightness(0.8);
+            }
+            .headerButtonMinimize:after{
+                position: absolute;
+                display: inline-block;
+                content: "\005f";
+                margin-left: 4px;
+                font-size: 23px;
+                line-height: 5px;
+                color: #ffffff;
+            }
+            .headerButtonResize:after{
+                position: absolute;
+                display: inline-block;
+                content: "\25fb";
+                margin-left: 0px;
+                font-size: 23px;
+                line-height: 20px;
+                color: #ffffff;
+            }
+            .headerButtonClose{
+                background-color: #ff3a3a;
+                background: linear-gradient(180deg, rgb(255, 83, 83) 0%, rgb(229, 46, 46) 50%);
+                box-shadow: #d11212 -1px -1px 2px 2px inset;
+            }
+            .headerButtonClose:active{
+                box-shadow: #d11212 1px 1px 2px 2px inset;
+            }
+            .headerButtonClose:after{
+                position: absolute;
+                display: inline-block;
+                content: "\00d7";
+                margin-left: 3px;
+                font-size: 25px;
+                line-height: 22px;
+                color: #ffffff;
+                font-weight: 900;
+            }
         }
         .jendela-8{
             background-color: #FFFFFF;
@@ -285,7 +354,7 @@
     </style>
 </head>
 <body>
-    <div id="w1" class="jendela fixTop jendela-classic">
+    <div id="w1" class="jendela fixTop jendela-xp">
         <div class="header">
             <div class="title">
                 judul
