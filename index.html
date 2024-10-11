@@ -413,7 +413,22 @@
     </style>
 </head>
 <body>
-    <div id="w1" class="jendela fixTop jendela-8">
+    <div class="jendela fixTop jendela-8">
+        <div class="header">
+            <div class="title">
+                judul
+            </div>
+            <div class="headerButtonContainer">
+                <div class="headerButton headerButtonMinimize" onmouseup="console.log('aaa')"></div>
+                <div class="headerButton headerButtonResize" onmouseup="console.log('bbb')"></div>
+                <div class="headerButton headerButtonClose" onmouseup="console.log('ccc')"></div>
+            </div>
+        </div>
+        <div class="body">
+            oke
+        </div>
+    </div>
+    <div class="jendela fixTop jendela-8">
         <div class="header">
             <div class="title">
                 judul
@@ -430,7 +445,12 @@
     </div>
     <script>
         // document.body.insertAdjacentHTML('afterbegin', `<div class="windows">oke</div>`);
-        dragElement(document.querySelector("#w1"));
+        const windows = document.querySelectorAll(".jendela");
+        if(windows.length){
+            windows.forEach(window => {
+                dragElement(window);
+            });
+        }
     
         function dragElement(element) {
             element.insertAdjacentHTML('afterbegin',`<div class="topHandle"></div>`);
