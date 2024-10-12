@@ -429,11 +429,34 @@
                 padding: 0 1px 1px 1px;
             }
 
+            .startHandle:after,
+            .endHandle:after {
+                content: "";
+                position: absolute;
+                width: 4px;
+                top: 31px;
+                bottom: 0px;
+                background: linear-gradient(180deg, rgba(105, 153, 208, 1) 0%, rgb(226, 240, 255) 20%, rgba(105, 153, 208, 1) 21%, rgba(105, 153, 208, 1) 100%);
+            }
+
+            .bottomHandle:after {
+                content: "";
+                height: 5px;
+                position: absolute;
+                background: radial-gradient(circle, #3f73b0 30%, #6999d0 100%);
+                left: 0;
+                right: 0;
+            }
+
+            .startHandle:after {
+                left: 2px;
+            }
+
             .headerButton {
                 height: 19px !important;
                 width: 28px !important;
-                background-color: #3f73b0;
                 border: #c0e3ff 1px solid;
+                background: linear-gradient(180deg, #9db9d9 49%, #6388b3 50%, #b2c7df 100%);
             }
 
             .headerButton:hover {
@@ -481,6 +504,7 @@
 
             .headerButtonClose {
                 background-color: #ac2007;
+                background: linear-gradient(180deg, #d29b91 49%, #bf4730 50%, #d88778 100%);
                 width: 48px !important;
                 border-radius: 0 0 4px 0;
                 border: #e0a59c 1px solid;
