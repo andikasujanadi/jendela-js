@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows</title>
     <style>
-        body{
+        body {
             margin: 0;
             width: 100vw;
             height: 100vh;
             overflow: hidden;
             background: #FFF;
         }
-        .jendela{
+
+        .jendela {
             position: absolute;
             height: 200px;
             width: 200px;
             user-select: none;
-            top:calc(50% - 100px);
-            left:calc(50% - 100px);
+            top: calc(50% - 100px);
+            left: calc(50% - 100px);
         }
-        .jendela .body{
+
+        .jendela .body {
             user-select: text;
         }
-        .jendela .header{
+
+        .jendela .header {
             position: relative;
             display: flex;
         }
-        .jendela .header .title{
-            margin-right:auto;
+
+        .jendela .header .title {
+            margin-right: auto;
         }
-        .jendela .header .headerButtonContainer{
+
+        .jendela .header .headerButtonContainer {
             display: flex;
         }
-        .jendela .header .headerButtonContainer .headerButton{
+
+        .jendela .header .headerButtonContainer .headerButton {
             position: relative;
             height: 100%;
             width: 24px;
@@ -41,7 +48,8 @@
             right: 0;
             cursor: pointer;
         }
-        .jendela .topHandle{
+
+        .jendela .topHandle {
             position: absolute;
             display: block;
             height: 6px;
@@ -49,7 +57,8 @@
             z-index: 3;
             cursor: n-resize;
         }
-        .jendela.fixTop .topHandle{
+
+        .jendela.fixTop .topHandle {
             position: absolute;
             display: block;
             bottom: 100%;
@@ -58,7 +67,8 @@
             z-index: 3;
             cursor: n-resize;
         }
-        .jendela .bottomHandle{
+
+        .jendela .bottomHandle {
             position: absolute;
             display: block;
             height: 6px;
@@ -67,7 +77,8 @@
             z-index: 3;
             cursor: s-resize;
         }
-        .jendela .startHandle{
+
+        .jendela .startHandle {
             position: absolute;
             display: block;
             height: calc(100% - 6px);
@@ -77,7 +88,8 @@
             z-index: 3;
             cursor: w-resize;
         }
-        .jendela.fixTop .startHandle{
+
+        .jendela.fixTop .startHandle {
             position: absolute;
             display: block;
             height: 100%;
@@ -87,7 +99,8 @@
             z-index: 3;
             cursor: w-resize;
         }
-        .jendela .endHandle{
+
+        .jendela .endHandle {
             position: absolute;
             display: block;
             height: calc(100% - 6px);
@@ -97,7 +110,8 @@
             z-index: 3;
             cursor: e-resize;
         }
-        .jendela.fixTop .endHandle{
+
+        .jendela.fixTop .endHandle {
             position: absolute;
             display: block;
             height: 100%;
@@ -107,106 +121,128 @@
             z-index: 3;
             cursor: e-resize;
         }
-        .jendela .cornerHandle{
+
+        .jendela .cornerHandle {
             position: absolute;
             display: block;
             height: 6px;
             width: 6px;
             z-index: 3;
         }
-        .nwHandle{
-            top:0;
-            right:100%;
+
+        .nwHandle {
+            top: 0;
+            right: 100%;
             cursor: nw-resize;
         }
-        .fixTop .nwHandle{
-            bottom:100%;
+
+        .fixTop .nwHandle {
+            bottom: 100%;
             top: unset;
-            right:100%;
+            right: 100%;
             cursor: nw-resize;
         }
-        
-        .neHandle{
-            top:0;
-            left:100%;
+
+        .neHandle {
+            top: 0;
+            left: 100%;
             cursor: ne-resize;
         }
-        .fixTop .neHandle{
-            bottom:100%;
+
+        .fixTop .neHandle {
+            bottom: 100%;
             top: unset;
-            left:100%;
+            left: 100%;
             cursor: ne-resize;
         }
-        .swHandle{
-            top:100%;
-            right:100%;
+
+        .swHandle {
+            top: 100%;
+            right: 100%;
             cursor: sw-resize;
         }
-        .seHandle{
-            top:100%;
-            left:100%;
+
+        .seHandle {
+            top: 100%;
+            left: 100%;
             cursor: se-resize;
         }
-        .jendela-debug{
+
+        .jendela-debug {
             background-color: gainsboro;
-            .header{
+
+            .header {
                 background-color: red;
                 padding-top: 6px;
             }
-            .topHandle{
+
+            .topHandle {
                 background-color: green;
             }
-            .bottomHandle{
+
+            .bottomHandle {
                 background-color: green;
             }
-            .startHandle{
+
+            .startHandle {
                 background-color: yellow;
             }
-            .endHandle{
+
+            .endHandle {
                 background-color: yellow;
             }
-            .cornerHandle{
+
+            .cornerHandle {
                 background-color: blue;
             }
-            .headerButtonMinimize{
+
+            .headerButtonMinimize {
                 background-color: cornflowerblue;
             }
-            .headerButtonResize{
+
+            .headerButtonResize {
                 background-color: darkseagreen;
             }
-            .headerButtonClose{
+
+            .headerButtonClose {
                 background-color: gold;
             }
         }
 
-        .jendela-classic{
+        .jendela-classic {
             background-color: #FCFCFC;
             border: #D4D0C8 solid 4px;
-            .header{
-                background: rgb(12,38,108);
-                background: linear-gradient(90deg, rgba(12,38,108,1) 0%, rgba(185,219,255,1) 100%);
+
+            .header {
+                background: rgb(12, 38, 108);
+                background: linear-gradient(90deg, rgba(12, 38, 108, 1) 0%, rgba(185, 219, 255, 1) 100%);
                 color: white;
             }
-            .title{
+
+            .title {
                 padding: 6px;
             }
-            .headerButtonContainer{
+
+            .headerButtonContainer {
                 padding-top: 2px;
                 padding-right: 2px;
                 gap: 2px;
             }
-            .headerButton{
-                width: 20px!important;
-                height: 20px!important;
+
+            .headerButton {
+                width: 20px !important;
+                height: 20px !important;
                 background-color: #D4D0C8;
                 border-style: solid;
                 border-width: 3px;
                 border-color: #ebe8e3 #747270 #747270 #ebe8e3;
             }
-            .headerButton:active{
+
+            .headerButton:active {
                 border-color: #747270 #ebe8e3 #ebe8e3 #747270;
             }
-            .headerButtonMinimize:after{
+
+            .headerButtonMinimize:after {
                 position: absolute;
                 display: inline-block;
                 content: "\005f";
@@ -215,7 +251,8 @@
                 line-height: 5px;
                 color: #000000;
             }
-            .headerButtonResize:after{
+
+            .headerButtonResize:after {
                 position: absolute;
                 display: inline-block;
                 content: "\25fb";
@@ -224,7 +261,8 @@
                 line-height: 20px;
                 color: #000000;
             }
-            .headerButtonClose:after{
+
+            .headerButtonClose:after {
                 position: absolute;
                 display: inline-block;
                 content: "\00d7";
@@ -235,52 +273,61 @@
                 font-weight: 900;
             }
         }
-        .jendela-xp{
+
+        .jendela-xp {
             background-color: #FFFFFF;
             border: #004BEB solid 4px;
             border-width: 1px 4px 4px 4px;
             border-radius: 11px 11px 0px 0px;
-            .header{
+
+            .header {
                 padding: 6px;
-                background: rgb(61,149,255);
-                background: linear-gradient(180deg, rgba(61,149,255,1) 5%, rgba(0,81,229,1) 15%, rgba(0,81,229,1) 30%, rgba(0,94,245,1) 65%, rgba(0,102,255,1) 89%, rgba(0,59,224,1) 95%);
+                background: rgb(61, 149, 255);
+                background: linear-gradient(180deg, rgba(61, 149, 255, 1) 5%, rgba(0, 81, 229, 1) 15%, rgba(0, 81, 229, 1) 30%, rgba(0, 94, 245, 1) 65%, rgba(0, 102, 255, 1) 89%, rgba(0, 59, 224, 1) 95%);
                 color: white;
                 border-radius: 6px 6px 0px 0px;
             }
-            .title{
+
+            .title {
                 padding-top: 5px;
             }
-            .header{
+
+            .header {
                 padding-right: 0px;
                 padding-top: 3px;
                 padding-bottom: 3px;
             }
-            .headerButtonContainer{
+
+            .headerButtonContainer {
                 padding-top: 2px;
                 padding-right: 2px;
                 gap: 2px;
             }
-            .headerButton{
-                width: 20px!important;
-                height: 20px!important;
+
+            .headerButton {
+                width: 20px !important;
+                height: 20px !important;
                 background-color: #3a79ff;
-                background: linear-gradient(180deg, rgba(61,149,255,1) 0%, rgba(0,102,255,1) 50%);
+                background: linear-gradient(180deg, rgba(61, 149, 255, 1) 0%, rgba(0, 102, 255, 1) 50%);
                 border-style: solid;
                 border-width: 1px;
                 border-color: #ffffff;
                 border-radius: 4px;
                 box-shadow: #004BEB -1px -1px 2px 2px inset;
             }
-            .headerButton:hover{
+
+            .headerButton:hover {
                 -webkit-filter: brightness(1.4);
                 filter: brightness(1.4);
             }
-            .headerButton:active{
+
+            .headerButton:active {
                 box-shadow: #004BEB 1px 1px 2px 2px inset;
                 -webkit-filter: brightness(0.8);
                 filter: brightness(0.8);
             }
-            .headerButtonMinimize:after{
+
+            .headerButtonMinimize:after {
                 position: absolute;
                 display: inline-block;
                 content: "\005f";
@@ -289,7 +336,8 @@
                 line-height: 5px;
                 color: #ffffff;
             }
-            .headerButtonResize:after{
+
+            .headerButtonResize:after {
                 position: absolute;
                 display: inline-block;
                 content: "\25fb";
@@ -298,15 +346,18 @@
                 line-height: 20px;
                 color: #ffffff;
             }
-            .headerButtonClose{
+
+            .headerButtonClose {
                 background-color: #ff3a3a;
                 background: linear-gradient(180deg, rgb(255, 83, 83) 0%, rgb(229, 46, 46) 50%);
                 box-shadow: #d11212 -1px -1px 2px 2px inset;
             }
-            .headerButtonClose:active{
+
+            .headerButtonClose:active {
                 box-shadow: #d11212 1px 1px 2px 2px inset;
             }
-            .headerButtonClose:after{
+
+            .headerButtonClose:after {
                 position: absolute;
                 display: inline-block;
                 content: "\00d7";
@@ -317,38 +368,46 @@
                 font-weight: 900;
             }
         }
-        .jendela-8{
+
+        .jendela-8 {
             background-color: #FFFFFF;
             border: #88d3ff solid 6px;
             border-top: #88d3ff solid 0px;
-            box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.20);
-            .header{
+            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.20);
+
+            .header {
                 background: #88d3ff;
                 /* padding: 6px; */
                 color: black;
                 text-align: center;
             }
-            .title{
+
+            .title {
                 position: absolute;
                 padding: 6px;
                 width: 100%;
                 margin: 0px auto;
             }
-            .headerButtonContainer{
+
+            .headerButtonContainer {
                 margin-left: auto;
                 margin-bottom: 8px;
             }
-            .headerButton{
-                height: 22px!important;
-                width: 26px!important;
+
+            .headerButton {
+                height: 22px !important;
+                width: 26px !important;
             }
-            .headerButton:hover{
+
+            .headerButton:hover {
                 background-color: #057acd;
             }
-            .headerButton:active{
+
+            .headerButton:active {
                 background-color: #005c9e;
             }
-            .headerButtonMinimize:after{
+
+            .headerButtonMinimize:after {
                 position: absolute;
                 display: inline-block;
                 content: "\005f";
@@ -357,7 +416,8 @@
                 line-height: 5px;
                 color: #000000;
             }
-            .headerButtonResize:after{
+
+            .headerButtonResize:after {
                 position: absolute;
                 display: inline-block;
                 content: "\25fb";
@@ -366,7 +426,8 @@
                 line-height: 22px;
                 color: #000000;
             }
-            .headerButtonClose:after{
+
+            .headerButtonClose:after {
                 position: absolute;
                 display: inline-block;
                 content: "\00d7";
@@ -376,42 +437,49 @@
                 color: #FFFFFF;
                 font-weight: 900;
             }
-            .headerButtonClose{
+
+            .headerButtonClose {
                 background-color: #d11212;
-                width: 44px!important;
+                width: 44px !important;
             }
-            .headerButtonClose:hover{
+
+            .headerButtonClose:hover {
                 background-color: #ff0000;
             }
-            .headerButtonClose:active{
+
+            .headerButtonClose:active {
                 background-color: #870000
             }
         }
-        .jendela-10{
+
+        .jendela-10 {
             background-color: #FFFFFF;
             border: #74c0ff solid 1px;
-            box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.20);
-            .header{
+            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.20);
+
+            .header {
                 background: #f5f5f5;
                 padding: 6px;
                 color: black;
             }
         }
-        .jendela-11{
+
+        .jendela-11 {
             background-color: #FFFFFF;
             border: #00000036 solid 1px;
             border-radius: 8px;
-            box-shadow: 0px 16px 20px 0px rgba(0,0,0,0.25);
-            .header{
+            box-shadow: 0px 16px 20px 0px rgba(0, 0, 0, 0.25);
+
+            .header {
                 background: rgb(240, 249, 255);
                 padding: 6px;
                 color: black;
                 border-radius: 8px 8px 0px 0px;
             }
         }
-
     </style>
 </head>
+
 <body>
     <div class="jendela fixTop jendela-8">
         <div class="header">
@@ -444,23 +512,22 @@
         </div>
     </div>
     <script>
-        // document.body.insertAdjacentHTML('afterbegin', `<div class="windows">oke</div>`);
         const windows = document.querySelectorAll(".jendela");
-        if(windows.length){
+        if (windows.length) {
             windows.forEach(window => {
                 dragElement(window);
             });
         }
-    
+
         function dragElement(element) {
-            element.insertAdjacentHTML('afterbegin',`<div class="topHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="bottomHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="startHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="endHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="nwHandle cornerHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="neHandle cornerHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="swHandle cornerHandle"></div>`);
-            element.insertAdjacentHTML('afterbegin',`<div class="seHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="topHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="bottomHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="startHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="endHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="nwHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="neHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="swHandle cornerHandle"></div>`);
+            element.insertAdjacentHTML('afterbegin', `<div class="seHandle cornerHandle"></div>`);
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             var action = 'idle';
             var minHeight = 200, minWidth = 200;
@@ -483,7 +550,7 @@
             } else {
                 element.onmousedown = dragMouseDown;
             }
-            
+
             function resizeS(e) {
                 action = 'resize-s';
                 dragMouseDown(e);
@@ -516,13 +583,13 @@
                 action = 'resize-se';
                 dragMouseDown(e);
             }
-            function preventDrag(e){
+            function preventDrag(e) {
                 action = 'dontmove';
                 dragMouseDown(e);
             }
-    
+
             function dragMouseDown(e) {
-                if(action == 'idle'){
+                if (action == 'idle') {
                     action = 'move';
                 }
                 e = e || window.event;
@@ -533,63 +600,63 @@
                 document.onmouseup = closeDragElement;
                 document.onmousemove = elementDrag;
             }
-    
+
             function elementDrag(e) {
                 e = e || window.event;
                 e.preventDefault();
                 // calculate the new cursor position:
-                    pos1 = pos3 - e.clientX;
-                    pos2 = pos4 - e.clientY;
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
                 // set the element's new position:
-                if(action != 'dontmove'){
-                    if(action != 'resize-w' && action != 'resize-e'){
+                if (action != 'dontmove') {
+                    if (action != 'resize-w' && action != 'resize-e') {
                         element.style.top = (element.offsetTop - pos2) + "px";
                     }
-                    if(action != 'resize-n' && action != 'resize-s'){
+                    if (action != 'resize-n' && action != 'resize-s') {
                         element.style.left = (element.offsetLeft - pos1) + "px";
                     }
                 }
-    
-                if(action != 'move'){
-                    if(action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne'){
-                        if(element.clientHeight + pos2 >= minHeight && offsetY>=0){
+
+                if (action != 'move') {
+                    if (action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne') {
+                        if (element.clientHeight + pos2 >= minHeight && offsetY >= 0) {
                             element.style.height = `${element.clientHeight + pos2}px`;
                         }
-                        else{
+                        else {
                             element.style.height = `${minHeight}px`;
                             element.style.top = `${element.offsetTop + pos2}px`;
                             offsetY += pos2;
                         }
                     }
-                    if(action == 'resize-s' || action == 'resize-sw' || action == 'resize-se'){
-                        if(element.clientHeight - pos2 >= minHeight && offsetY<=0){
+                    if (action == 'resize-s' || action == 'resize-sw' || action == 'resize-se') {
+                        if (element.clientHeight - pos2 >= minHeight && offsetY <= 0) {
                             element.style.top = `${element.offsetTop + pos2}px`;
                             element.style.height = `${element.clientHeight - pos2}px`;
                         }
-                        else{
+                        else {
                             element.style.height = `${minHeight}px`;
                             element.style.top = `${element.offsetTop + pos2}px`;
                             offsetY += pos2;
                         }
                     }
-                    if(action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw'){
-                        if(element.clientWidth + pos1 >= minWidth && offsetX>=0){
+                    if (action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw') {
+                        if (element.clientWidth + pos1 >= minWidth && offsetX >= 0) {
                             element.style.width = (element.clientWidth + pos1) + "px";
                         }
-                        else{
+                        else {
                             element.style.width = `${minWidth}px`;
                             element.style.left = (element.offsetLeft + pos1) + "px";
                             offsetX += pos1;
                         }
                     }
-                    if(action == 'resize-e' || action == 'resize-ne' || action == 'resize-se'){
-                        if(element.clientWidth - pos1 >= minWidth && offsetX<=0){
+                    if (action == 'resize-e' || action == 'resize-ne' || action == 'resize-se') {
+                        if (element.clientWidth - pos1 >= minWidth && offsetX <= 0) {
                             element.style.left = (element.offsetLeft + pos1) + "px";
                             element.style.width = (element.clientWidth - pos1) + "px";
                         }
-                        else{
+                        else {
                             element.style.width = `${minWidth}px`;
                             element.style.left = (element.offsetLeft + pos1) + "px";
                             offsetX += pos1;
@@ -597,7 +664,7 @@
                     }
                 }
             }
-    
+
             function closeDragElement() {
                 document.onmouseup = null;
                 document.onmousemove = null;
@@ -609,4 +676,5 @@
         }
     </script>
 </body>
+
 </html>
