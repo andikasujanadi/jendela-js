@@ -369,6 +369,132 @@
             }
         }
 
+        .jendela-7 {
+            background-color: #FFFFFF;
+            border: #6999d0 solid 6px;
+            border-top: 0px;
+            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.20);
+            border-radius: 6px;
+            
+
+            .body {
+                border: #c0e3ff 1px solid;
+                height: calc(100% - 30px - 6px);
+                box-shadow: #000000 0px 0px 1px 1px inset;
+                padding: 1px;
+            }
+
+            .body:after {
+                content: "";
+                border: #000000 1px solid;
+                width: calc(100% + 10px);
+                height: calc(100% + 5px);
+                display: block;
+                position: absolute;
+                top: 0;
+                left: -6px;
+                box-shadow: #c0e3ff 0px 0px 1px 1px inset;
+                border-radius: 6px;
+                pointer-events: none;
+            }
+
+            .header {
+                background: #6999d0;
+                background: radial-gradient(circle, #3f73b0 30%, #6999d0 100%);
+                color: black;
+            }
+
+            .title {
+                position: absolute;
+                padding: 6px;
+                width: 100%;
+                margin: 0px auto;
+                text-shadow: 0px 0px 10px #FFFFFFFF,
+                    0px 0px 10px #FFFFFFFF,
+                    0px 0px 10px #FFFFFFFF,
+                    0px 0px 10px #FFFFFFFF,
+                    0px 0px 10px #FFFFFFFF;
+            }
+
+            .headerButtonContainer {
+                margin-left: auto;
+                margin-bottom: 8px;
+                border: 1px #c0e3ff solid;
+                border-top: 1px #000000 solid;
+                border-radius: 0 0 6px 6px;
+                gap: 1px;
+                background-color: #000000;
+                position: relative;
+                z-index: 1;
+                padding: 0 1px 1px 1px;
+            }
+
+            .headerButton {
+                height: 19px !important;
+                width: 28px !important;
+                background-color: #3f73b0;
+                border: #c0e3ff 1px solid;
+            }
+
+            .headerButton:hover {
+                background-color: #1ba0ff;
+            }
+
+            .headerButton:active {
+                background-color: #0161a6;
+            }
+
+            .headerButtonMinimize {
+                border-radius: 0 0 0 4px;
+            }
+
+            .headerButtonMinimize:after {
+                position: absolute;
+                display: inline-block;
+                content: "\005f";
+                margin-left: 8px;
+                font-size: 23px;
+                line-height: 4px;
+                color: #FFFFFF;
+            }
+
+            .headerButtonResize:after {
+                position: absolute;
+                display: inline-block;
+                content: "\25fb";
+                margin-left: 5px;
+                font-size: 20px;
+                line-height: 18px;
+                color: #FFFFFF;
+            }
+
+            .headerButtonClose:after {
+                position: absolute;
+                display: inline-block;
+                content: "\00d7";
+                margin-left: 17px;
+                font-size: 22px;
+                line-height: 20px;
+                color: #FFFFFF;
+                font-weight: 900;
+            }
+
+            .headerButtonClose {
+                background-color: #ac2007;
+                width: 48px !important;
+                border-radius: 0 0 4px 0;
+                border: #e0a59c 1px solid;
+            }
+
+            .headerButtonClose:hover {
+                background-color: #ff0000;
+            }
+
+            .headerButtonClose:active {
+                background-color: #870000
+            }
+        }
+
         .jendela-8 {
             background-color: #FFFFFF;
             border: #88d3ff solid 6px;
@@ -390,7 +516,7 @@
 
             .headerButtonContainer {
                 margin-left: auto;
-                margin-bottom: 8px;
+                margin-bottom: 1px;
             }
 
             .headerButton {
@@ -609,7 +735,7 @@
 </head>
 
 <body>
-    <div class="jendela fixTop jendela-11">
+    <div class="jendela fixTop jendela-7">
         <div class="header">
             <div class="title">
                 judul
@@ -645,7 +771,6 @@
                 }
             });
             window.classList.add(el.value);
-            console.log(el.value)
         }
 
         const windows = document.querySelectorAll(".jendela");
