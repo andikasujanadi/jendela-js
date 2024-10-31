@@ -759,15 +759,15 @@
 </head>
 
 <body>
-    <div class="jendela fixTop jendela-7">
+    <div class="jendela -fixTop jendela-7">
         <div class="header">
             <div class="title">
                 judul
             </div>
             <div class="headerButtonContainer">
                 <div class="headerButton headerButtonMinimize" onmouseup="console.log('aaa')"></div>
-                <div class="headerButton headerButtonResize" onmouseup="console.log('bbb')"></div>
-                <div class="headerButton headerButtonClose" onmouseup="console.log('ccc')"></div>
+                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"></div>
+                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"></div>
             </div>
         </div>
         <div class="body">
@@ -802,6 +802,23 @@
             windows.forEach(window => {
                 dragElement(window);
             });
+        }
+
+        const maximizeWindow = (el) => {
+            const window = el.closest('.jendela');
+            window.style.top="0";
+            window.style.left="0";
+            borderTop = getComputedStyle(window).borderTopWidth.slice(0, -2)
+            borderBottom = getComputedStyle(window).borderBottomWidth.slice(0, -2)
+            borderLeft = getComputedStyle(window).borderLeftWidth.slice(0, -2)
+            borderRight = getComputedStyle(window).borderRightWidth.slice(0, -2)
+            window.style.width=`calc(100vw - ${parseInt(borderLeft)+parseInt(borderRight)}px)`;
+            window.style.height=`calc(100vh - ${parseInt(borderBottom)+parseInt(borderTop)}px)`;
+        }
+
+        const closeWindow = (el) => {
+            const window = el.closest('.jendela');
+            window.remove();
         }
 
         function dragElement(element) {
