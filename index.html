@@ -23,6 +23,10 @@
             left: calc(50% - 100px);
         }
 
+        .animateWindow {
+            transition: height ease 0.3s, width ease 0.3s, top ease 0.3s, left ease 0.3s;
+        }
+
         .jendela.minimized{
                 .body{
                     height: 0px!important;
@@ -30,6 +34,14 @@
                 }
                 height: auto!important;
                 width: 200px!important;
+        }
+
+        .jendela.maximized{
+            top: 0px!important;
+            left: 0px!important;
+            height: 100vh!important;
+            width: 100vw!important;
+            border-width: 0px!important;
         }
 
         .jendela .body {
@@ -826,17 +838,38 @@
             });
         }
 
+        const animateWindow = (el) => {
+            el.classList.add('animateWindow');
+            setTimeout(() => {
+            el.classList.remove('animateWindow');
+                
+            }, 300);
+        }
+
         const maximizeWindow = (el) => {
             const window = el.closest('.jendela');
-            window.style.top="0";
-            window.style.left="0";
-            borderTop = getComputedStyle(window).borderTopWidth.slice(0, -2)
-            borderBottom = getComputedStyle(window).borderBottomWidth.slice(0, -2)
-            borderLeft = getComputedStyle(window).borderLeftWidth.slice(0, -2)
-            borderRight = getComputedStyle(window).borderRightWidth.slice(0, -2)
-            window.style.width=`calc(100vw - ${parseInt(borderLeft)+parseInt(borderRight)}px)`;
-            window.style.height=`calc(100vh - ${parseInt(borderBottom)+parseInt(borderTop)}px)`;
-            window.classList.remove('minimized');
+            let classes = window.classList;
+            let is_maximized = false;
+            let is_minimized = false;
+            classes.forEach(className => {
+                if (className.includes('maximized')) {
+                    is_maximized = true;
+                }
+                if (className.includes('minimized')) {
+                    is_minimized = true;
+                }
+            });
+            if(is_maximized){
+                window.classList.remove('maximized');
+            }
+            else if(is_minimized){
+                window.classList.remove('minimized');
+            }
+            else{
+                window.classList.add('maximized');
+                window.classList.remove('minimized');
+            }
+            animateWindow(window);
         }
 
         const closeWindow = (el) => {
@@ -846,7 +879,9 @@
 
         const minimizeWindow = (el) => {
             const window = el.closest('.jendela');
+            window.classList.remove('maximized');
             window.classList.add('minimized');
+            animateWindow(window);
         }
 
         function dragElement(element) {
@@ -913,7 +948,7 @@
                 action = 'resize-se';
                 dragMouseDown(e);
             }
-            function preventDrag(e) {
+            function preventDrag(e) {animateWindow
                 action = 'dontmove';
                 dragMouseDown(e);
             }
