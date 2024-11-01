@@ -23,6 +23,15 @@
             left: calc(50% - 100px);
         }
 
+        .jendela.minimized{
+                .body{
+                    height: 0px!important;
+                    display: none!important;
+                }
+                height: auto!important;
+                width: 200px!important;
+        }
+
         .jendela .body {
             user-select: text;
         }
@@ -778,7 +787,7 @@
                 judul
             </div>
             <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="console.log('aaa')"></div>
+                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"></div>
                 <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"></div>
                 <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"></div>
             </div>
@@ -827,11 +836,17 @@
             borderRight = getComputedStyle(window).borderRightWidth.slice(0, -2)
             window.style.width=`calc(100vw - ${parseInt(borderLeft)+parseInt(borderRight)}px)`;
             window.style.height=`calc(100vh - ${parseInt(borderBottom)+parseInt(borderTop)}px)`;
+            window.classList.remove('minimized');
         }
 
         const closeWindow = (el) => {
             const window = el.closest('.jendela');
             window.remove();
+        }
+
+        const minimizeWindow = (el) => {
+            const window = el.closest('.jendela');
+            window.classList.add('minimized');
         }
 
         function dragElement(element) {
