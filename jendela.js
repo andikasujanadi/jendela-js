@@ -5,12 +5,13 @@ if (windows.length) {
     });
 }
 
-const animateWindow = (el) => {
-    el.classList.add('animateWindow');
+const animateWindow = (el, t = 300) => {
+    // el.classList.add('animateWindow');
+    el.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms`;
     setTimeout(() => {
-    el.classList.remove('animateWindow');
-        
-    }, 300);
+    // el.classList.remove('animateWindow');
+    el.style.transition = "none";
+    }, t);
 }
 
 const maximizeWindow = (el) => {
@@ -36,7 +37,7 @@ const maximizeWindow = (el) => {
         window.classList.add('maximized');
         window.classList.remove('minimized');
     }
-    animateWindow(window);
+    animateWindow(window, 250);
 }
 
 const closeWindow = (el) => {
