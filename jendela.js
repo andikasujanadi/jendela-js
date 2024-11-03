@@ -42,7 +42,12 @@ const maximizeWindow = (el) => {
 
 const closeWindow = (el) => {
     const window = el.closest('.jendela');
-    window.remove();
+    window.style.transition = 'transform ease 0.3s, opacity ease 0.2s';
+    window.style.transform = 'scale(0.75)';
+    window.style.opacity = '0';
+    setTimeout(() => {
+        window.remove();
+    }, 300);
 }
 
 const minimizeWindow = (el) => {
