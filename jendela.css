@@ -26,6 +26,9 @@
     height: 100vh!important;
     width: 100vw!important;
     border-width: 0px!important;
+    .header {
+        border-radius: 0px 0px 0px 0px!important;
+    }
 }
 
 .jendela .body {
