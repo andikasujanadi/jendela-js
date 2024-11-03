@@ -1,9 +1,13 @@
-const windows = document.querySelectorAll(".jendela");
-if (windows.length) {
-    windows.forEach(window => {
-        dragElement(window);
-    });
+const refreshWindows = () => {
+    const windows = document.querySelectorAll(".jendela");
+    if (windows.length) {
+        windows.forEach(window => {
+            dragElement(window);
+        });
+    }
 }
+
+refreshWindows();
 
 const animateWindow = (el, t = 300) => {
     // el.classList.add('animateWindow');
