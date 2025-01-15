@@ -10,10 +10,8 @@ const refreshWindows = () => {
 refreshWindows();
 
 const animateWindow = (el, t = 300) => {
-    // el.classList.add('animateWindow');
     el.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms`;
     setTimeout(() => {
-    // el.classList.remove('animateWindow');
     el.style.transition = "none";
     }, t);
 }
@@ -70,10 +68,10 @@ function dragElement(element) {
     element.insertAdjacentHTML('afterbegin', `<div class="neHandle cornerHandle"></div>`);
     element.insertAdjacentHTML('afterbegin', `<div class="swHandle cornerHandle"></div>`);
     element.insertAdjacentHTML('afterbegin', `<div class="seHandle cornerHandle"></div>`);
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    var action = 'idle';
-    var minHeight = 200, minWidth = 200;
-    var offsetX = 0, offsetY = 0;
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let action = 'idle';
+    let minHeight = 200, minWidth = 200;
+    let offsetX = 0, offsetY = 0;
     if (element.querySelector(".header")) {
         element.querySelector(".bottomHandle").onmousedown = resizeS;
         element.querySelector(".topHandle").onmousedown = resizeN;

@@ -71,12 +71,12 @@
         }
 
         const add_window = () => {
-            document.querySelector('body').innerHTML+=`
-                <div style="z-index:1" class="jendela jendela-7">
+            const newWindow = document.createElement('div');
+            newWindow.className = 'jendela jendela-7';
+            newWindow.style.zIndex = '1';
+            newWindow.innerHTML = `
                 <div class="header">
-                    <div class="title">
-                        judul
-                    </div>
+                    <div class="title">judul</div>
                     <div class="headerButtonContainer">
                         <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"></div>
                         <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"></div>
@@ -97,10 +97,11 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            `.trim();
-            refreshWindows();
-        }
+            `;
+            document.body.appendChild(newWindow);
+            dragElement(newWindow);
+        };
+
     </script>
 </body>
 
