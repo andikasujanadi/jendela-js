@@ -19,18 +19,18 @@
 
 <body>
     <div style="padding: 12px;">
-        <button onclick="add_window({title:titleInput.value, theme: themePicker.value})">add new window</button>
         <input id="titleInput" type="text" placeholder="title">
         <select id="themePicker">
             <option value="0">Select Window Style:</option>
             <option value="jendela-debug">Jendela Debug</option>
-            <option value="jendela-classic">Jendela Classic</option>
+            <option value="jendela-classic" selected>Jendela Classic</option>
             <option value="jendela-xp">Jendela XP</option>
             <option value="jendela-7">Jendela 7</option>
             <option value="jendela-8">Jendela 8</option>
             <option value="jendela-10">Jendela 10</option>
             <option value="jendela-11">Jendela 11</option>
         </select>
+        <button onclick="add_window({title:titleInput.value, theme: themePicker.value})">add new window</button>
     </div>
     <div class="jendela -fixTop jendela-7">
         <div class="header">
@@ -38,9 +38,9 @@
                 title
             </div>
             <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"></div>
+                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
             </div>
         </div>
         <div class="body">
@@ -74,9 +74,9 @@
         <div class="header">
             <div class="title">${title}</div>
             <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"></div>
+                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
             </div>
         </div>
         <div class="body">
