@@ -13,65 +13,41 @@
             overflow: hidden;
             background: #FFF;
         }
+        .grid {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
+                linear-gradient(to bottom, #80808012 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        body.dark{
+                background: #000000;
+        }
+        .grid.dark{
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(to right, #80808042 1px, transparent 1px),
+                linear-gradient(to bottom, #80808042 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .dark .jendela{
+            background: #2f3549;
+        }
     </style>
     <link rel="stylesheet" href="jendela.css">
 </head>
 
-<body>
+<body class="grid">
     <div style="
-        top:250px;
-        left:16px;
-        width:300px;
-        height:400px;
-        " class="jendela -fixTop jendela-xp">
-        <div class="header">
-            <div class="title">Jendela xp</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-            </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-        top:16px;
-        left:16px;
+        top:100px;
+        left:100px;
         width:300px;
         height:200px;
-        " class="jendela -fixTop jendela-7">
-        <div class="header">
-            <div class="title">Jendela 7</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-            </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-        top:16px;
-        left:350px;
-        width:350px;
-        height:400px;
-        " class="jendela -fixTop jendela-8">
-        <div class="header">
-            <div class="title">Jendela 8</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-            </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-        top:450px;
-        left:350px;
-        width:350px;
-        height:200px;
-        " class="jendela -fixTop jendela-classic">
+        " class="jendela jendela-classic">
         <div class="header">
             <div class="title">Jendela Classic</div>
             <div class="headerButtonContainer">
@@ -83,11 +59,43 @@
         <div class="body"></div>
     </div>
     <div style="
-        top:16px;
-        left:730px;
-        width:500px;
-        height:300px;
-        " class="jendela -fixTop jendela-10">
+    top:350px;
+    left:100px;
+    width:300px;
+    height:400px;
+    " class="jendela jendela-8">
+    <div class="header">
+        <div class="title">Jendela 8</div>
+        <div class="headerButtonContainer">
+            <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
+            <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
+            <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+        </div>
+    </div>
+    <div class="body"></div>
+</div>
+    <div style="
+        top:100px;
+        left:450px;
+        width:450px;
+        height:400px;
+        " class="jendela jendela-7">
+        <div class="header">
+            <div class="title">Jendela 7</div>
+            <div class="headerButtonContainer">
+                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+            </div>
+        </div>
+        <div class="body"></div>
+    </div>
+    <div style="
+        top:550px;
+        left:450px;
+        width:450px;
+        height:200px;
+        " class="jendela jendela-10">
         <div class="header">
             <div class="title">Jendela 10</div>
             <div class="headerButtonContainer">
@@ -99,11 +107,27 @@
         <div class="body"></div>
     </div>
     <div style="
-        top:350px;
-        left:730px;
+        top:100px;
+        left:950px;
         width:500px;
         height:300px;
-        " class="jendela -fixTop jendela-11">
+        " class="jendela jendela-xp">
+        <div class="header">
+            <div class="title">Jendela XP</div>
+            <div class="headerButtonContainer">
+                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
+                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+            </div>
+        </div>
+        <div class="body"></div>
+    </div>
+    <div style="
+        top:450px;
+        left:950px;
+        width:500px;
+        height:300px;
+        " class="jendela jendela-11">
         <div class="header">
             <div class="title">Jendela 11</div>
             <div class="headerButtonContainer">
