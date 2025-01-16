@@ -13,28 +13,29 @@
             overflow: hidden;
             background: #FFF;
         }
-
-        .btn {
-            display: inline-block;
-            color: #ffffff;
-            background-color: #0084ff;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            user-select: none;
-        }
     </style>
     <link rel="stylesheet" href="jendela.css">
 </head>
 
 <body>
     <div style="padding: 12px;">
-        <div class="btn" onclick="add_window()">add new window</div>
+        <button onclick="add_window({title:titleInput.value, theme: themePicker.value})">add new window</button>
+        <input id="titleInput" type="text" placeholder="title">
+        <select id="themePicker">
+            <option value="0">Select Window Style:</option>
+            <option value="jendela-debug">Jendela Debug</option>
+            <option value="jendela-classic">Jendela Classic</option>
+            <option value="jendela-xp">Jendela XP</option>
+            <option value="jendela-7">Jendela 7</option>
+            <option value="jendela-8">Jendela 8</option>
+            <option value="jendela-10">Jendela 10</option>
+            <option value="jendela-11">Jendela 11</option>
+        </select>
     </div>
     <div class="jendela -fixTop jendela-7">
         <div class="header">
             <div class="title">
-                judul
+                title
             </div>
             <div class="headerButtonContainer">
                 <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"></div>
@@ -43,18 +44,16 @@
             </div>
         </div>
         <div class="body">
-            <div class="custom-select" style="width:200px;">
-                <select onchange="changeStyle(this)">
-                    <option value="0">Select Window Style:</option>
-                    <option value="jendela-debug">Jendela Debug</option>
-                    <option value="jendela-classic">Jendela Classic</option>
-                    <option value="jendela-xp">Jendela XP</option>
-                    <option value="jendela-7">Jendela 7</option>
-                    <option value="jendela-8">Jendela 8</option>
-                    <option value="jendela-10">Jendela 10</option>
-                    <option value="jendela-11">Jendela 11</option>
-                </select>
-            </div>
+            <select onchange="changeStyle(this)">
+                <option value="0">Select Window Style:</option>
+                <option value="jendela-debug">Jendela Debug</option>
+                <option value="jendela-classic">Jendela Classic</option>
+                <option value="jendela-xp">Jendela XP</option>
+                <option value="jendela-7">Jendela 7</option>
+                <option value="jendela-8">Jendela 8</option>
+                <option value="jendela-10">Jendela 10</option>
+                <option value="jendela-11">Jendela 11</option>
+            </select>
         </div>
     </div>
     <script src="jendela.js"></script>
@@ -71,34 +70,29 @@
         }
 
 
-        const createWindowHTML = () => `
+        const createWindowHTML = (title,body) => `
         <div class="header">
-            <div class="title">judul</div>
+            <div class="title">${title}</div>
             <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize"></div>
-                <div class="headerButton headerButtonResize"></div>
-                <div class="headerButton headerButtonClose"></div>
+                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"></div>
+                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"></div>
+                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"></div>
             </div>
         </div>
         <div class="body">
-            <div class="custom-select" style="width:200px;">
-                <select onchange="changeStyle(this)">
-                    <option value="0">Select Window Style:</option>
-                    <option value="jendela-debug">Jendela Debug</option>
-                    <option value="jendela-classic">Jendela Classic</option>
-                    <option value="jendela-xp">Jendela XP</option>
-                    <option value="jendela-7">Jendela 7</option>
-                    <option value="jendela-8">Jendela 8</option>
-                    <option value="jendela-10">Jendela 10</option>
-                    <option value="jendela-11">Jendela 11</option>
-                </select>
-            </div>
+            ${body}
         </div>`;
 
-        const add_window = () => {
+        const add_window = (params) => {
+            const title = params.title??'';
+            const body = params.body??'';
+            const theme = params.theme??'jendela-classic';
             const newWindow = document.createElement('div');
-            newWindow.className = 'jendela jendela-7';
-            newWindow.innerHTML = createWindowHTML();
+            const minimize_button = params.minimize_button??'true';
+            const resize_button = params.resize_button??'true';
+            const close_button = params.close_button??'true';
+            newWindow.className = `jendela ${theme}`;
+            newWindow.innerHTML = createWindowHTML(title,body);
             document.body.appendChild(newWindow);
             dragElement(newWindow);
         };
