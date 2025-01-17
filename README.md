@@ -33,6 +33,47 @@ add_window({
 });
 ```
 This function will add a new window directly to HTML body.
+### Window Structure
+This structure for reference to make a new style 
+```html
+<div class="jendela jendela-classic">
+
+    <div class="seHandle cornerHandle"></div>
+    <div class="swHandle cornerHandle"></div>
+    <div class="neHandle cornerHandle"></div>
+    <div class="nwHandle cornerHandle"></div>
+    <div class="endHandle"></div>
+    <div class="startHandle"></div>
+    <div class="bottomHandle"></div>
+    <div class="topHandle"></div>
+
+    <div class="header">
+        
+        <div class="title"></div>
+
+        <div class="headerButtonContainer">
+
+            <div class="headerButton headerButtonMinimize"
+                onmouseup="minimizeWindow(this)">
+                <div class="icon"></div>
+            </div>
+            <div class="headerButton headerButtonResize"
+                onmouseup="maximizeWindow(this)">
+                <div class="icon"></div>
+            </div>
+            <div class="headerButton headerButtonClose"
+                onmouseup="closeWindow(this)">
+                <div class="icon"></div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="body">
+        <!-- your body element put in here -->
+    </div>
+</div>
+```
+
 ### Add Styles
 
 This is the example of jendela classic CSS:
@@ -40,23 +81,19 @@ This is the example of jendela classic CSS:
 .jendela-classic {
     background-color: #FCFCFC;
     border: #D4D0C8 solid 4px;
-
     .header {
         background: rgb(12, 38, 108);
         background: linear-gradient(90deg, rgba(12, 38, 108, 1) 0%, rgba(185, 219, 255, 1) 100%);
         color: white;
     }
-
     .title {
         padding: 6px;
     }
-
     .headerButtonContainer {
         padding-top: 2px;
         padding-right: 2px;
         gap: 2px;
     }
-
     .headerButton {
         width: 20px !important;
         height: 20px !important;
@@ -65,11 +102,9 @@ This is the example of jendela classic CSS:
         border-width: 3px;
         border-color: #ebe8e3 #747270 #747270 #ebe8e3;
     }
-
     .headerButton:active {
         border-color: #747270 #ebe8e3 #ebe8e3 #747270;
     }
-
     .headerButtonMinimize .icon {
         top:3px;
         position: absolute;
@@ -81,7 +116,6 @@ This is the example of jendela classic CSS:
         background-size: 10px 10px;
         filter: invert(1);
     }
-
     .headerButtonResize .icon {
         position: absolute;
         height: 100%;
@@ -92,7 +126,6 @@ This is the example of jendela classic CSS:
         background-size: 12px 12px;
         filter: invert(1);
     }
-
     .headerButtonClose .icon {
         position: absolute;
         height: 100%;
