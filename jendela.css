@@ -43,6 +43,9 @@
 
 .jendela .header .title {
     margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 .jendela .header .headerButtonContainer {
