@@ -11,6 +11,9 @@ const createWindowHTML = (title,body,minimize_button,resize_button,close_button)
     ${body}
 </div>`;
 
+let windows = [];
+const add_value_z = 99;
+
 const add_window = (params = {}) => {
     const title = params.title ?? '';
     const body = params.body ?? '';
@@ -26,22 +29,38 @@ const add_window = (params = {}) => {
     newWindow.setAttribute('tabindex', '0');
     document.body.appendChild(newWindow);
     dragElement(newWindow);
+    windows.push(newWindow);
+    updateWindowZIndices();
 
     newWindow.addEventListener('mousedown', (e) => {
         e.stopPropagation();
         newWindow.focus();
     });
     newWindow.addEventListener('focus', () => {
-        console.log(`Window "${title?.trim() || 'Untitled Window'}" is active`);
+        handleWindowClick(newWindow);
         newWindow.classList.remove('inactive');
     });
 
     newWindow.addEventListener('blur', () => {
-        console.log(`Window "${title?.trim() || 'Untitled Window'}" is inactive`);
         newWindow.classList.add('inactive');
     });
 };
 
+function updateWindowZIndices() {
+    windows.forEach((window, index) => {
+        window.style.zIndex = index + add_value_z;
+    });
+}
+
+function handleWindowClick(windowElement) {
+    const clickedIndex = windows.indexOf(windowElement);
+
+    if (clickedIndex !== windows.length - 1) {
+        const movedWindow = windows.splice(clickedIndex, 1)[0];
+        windows.push(movedWindow);
+        updateWindowZIndices();
+    }
+}
 
 
 const refreshWindows = () => {
