@@ -160,9 +160,7 @@ add_window({
     title: 'My Custom Window',
     body: 'This is a window with custom settings.',
     theme: 'jendela-xp',
-    minimize_button: false,
-    resize_button: true,
-    close_button: true
+    minimize_button: false
 });
 ```
 ## Planned Features
