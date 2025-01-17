@@ -22,12 +22,6 @@ You can include the library in your project by linking to the hosted version (on
 ```
 ## Usage
 
-### HTML Structure
-
-Add a container for your windows:
-```html
-<div id="window-container"></div>
-```
 ### Initialize a Window
 
 In your JavaScript file, use the following code to create a new window:
@@ -36,7 +30,7 @@ add_window({
     title:'Testing Window',
     theme:'jendela-xp',
     body:'this is body',
-    });
+});
 ```
 This function will add a new window directly to HTML body.
 ### Add Styles
@@ -143,6 +137,7 @@ add_window({
 - [x] Multi-window support
 - [x] Focus/Blur state management
 - [x] Hierarchical z-index management
+- [ ] Dynamic button style
 - [ ] Focus/Blur theme variant
 - [ ] Snap to grid
 - [ ] Accessibility improvements (e.g., keyboard navigation)
