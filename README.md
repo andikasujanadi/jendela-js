@@ -73,6 +73,9 @@ This class structure is for reference to make a new style
 ### Add Styles
 
 This is the example of jendela classic theme CSS:
+<details>
+<summary>Click to expand</summary>
+
 ```css
 .jendela-classic {
     background-color: #FCFCFC;
@@ -134,6 +137,9 @@ This is the example of jendela classic theme CSS:
     }
 }
 ```
+
+</details>
+
 ## Window Parameters
 
 You can customize the following options when creating a window:
