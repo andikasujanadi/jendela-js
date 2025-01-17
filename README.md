@@ -176,8 +176,8 @@ add_window({
 - [x] Hierarchical z-index management
 - [x] Separating CSS file
 - [x] Focus/Blur theme variant
-- [ ] Dynamic border radius style for button
-- [ ] add default theme for guide
+- [x] Dynamic border radius style for button
+- [x] add default theme for guide
 - [ ] Support touch screen device
 - [ ] add gnome theme
 
