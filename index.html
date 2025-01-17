@@ -39,18 +39,13 @@
         <label for="close_button">close button</label><br>
         <button onclick="add_window({title:titleInput.value, theme: themePicker.value, minimize_button:minimize_button.checked, resize_button:resize_button.checked, close_button:close_button.checked})">add new window</button>
     </div>
-    <div class="jendela jendela-7">
-        <div class="header">
-            <div class="title">
-                title
-            </div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-            </div>
-        </div>
-        <div class="body">
+    <script src="jendela.js"></script>
+    <script>
+        add_window(
+            {
+            title:'Testing Window',
+            theme:'jendela-xp',
+            body:`
             <select onchange="changeStyle(this)">
                 <option value="0">Select Window Style:</option>
                 <option value="jendela-debug">Jendela Debug</option>
@@ -61,10 +56,9 @@
                 <option value="jendela-10">Jendela 10</option>
                 <option value="jendela-11">Jendela 11</option>
             </select>
-        </div>
-    </div>
-    <script src="jendela.js"></script>
-    <script>
+            `
+            }
+        );
         const changeStyle = (el) => {
             const window = el.closest('.jendela');
             let classes = window.classList;

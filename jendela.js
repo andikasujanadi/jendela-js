@@ -11,8 +11,8 @@ const createWindowHTML = (title,body,minimize_button,resize_button,close_button)
     ${body}
 </div>`;
 
-const add_window = (params) => {
-    const title = params.title;
+const add_window = (params = {}) => {
+    const title = params.title ?? '';
     const body = params.body ?? '';
     const theme = params.theme ?? 'jendela-classic';
     const minimize_button = params.minimize_button ?? true;
@@ -32,13 +32,13 @@ const add_window = (params) => {
         newWindow.focus();
     });
     newWindow.addEventListener('focus', () => {
-        console.log(`Window "${title?.trim() || 'Untitled Window'}" is focused`);
-        newWindow.classList.add('focused');
+        console.log(`Window "${title?.trim() || 'Untitled Window'}" is active`);
+        newWindow.classList.remove('inactive');
     });
 
     newWindow.addEventListener('blur', () => {
-        console.log(`Window "${title?.trim() || 'Untitled Window'}" lost focus`);
-        newWindow.classList.remove('focused');
+        console.log(`Window "${title?.trim() || 'Untitled Window'}" is inactive`);
+        newWindow.classList.add('inactive');
     });
 };
 

@@ -5,6 +5,7 @@
     user-select: none;
     top: calc(50% - 100px);
     left: calc(50% - 100px);
+    outline: none;
 }
 
 .animateWindow {
