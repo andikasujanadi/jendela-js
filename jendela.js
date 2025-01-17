@@ -12,18 +12,37 @@ const createWindowHTML = (title,body,minimize_button,resize_button,close_button)
 </div>`;
 
 const add_window = (params) => {
-    const title = params.title??'';
-    const body = params.body??'';
-    const theme = params.theme??'jendela-classic';
-    const minimize_button = params.minimize_button??true;
-    const resize_button = params.resize_button??true;
-    const close_button = params.close_button??true;
+    const title = params.title;
+    const body = params.body ?? '';
+    const theme = params.theme ?? 'jendela-classic';
+    const minimize_button = params.minimize_button ?? true;
+    const resize_button = params.resize_button ?? true;
+    const close_button = params.close_button ?? true;
+
     const newWindow = document.createElement('div');
     newWindow.className = `jendela ${theme}`;
-    newWindow.innerHTML = createWindowHTML(title,body,minimize_button,resize_button,close_button);
+    newWindow.innerHTML = createWindowHTML(title, body, minimize_button, resize_button, close_button);
+
+    newWindow.setAttribute('tabindex', '0');
     document.body.appendChild(newWindow);
     dragElement(newWindow);
+
+    newWindow.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        newWindow.focus();
+    });
+    newWindow.addEventListener('focus', () => {
+        console.log(`Window "${title?.trim() || 'Untitled Window'}" is focused`);
+        newWindow.classList.add('focused');
+    });
+
+    newWindow.addEventListener('blur', () => {
+        console.log(`Window "${title?.trim() || 'Untitled Window'}" lost focus`);
+        newWindow.classList.remove('focused');
+    });
 };
+
+
 
 const refreshWindows = () => {
     const windows = document.querySelectorAll(".jendela");
