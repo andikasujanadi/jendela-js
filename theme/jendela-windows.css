@@ -272,6 +272,17 @@
         transition: background ease 0.25s, border ease 0.25s, box-shadow ease 0.25s;
     }
 
+    .headerButton:first-of-type {
+        border-radius: 0 0 0 4px;
+    }
+    
+    .headerButton:last-of-type {
+        border-radius: 0 0 4px 0;
+    }
+    .headerButton:only-of-type {
+        border-radius: 0 0 4px 4px;
+    }
+
     .headerButton:hover {
         background: linear-gradient(180deg, #86beff 49%, #6da9ee 50%, #3b689c 70%, #80acdd 100%);
         box-shadow: 0px 0px 7px 3px rgb(107, 169, 226);
@@ -283,10 +294,6 @@
         box-shadow: 0px 0px 7px 3px rgb(107, 169, 226);
         border: #a5c1d8 1px solid;
         z-index: 1;
-    }
-
-    .headerButtonMinimize {
-        border-radius: 0 0 0 4px;
     }
 
     .headerButtonMinimize .icon {
@@ -327,7 +334,6 @@
         background-color: #ac2007;
         background: linear-gradient(180deg, #d29b91 49%, #bf4730 50%, #bf4730 70%, #d88778 100%);
         width: 48px !important;
-        border-radius: 0 0 4px 0;
         border: #e0a59c 1px solid;
     }
 
