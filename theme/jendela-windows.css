@@ -606,7 +606,8 @@
     background-color: #FFFFFF;
     border: #00000036 solid 1px;
     border-radius: 8px;
-    box-shadow: 0px 16px 20px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 16px 40px 0px rgba(0, 0, 0, 0.3);
+    transition: box-shadow ease 0.3s;
 
     .header {
         background: rgb(240, 249, 255);
@@ -689,6 +690,7 @@
     }
 }
 .jendela-11.inactive{
+    box-shadow: 0px 16px 40px 0px rgba(0, 0, 0, 0.2);
     .header{
         background: #e8e8e8;
     }
