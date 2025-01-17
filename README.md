@@ -174,13 +174,16 @@ add_window({
 - [x] Multi-window support
 - [x] Focus/Blur state management
 - [x] Hierarchical z-index management
-- [ ] Separating CSS file
+- [x] Separating CSS file
+- [ ] add default theme for guide
+- [ ] add gnome theme
+- [ ] Dark theme variant
 - [ ] Dynamic border radius style for button
 - [ ] Focus/Blur theme variant
-- [ ] Dark theme variant
 - [ ] Support touch screen device
 
 ### Next Version
+- [ ] NPM support
 - [ ] Snap to grid
 - [ ] Advance touch screen
 - [ ] Button arrangement
