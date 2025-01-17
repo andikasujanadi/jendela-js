@@ -1,3 +1,30 @@
+const createWindowHTML = (title,body,minimize_button,resize_button,close_button) => `
+<div class="header">
+    <div class="title">${title}</div>
+    <div class="headerButtonContainer">
+        ${minimize_button===true?'<div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>':''}
+        ${resize_button===true?'<div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>':''}
+        ${close_button===true?'<div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>':''}
+    </div>
+</div>
+<div class="body">
+    ${body}
+</div>`;
+
+const add_window = (params) => {
+    const title = params.title??'';
+    const body = params.body??'';
+    const theme = params.theme??'jendela-classic';
+    const minimize_button = params.minimize_button??true;
+    const resize_button = params.resize_button??true;
+    const close_button = params.close_button??true;
+    const newWindow = document.createElement('div');
+    newWindow.className = `jendela ${theme}`;
+    newWindow.innerHTML = createWindowHTML(title,body,minimize_button,resize_button,close_button);
+    document.body.appendChild(newWindow);
+    dragElement(newWindow);
+};
+
 const refreshWindows = () => {
     const windows = document.querySelectorAll(".jendela");
     if (windows.length) {

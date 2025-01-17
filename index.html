@@ -30,9 +30,16 @@
             <option value="jendela-10">Jendela 10</option>
             <option value="jendela-11">Jendela 11</option>
         </select>
-        <button onclick="add_window({title:titleInput.value, theme: themePicker.value})">add new window</button>
+        <br>
+        <input type="checkbox" id="minimize_button" name="minimize_button" value="minimize_button" checked>
+        <label for="minimize_button">minimize button</label><br>
+        <input type="checkbox" id="resize_button" name="resize_button" value="resize_button" checked>
+        <label for="resize_button">maximize button</label><br>
+        <input type="checkbox" id="close_button" name="close_button" value="close_button" checked>
+        <label for="close_button">close button</label><br>
+        <button onclick="add_window({title:titleInput.value, theme: themePicker.value, minimize_button:minimize_button.checked, resize_button:resize_button.checked, close_button:close_button.checked})">add new window</button>
     </div>
-    <div class="jendela -fixTop jendela-7">
+    <div class="jendela jendela-7">
         <div class="header">
             <div class="title">
                 title
@@ -68,34 +75,6 @@
             });
             window.classList.add(el.value);
         }
-
-
-        const createWindowHTML = (title,body) => `
-        <div class="header">
-            <div class="title">${title}</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-            </div>
-        </div>
-        <div class="body">
-            ${body}
-        </div>`;
-
-        const add_window = (params) => {
-            const title = params.title??'';
-            const body = params.body??'';
-            const theme = params.theme??'jendela-classic';
-            const newWindow = document.createElement('div');
-            const minimize_button = params.minimize_button??'true';
-            const resize_button = params.resize_button??'true';
-            const close_button = params.close_button??'true';
-            newWindow.className = `jendela ${theme}`;
-            newWindow.innerHTML = createWindowHTML(title,body);
-            document.body.appendChild(newWindow);
-            dragElement(newWindow);
-        };
 
     </script>
 </body>
