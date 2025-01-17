@@ -172,8 +172,8 @@
         box-shadow: #2260e6 -1px -1px 2px 2px inset;
     }
     .headerButtonClose {
-        background: linear-gradient(180deg, rgb(239, 115, 255) 0%, rgb(224, 79, 230) 50%);
-        box-shadow: #cf2d91 -1px -1px 2px 2px inset;
+        background: linear-gradient(180deg, rgb(211, 97, 192) 0%, rgb(197, 75, 181) 50%);
+        box-shadow: #cf2d70 -1px -1px 2px 2px inset;
     }
 }
 
