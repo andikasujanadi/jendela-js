@@ -28,6 +28,7 @@ const add_window = (params = {}) => {
 
     newWindow.setAttribute('tabindex', '0');
     document.body.appendChild(newWindow);
+    newWindow.focus();
     dragElement(newWindow);
     windows.push(newWindow);
     updateWindowZIndices();
