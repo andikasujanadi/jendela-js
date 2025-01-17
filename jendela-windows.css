@@ -219,8 +219,6 @@
         margin: 0px auto;
         text-shadow: 0px 0px 10px #FFFFFFFF,
             0px 0px 10px #FFFFFFFF,
-            0px 0px 10px #FFFFFFFF,
-            0px 0px 10px #FFFFFFFF,
             0px 0px 10px #FFFFFFFF;
     }
 
@@ -340,6 +338,42 @@
         box-shadow: 0px 0px 7px 3px rgb(216, 101, 101);
         border: #d67665 1px solid;
         z-index: 1;
+    }
+}
+
+.jendela-7.inactive{
+    .headerButton {
+        border: rgba(0, 0, 0, 0.25) 1px solid;
+        background: transparent;
+    }
+    .headerButtonContainer{
+        background: transparent;
+        border: rgba(255, 255, 255, 0.15) 1px solid;
+    }
+    .headerButton:hover {
+        background: linear-gradient(180deg, #86beff 49%, #6da9ee 50%, #3b689c 70%, #80acdd 100%);
+        box-shadow: 0px 0px 7px 3px rgb(107, 169, 226);
+        border: #c0e3ff 1px solid;
+    }
+
+    .headerButton:active {
+        background: linear-gradient(180deg, #6d9bcf 49%, #5381b6 50%, #2d5077 70%, #6d9bcf 100%);
+        box-shadow: 0px 0px 7px 3px rgb(107, 169, 226);
+        border: #a5c1d8 1px solid;
+        border: #c0e3ff 1px solid;
+    }
+    .headerButtonClose:hover {
+        background-color: #ff0000;
+        background: linear-gradient(180deg, #f18471 49%, #a13d28 50%, #aa3f2a 70%, #f18471 100%);
+        box-shadow: 0px 0px 7px 3px rgb(216, 101, 101);
+        border: #e0a59c 1px solid;
+    }
+
+    .headerButtonClose:active {
+        background-color: #ff0000;
+        background: linear-gradient(180deg, #b1766c 49%, #5f2418 50%, #772d1f 70%, #b1766c 100%);
+        box-shadow: 0px 0px 7px 3px rgb(216, 101, 101);
+        border: #d67665 1px solid;
     }
 }
 
