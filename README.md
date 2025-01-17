@@ -14,6 +14,13 @@
 ```bash
 git clone https://github.com/andikasujanadi/jendela-js.git
 ```
+And import Jendela-JS CSS and javascript file to your project
+```html
+<link rel="stylesheet" href="jendela.css">
+```
+```html
+<script src="jendela.js"></script>
+```
 ### Option 2: Using CDN (coming soon)
 
 You can include the library in your project by linking to the hosted version (once it's available).
@@ -33,11 +40,10 @@ add_window({
 });
 ```
 This function will add a new window directly to HTML body.
-### Window Structure
-This structure for reference to make a new style 
+### Window Class Structure
+This class structure is for reference to make a new style
 ```html
-<div class="jendela jendela-classic">
-
+<div class="jendela yourstyle-theme">
     <div class="seHandle cornerHandle"></div>
     <div class="swHandle cornerHandle"></div>
     <div class="neHandle cornerHandle"></div>
@@ -46,37 +52,27 @@ This structure for reference to make a new style
     <div class="startHandle"></div>
     <div class="bottomHandle"></div>
     <div class="topHandle"></div>
-
     <div class="header">
-        
         <div class="title"></div>
-
         <div class="headerButtonContainer">
-
-            <div class="headerButton headerButtonMinimize"
-                onmouseup="minimizeWindow(this)">
+            <div class="headerButton headerButtonMinimize">
                 <div class="icon"></div>
             </div>
-            <div class="headerButton headerButtonResize"
-                onmouseup="maximizeWindow(this)">
+            <div class="headerButton headerButtonResize">
                 <div class="icon"></div>
             </div>
-            <div class="headerButton headerButtonClose"
-                onmouseup="closeWindow(this)">
+            <div class="headerButton headerButtonClose">
                 <div class="icon"></div>
             </div>
-            
         </div>
     </div>
-    <div class="body">
-        <!-- your body element put in here -->
-    </div>
+    <div class="body"></div>
 </div>
 ```
 
 ### Add Styles
 
-This is the example of jendela classic CSS:
+This is the example of jendela classic theme CSS:
 ```css
 .jendela-classic {
     background-color: #FCFCFC;
@@ -142,12 +138,15 @@ This is the example of jendela classic CSS:
 
 You can customize the following options when creating a window:
 
-- `title`: The title of the window.
-- `body`: The content inside the window.
-- `theme`: Set the theme of the window. Default is `jendela-classic`.
-- `minimize_button`: Set to `true` to show the minimize button (default: `true`).
-- `resize_button`: Set to `true` to show the resize button (default: `true`).
-- `close_button`: Set to `true` to show the close button (default: `true`).
+| **Option**          | **Description**                            | **Default**           |
+|---------------------|--------------------------------------------|-----------------------|
+| `title`             | The title of the window.                   | `''` (empty string)   |
+| `body`              | The content inside the window.             | `''` (empty string)   |
+| `theme`             | Set the theme of the window.               | `jendela-classic`     |
+| `minimize_button`   | Set to `true` to show the minimize button. | `true`                |
+| `resize_button`     | Set to `true` to show the resize button.   | `true`                |
+| `close_button`      | Set to `true` to show the close button.    | `true`                |
+
 
 Example:
 ```javascript
@@ -162,6 +161,7 @@ add_window({
 ```
 ## Planned Features
 
+### Version 1.0
 - [x] Customizable themes
 - [x] Resizable windows
 - [x] Minimize/Restore functionality
@@ -170,15 +170,21 @@ add_window({
 - [x] Multi-window support
 - [x] Focus/Blur state management
 - [x] Hierarchical z-index management
-- [ ] Dynamic button style
+- [ ] Separating CSS file
+- [ ] Dynamic border radius style for button
 - [ ] Focus/Blur theme variant
+- [ ] Dark theme variant
+- [ ] Support touch screen device
+
+### Next Version
 - [ ] Snap to grid
-- [ ] Accessibility improvements (e.g., keyboard navigation)
-- [ ] Save and load window state
-- [ ] Responsive design adjustments
-- [ ] Enhanced drag-and-drop behavior
-- [ ] Performance optimizations
+- [ ] Advance touch screen
+- [ ] Button arrangement
 - [ ] Integrated Taskbar Support
+- [ ] Enhanced drag-and-drop behavior
+- [ ] Responsive design adjustments
+- [ ] Save and load window state
+- [ ] Accessibility improvements (e.g., keyboard navigation)
 
 ## Contributing
 
