@@ -191,6 +191,7 @@ add_window({
 
 ### Next Version
 - [ ] NPM support
+- [ ] Window animation on create
 - [ ] Dark theme variant
 - [ ] Snap to grid
 - [ ] Advance touch screen

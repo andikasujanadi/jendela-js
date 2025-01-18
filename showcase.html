@@ -15,7 +15,7 @@
             overflow: hidden;
             background: #FFF;
         }
-        .grid {
+        .grid-bg {
             position: absolute;
             inset: 0;
             height: 100%;
@@ -38,11 +38,27 @@
     </style>
     <link rel="stylesheet" href="jendela.css">
     <link rel="stylesheet" href="theme/jendela-windows.css">
+    <link rel="stylesheet" href="theme/jendela-linux.css">
 </head>
 
-<body class="grid">   
+<body class="grid-bg">
+    <div onclick="openSetting()" class="m-4 flex bg-gray-100 h-12 w-12 border border-gray-300 rounded-xl cursor-pointer shadow-lg">
+        <i class="my-auto mx-auto text-2xl fa-solid fa-gear text-gray-500"></i>
+    </div>
     <script src="jendela.js"></script>
     <script>
+        const openSetting = () => {
+            add_window({
+            title: 'Setting',
+            body: 'Setting section',
+            theme: 'jendela-libadwaita',
+            minimize_button: false,
+            top:72,
+            left:16,
+            width:260,
+            height:200,
+        });
+        }
         add_window({
             title: 'Jendela Classic',
             body: 'This is a window with custom settings.',
