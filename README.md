@@ -168,7 +168,6 @@ add_window({
     theme: 'jendela-xp',
     minimize_button: false,
     min_width: 300,
-    body: 'yeet'
 });
 ```
 ## Planned Features
