@@ -5,6 +5,7 @@ import pkg from "./package.json";
 import postcss from 'rollup-plugin-postcss';
 import livereload from "rollup-plugin-livereload";
 import serve from "rollup-plugin-serve";
+import css from "rollup-plugin-import-css";
 
 export default [
   {
@@ -15,6 +16,7 @@ export default [
       format: "umd",
     },
     plugins: [
+      css(),
       serve({
         open:true,
         contentBase: ''
