@@ -2,9 +2,12 @@
     user-select: none;
     outline: none;
     position: absolute;
+    box-sizing: unset;
     *, ::after, ::before{
-        box-sizing: initial;
+        box-sizing: unset;
     }
+    display: flex;
+    flex-direction: column;
 }
 
 .animateWindow {
@@ -33,6 +36,7 @@
 
 .jendela .body {
     user-select: text;
+    overflow: hidden;
 }
 
 .jendela .header {

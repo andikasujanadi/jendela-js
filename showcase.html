@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
@@ -39,6 +38,8 @@
     <link rel="stylesheet" href="jendela.css">
     <link rel="stylesheet" href="theme/jendela-windows.css">
     <link rel="stylesheet" href="theme/jendela-linux.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 <body class="grid-bg">
@@ -50,13 +51,37 @@
         const openSetting = () => {
             add_window({
             title: 'Setting',
-            body: 'Setting section',
             theme: 'jendela-libadwaita',
             minimize_button: false,
             top:72,
             left:16,
-            width:260,
-            height:200,
+            min_width:260,
+            height:400,
+            body: `
+            <div class="flex flex-col w-full h-full gap-2 overflow-auto">
+            <input class="border min-h-8 px-2 rounded-lg outline-none" id="titleInput" type="text" placeholder="title">
+            <select class="border min-h-8 px-2 rounded-lg outline-none" id="themePicker">
+                <option value="0">Select Window Style:</option>
+                <option value="jendela-debug">Jendela Debug</option>
+                <option value="jendela-legacy" selected>Jendela Default</option>
+                <option value="jendela-libadwaita">Jendela Libadwaita</option>
+                <option value="jendela-classic">Jendela Classic</option>
+                <option value="jendela-xp">Jendela XP</option>
+                <option value="jendela-7">Jendela 7</option>
+                <option value="jendela-8">Jendela 8</option>
+                <option value="jendela-10">Jendela 10</option>
+                <option value="jendela-11">Jendela 11</option>
+            </select>
+            <br>
+            <input type="checkbox" id="minimize_button" name="minimize_button" value="minimize_button" checked>
+            <label for="minimize_button">minimize button</label><br>
+            <input type="checkbox" id="resize_button" name="resize_button" value="resize_button" checked>
+            <label for="resize_button">maximize button</label><br>
+            <input type="checkbox" id="close_button" name="close_button" value="close_button" checked>
+            <label for="close_button">close button</label><br>
+            <button onclick="add_window({title:titleInput.value, theme: themePicker.value, minimize_button:minimize_button.checked, resize_button:resize_button.checked, close_button:close_button.checked})">add new window</button>
+            </div>
+            `,
         });
         }
         add_window({
