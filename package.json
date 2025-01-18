@@ -1,6 +1,6 @@
 {
   "name": "@andikasujanadi/jendela.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "jendela.js is a simple JavaScript library for creating draggable windows. It allows you to add interactive window components to your web applications. This project is currently in development and is open for contributions.",
   "main": "dist/jendela.cjs.js",
   "module": "dist/jendela.esm.js",
