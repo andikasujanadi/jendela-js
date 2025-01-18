@@ -213,6 +213,7 @@ addWindow({
 
 ### Next Version
 - [ ] Window animation on create
+- [ ] Improve resize and minimize function
 - [ ] Dark theme variant
 - [ ] Out of border safety
 - [ ] Snap to grid

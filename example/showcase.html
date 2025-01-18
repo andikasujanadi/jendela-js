@@ -56,7 +56,7 @@
             minWidth:260,
             height:274,
             body: `
-            <div class="flex flex-col w-full h-full gap-2 overflow-auto">
+            <div class="flex flex-col w-full h-full gap-2 overflow-auto p-2 box-border">
             <input class="border min-h-8 px-2 rounded-lg outline-none" id="titleInput" type="text" placeholder="title">
             <select class="border min-h-8 px-2 rounded-lg outline-none" id="themePicker">
                 <option value="0">Select Window Style:</option>
@@ -70,19 +70,19 @@
                 <option value="jendela-10">Jendela 10</option>
                 <option value="jendela-11">Jendela 11</option>
             </select>
-            <div>
-                <input type="checkbox" id="minimize_button" name="minimize_button" value="minimize_button" checked>
-                <label for="minimize_button">minimize button</label>
+            <div class="flex gap-2 hover:underline">
+                <input type="checkbox" class="my-auto" id="minimizeButton" name="minimizeButton" value="minimizeButton" checked>
+                <label class="grow" for="minimizeButton">minimize button</label>
             </div>
-            <div>
-            <input type="checkbox" id="resize_button" name="resize_button" value="resize_button" checked>
-            <label for="resize_button">maximize button</label>
+            <div class="flex gap-2 hover:underline">
+            <input type="checkbox" class="my-auto" id="resizeButton" name="resizeButton" value="resizeButton" checked>
+            <label class="grow" for="resizeButton">maximize button</label>
             </div>
-            <div>
-            <input type="checkbox" id="close_button" name="close_button" value="close_button" checked>
-            <label for="close_button">close button</label>
+            <div class="flex gap-2 hover:underline">
+            <input type="checkbox" class="my-auto" id="closeButton" name="closeButton" value="closeButton" checked>
+            <label class="grow" for="closeButton">close button</label>
             </div>
-            <button class="bg-blue-500 py-2 text-white font-bold rounded-xl" onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimize_button:minimize_button.checked, resize_button:resize_button.checked, close_button:close_button.checked})">add new window</button>
+            <button class="bg-blue-500 cursor-pointer py-2 text-white font-bold rounded-xl" onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimizeButton:minimizeButton.checked, resizeButton:resizeButton.checked, closeButton:closeButton.checked})">add new window</button>
             </div>
             `,
         });
