@@ -10,7 +10,7 @@
 
 ## Installation
 
-### Option 1: Clone the repository
+### Option 1: Download Release Package (coming soon)
 ```bash
 git clone https://github.com/andikasujanadi/jendela-js.git
 ```
@@ -21,11 +21,16 @@ And import Jendela-JS CSS and javascript file to your project
 ```html
 <script src="jendela.js"></script>
 ```
-### Option 2: Using CDN (coming soon)
+### Option 2: Using NPM
 
-You can include the library in your project by linking to the hosted version (once it's available).
+You can include the library in your project by downloading the module from NPM.
+```bash
+npm i @andikasujanadi/jendela.js
+```
+Import the module
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/jendela-js@latest"></script>
+  import { addWindow } from '@andikasujanadi/jendela.js'
+  import '@andikasujanadi/jendela.js/dist/styles.css';
 ```
 ## Usage
 
@@ -33,7 +38,7 @@ You can include the library in your project by linking to the hosted version (on
 
 In your JavaScript file, use the following code to create a new window:
 ```javascript
-add_window({
+addWindow({
     title:'Testing Window',
     theme:'jendela-xp',
     body:'this is body',
@@ -70,7 +75,7 @@ This class structure is for reference to make a new style
 </div>
 ```
 
-### Add Styles
+### Adding Your Own Styles
 
 This is the example of jendela classic theme CSS:
 <details>
@@ -80,19 +85,23 @@ This is the example of jendela classic theme CSS:
 .jendela-classic {
     background-color: #FCFCFC;
     border: #D4D0C8 solid 4px;
+
     .header {
         background: rgb(12, 38, 108);
         background: linear-gradient(90deg, rgba(12, 38, 108, 1) 0%, rgba(185, 219, 255, 1) 100%);
         color: white;
     }
+
     .title {
         padding: 6px;
     }
+
     .headerButtonContainer {
         padding-top: 2px;
         padding-right: 2px;
         gap: 2px;
     }
+
     .headerButton {
         width: 20px !important;
         height: 20px !important;
@@ -101,39 +110,50 @@ This is the example of jendela classic theme CSS:
         border-width: 3px;
         border-color: #ebe8e3 #747270 #747270 #ebe8e3;
     }
+
     .headerButton:active {
         border-color: #747270 #ebe8e3 #ebe8e3 #747270;
     }
+
+    .headerButton .icon{
+        position: absolute;
+        margin: 4px 4px;
+        height: 11px!important;
+        width: 11px!important;
+    }
+
     .headerButtonMinimize .icon {
         top:3px;
         position: absolute;
-        height: 100%;
-        width: 100%;
         background-image: url("data:image/svg+xml,%3Csvg%20width='8'%20height='2'%20viewBox='0%200%208%202'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M0%200H8V2H0V0Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 10px 10px;
+        background-size: contain;
         filter: invert(1);
     }
+
     .headerButtonResize .icon {
         position: absolute;
-        height: 100%;
-        width: 100%;
         background-image: url("data:image/svg+xml,%3Csvg%20width='10'%20height='8'%20viewBox='0%200%2010%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M10%200H0V8H10V0ZM9%202H1V7H9V2Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 12px 12px;
+        background-size: contain;
         filter: invert(1);
     }
+
     .headerButtonClose .icon {
         position: absolute;
-        height: 100%;
-        width: 100%;
         background-image: url("data:image/svg+xml,%3Csvg%20width='8'%20height='7'%20viewBox='0%200%208%207'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201H0V0H2V1H3V2H5V1H6V0H8V1H7V2H6V3H5V4H6V5H7V6H8V7H6V6H5V5H3V6H2V7H0V6H1V5H2V4H3V3H2V2H1V1Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 10px 10px;
+        background-size: contain;
         filter: invert(1);
+    }
+}
+.jendela-classic.inactive{
+    border-color: #d9d9d9;
+    .header{
+        background: linear-gradient(90deg, rgb(107, 107, 107) 0%, rgb(224, 224, 224) 100%);
     }
 }
 ```
@@ -162,7 +182,7 @@ You can customize the following options when creating a window:
 
 Example:
 ```javascript
-add_window({
+addWindow({
     title: 'My Custom Window',
     body: 'This is a window with custom settings.',
     theme: 'jendela-xp',
@@ -194,6 +214,7 @@ add_window({
 ### Next Version
 - [ ] Window animation on create
 - [ ] Dark theme variant
+- [ ] Out of border safety
 - [ ] Snap to grid
 - [ ] Advance touch screen
 - [ ] Button arrangement
