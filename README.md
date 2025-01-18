@@ -189,7 +189,7 @@ add_window({
 - [x] add libadwaita theme
 - [x] add parameter: min, max, position, size
 - [x] NPM support
-- [ ] Fix css bug in minify css
+- [x] Fix css bug in minify css
 
 ### Next Version
 - [ ] Window animation on create
