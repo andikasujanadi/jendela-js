@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #FFF;
+        }
+    </style>
+    <!-- IMPORT THIS -->
+    <link rel="stylesheet" href="../dist/jendela.umd.css">
+</head>
+
+<body>
+    <div style="padding: 12px;">
+        <input id="titleInput" type="text" placeholder="title">
+        <select id="themePicker">
+            <option value="0">Select Window Style:</option>
+            <option value="jendela-debug">Jendela Debug</option>
+            <option value="jendela-legacy" selected>Jendela Default</option>
+            <option value="jendela-libadwaita">Jendela Libadwaita</option>
+            <option value="jendela-classic">Jendela Classic</option>
+            <option value="jendela-xp">Jendela XP</option>
+            <option value="jendela-7">Jendela 7</option>
+            <option value="jendela-8">Jendela 8</option>
+            <option value="jendela-10">Jendela 10</option>
+            <option value="jendela-11">Jendela 11</option>
+        </select>
+        <br>
+        <input type="checkbox" id="minimizeButton" name="minimizeButton" value="minimizeButton" checked>
+        <label for="minimizeButton">minimize button</label><br>
+        <input type="checkbox" id="resizeButton" name="resizeButton" value="resizeButton" checked>
+        <label for="resizeButton">maximize button</label><br>
+        <input type="checkbox" id="closeButton" name="closeButton" value="closeButton" checked>
+        <label for="closeButton">close button</label><br>
+        <button onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimizeButton: minimizeButton.checked, resizeButton:resizeButton.checked, closeButton:closeButton.checked})">add new window</button>
+    </div>
+    <!-- IMPORT THIS -->
+    <script src="../dist/jendela.umd.js"></script>
+    <script>
+        // CALL THIS TO SPAWN NEW WINDOW
+        jendelaJS.addWindow(
+            {
+            title: 'Testing Window',
+            theme: 'jendela-legacy',
+            minWidth: 350,
+            body:`
+            <select onchange="changeStyle(this)">
+                <option value="0">Select Window Style:</option>
+                <option value="jendela-debug">Jendela Debug</option>
+                <option value="jendela-legacy">Jendela Default</option>
+                <option value="jendela-libadwaita">Jendela Libadwaita</option>
+                <option value="jendela-classic">Jendela Classic</option>
+                <option value="jendela-xp">Jendela XP</option>
+                <option value="jendela-7">Jendela 7</option>
+                <option value="jendela-8">Jendela 8</option>
+                <option value="jendela-10">Jendela 10</option>
+                <option value="jendela-11">Jendela 11</option>
+            </select>
+            `
+            }
+        );
+        const changeStyle = (el) => {
+            const window = el.closest('.jendela');
+            let classes = window.classList;
+            classes.forEach(className => {
+                if (className.includes('jendela-')) {
+                    window.classList.remove(className);
+                }
+            });
+            window.classList.add(el.value);
+        }
+
+    </script>
+</body>
+
+</html>

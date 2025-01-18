@@ -1,0 +1,380 @@
+.jendela {
+    user-select: none;
+    outline: none;
+    position: absolute;
+}
+
+.animateWindow {
+    transition: height ease 0.3s, width ease 0.3s, top ease 0.3s, left ease 0.3s;
+}
+
+.jendela.minimized{
+        .body{
+            height: 0px!important;
+            display: none!important;
+        }
+        height: auto!important;
+        width: 200px!important;
+}
+
+.jendela.maximized{
+    top: 0px!important;
+    left: 0px!important;
+    height: 100vh!important;
+    width: 100vw!important;
+    border-width: 0px!important;
+    .header {
+        border-radius: 0px 0px 0px 0px!important;
+    }
+}
+
+.jendela .body {
+    user-select: text;
+}
+
+.jendela .header {
+    position: relative;
+    display: flex;
+}
+
+.jendela .header .title {
+    margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.jendela .header .headerButtonContainer {
+    display: flex;
+}
+
+.jendela .header .headerButtonContainer .headerButton {
+    position: relative;
+    height: 100%;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    cursor: pointer;
+}
+
+.jendela .topHandle {
+    position: absolute;
+    display: block;
+    height: 6px;
+    width: 100%;
+    z-index: 1;
+    cursor: n-resize;
+}
+
+.jendela.fixTop .topHandle {
+    position: absolute;
+    display: block;
+    bottom: 100%;
+    height: 6px;
+    width: 100%;
+    z-index: 1;
+    cursor: n-resize;
+}
+
+.jendela .bottomHandle {
+    position: absolute;
+    display: block;
+    height: 6px;
+    width: 100%;
+    top: 100%;
+    z-index: 1;
+    cursor: s-resize;
+}
+
+.jendela .startHandle {
+    position: absolute;
+    display: block;
+    height: calc(100% - 6px);
+    width: 6px;
+    top: 6px;
+    right: 100%;
+    z-index: 1;
+    cursor: w-resize;
+}
+
+.jendela.fixTop .startHandle {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 6px;
+    top: 0;
+    right: 100%;
+    z-index: 1;
+    cursor: w-resize;
+}
+
+.jendela .endHandle {
+    position: absolute;
+    display: block;
+    height: calc(100% - 6px);
+    width: 6px;
+    top: 6px;
+    left: 100%;
+    z-index: 1;
+    cursor: e-resize;
+}
+
+.jendela.fixTop .endHandle {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 6px;
+    top: 0;
+    left: 100%;
+    z-index: 1;
+    cursor: e-resize;
+}
+
+.jendela .cornerHandle {
+    position: absolute;
+    display: block;
+    height: 6px;
+    width: 6px;
+    z-index: 1;
+}
+
+.nwHandle {
+    top: 0;
+    right: 100%;
+    cursor: nw-resize;
+}
+
+.fixTop .nwHandle {
+    bottom: 100%;
+    top: unset;
+    right: 100%;
+    cursor: nw-resize;
+}
+
+.neHandle {
+    top: 0;
+    left: 100%;
+    cursor: ne-resize;
+}
+
+.fixTop .neHandle {
+    bottom: 100%;
+    top: unset;
+    left: 100%;
+    cursor: ne-resize;
+}
+
+.swHandle {
+    top: 100%;
+    right: 100%;
+    cursor: sw-resize;
+}
+
+.seHandle {
+    top: 100%;
+    left: 100%;
+    cursor: se-resize;
+}
+
+.jendela-debug {
+    background-color: gainsboro;
+
+    .header {
+        background-color: red;
+        padding-top: 6px;
+    }
+
+    .topHandle {
+        background-color: green;
+    }
+
+    .bottomHandle {
+        background-color: green;
+    }
+
+    .startHandle {
+        background-color: yellow;
+    }
+
+    .endHandle {
+        background-color: yellow;
+    }
+
+    .cornerHandle {
+        background-color: blue;
+    }
+
+    .headerButtonMinimize {
+        background-color: cornflowerblue;
+    }
+
+    .headerButtonResize {
+        background-color: darkseagreen;
+    }
+
+    .headerButtonClose {
+        background-color: gold;
+    }
+}
+
+
+.jendela-legacy {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    transition: box-shadow ease 0.3s;
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.2);
+    border: #d4d4d4 solid 1px;
+    border-radius: 16px;
+    .cornerHandle{
+        height: 20px;
+        width: 20px;
+        z-index: 2;
+    }
+    .header {
+        background-color: #ffffff;
+        padding-top: 12px;
+        padding-bottom: 8px;
+        padding-left: 14px;
+        border-radius: 16px 16px 0 0;
+        font-size: 12pt;
+        border-bottom: #ececec solid 1px;
+    }
+    .body {
+        padding: 8px;
+    }
+    .headerButtonContainer{
+        margin-right: 12px;
+        margin-top: 0px;
+        gap: 4px;
+        padding-left: 8px;
+    }
+    .headerButton {
+        background: #e4e4e4;
+        border-radius: 100px;
+        height: 20px!important;
+        width: 20px!important;
+        transition: background ease 0.2s;
+    }
+    .headerButton:hover {
+        background: #b9b9b9;
+        border-radius: 100px;
+        height: 20px!important;
+        width: 20px!important;
+    }
+    .headerButton:active {
+        background: #777777;
+        border-radius: 100px;
+        height: 20px!important;
+        width: 20px!important;
+    }
+    .headerButtonClose{
+        background: #d40000;
+    }
+    .headerButtonClose:hover{
+        background: #b30000;
+    }
+    .headerButtonClose:active{
+        background: #8a0000;
+    }
+    .nwHandle {
+        top: 0;
+        right: calc(100% - 10px);
+        cursor: nw-resize;
+    }
+    
+    .fixTop .nwHandle {
+        bottom: calc(100% - 10px);
+        top: unset;
+        right: calc(100% - 10px);
+        cursor: nw-resize;
+    }
+    
+    .neHandle {
+        top: 0;
+        left: calc(100% - 10px);
+        cursor: ne-resize;
+    }
+    
+    .fixTop .neHandle {
+        bottom: calc(100% - 10px);
+        top: unset;
+        left: calc(100% - 10px);
+        cursor: ne-resize;
+    }
+    .swHandle {
+        top: calc(100% - 10px);
+        right: calc(100% - 10px);
+    }
+    .seHandle {
+        top: calc(100% - 10px);
+        left: calc(100% - 10px);
+    }
+    .icon{
+        transition: opacity ease 0.2s;
+    }
+    .headerButtonContainer:hover .icon{
+        opacity: 1;
+    }
+    .headerButton .icon{
+        margin:4px;
+        position: absolute;
+        height: 12px;
+        width: 12px;
+        opacity: 0;
+    }
+    .headerButtonMinimize .icon {
+        top:1px;
+        background-image: url("data:image/svg+xml,%3Csvg%20width='10'%20height='1'%20viewBox='0%200%2010%201'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M0%200H10V1H0V0Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 10px 10px;
+        filter: invert(1);
+    }
+
+    .headerButtonResize .icon {
+        background-image: url("data:image/svg+xml,%3Csvg%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M10%200H0V10H10V0ZM9%201H1V9H9V1Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 10px 10px;
+        filter: invert(1);
+    }
+
+    .headerButtonClose .icon {
+        background-image: url("data:image/svg+xml,%3Csvg%20width='11'%20height='11'%20viewBox='0%200%2011%2011'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%2010L5.5%205.5M10%201L5.5%205.5M5.5%205.5L1%201M5.5%205.5L10%2010'%20stroke='white'%20stroke-linecap='square'%2F%3E%3C%2Fsvg%3E");        
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 10px 10px;
+        filter: invert(0);
+    }
+
+}
+.jendela-legacy.inactive{
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    .header {
+        background-color: #e7e7e7;
+        border-bottom: #e0e0e0 solid 1px;
+        color: #aaaaaa;        
+    }
+    .headerButton {
+        background: #c9c9c9;
+    }
+    .headerButton:hover {
+        background: #b9b9b9;
+    }
+    .headerButtonClose .icon{
+        filter: invert(1);
+    }
+    .headerButtonClose:hover{
+        background: #b30000;
+        .icon{
+            filter: invert(0);
+        }
+    }
+    .headerButtonClose:active{
+        background: #8a0000;
+        .icon{
+            filter: invert(0);
+        }
+    }
+}
+
