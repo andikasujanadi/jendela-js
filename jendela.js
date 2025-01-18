@@ -2,9 +2,9 @@ const createWindowHTML = (title,body,minimize_button,resize_button,close_button)
 <div class="header">
     <div class="title">${title}</div>
     <div class="headerButtonContainer">
-        ${minimize_button===true?'<div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>':''}
-        ${resize_button===true?'<div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>':''}
-        ${close_button===true?'<div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>':''}
+        ${minimize_button===true?'<div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)" ontouchend="minimizeWindow(this)"><div class="icon"></div></div>':''}
+        ${resize_button===true?'<div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)" ontouchend="maximizeWindow(this)"><div class="icon"></div></div>':''}
+        ${close_button===true?'<div class="headerButton headerButtonClose" onmouseup="closeWindow(this)" ontouchend="closeWindow(this)"><div class="icon"></div></div>':''}
     </div>
 </div>
 <div class="body">
@@ -34,6 +34,10 @@ const add_window = (params = {}) => {
     updateWindowZIndices();
 
     newWindow.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        newWindow.focus();
+    });
+    newWindow.addEventListener('touchstart', (e) => {
         e.stopPropagation();
         newWindow.focus();
     });
@@ -148,13 +152,15 @@ function dragElement(element) {
         element.querySelector(".swHandle").onmousedown = resizeSW;
         element.querySelector(".seHandle").onmousedown = resizeSE;
         element.querySelector(".header").onmousedown = dragMouseDown;
-        b = element.querySelectorAll(".headerButton");
-        for (let i = 0; i < b.length; i++) {
-            const e = b[i];
+        element.querySelector(".header").ontouchstart = dragMouseDown;
+        let buttons = element.querySelectorAll(".headerButton");
+        buttons.forEach((e) => {
             e.onmousedown = preventDrag;
-        }
+            e.ontouchstart = preventDrag;
+        });
     } else {
         element.onmousedown = dragMouseDown;
+        element.ontouchstart = dragMouseDown;
     }
 
     function resizeS(e) {
@@ -189,7 +195,7 @@ function dragElement(element) {
         action = 'resize-se';
         dragMouseDown(e);
     }
-    function preventDrag(e) {animateWindow
+    function preventDrag(e) {
         action = 'dontmove';
         dragMouseDown(e);
     }
@@ -200,22 +206,31 @@ function dragElement(element) {
         }
         e = e || window.event;
         e.preventDefault();
-        // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
+        document.ontouchend = closeDragElement;
         document.onmousemove = elementDrag;
+        document.ontouchmove = elementDrag;
     }
 
     function elementDrag(e) {
         e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
+        positionX = 0;
+        positionY = 0;
+        if(e.type=='touchmove'){
+            positionX = e.changedTouches[0].clientX;
+            positionY = e.changedTouches[0].clientY;
+        }
+        else if(e.type=='mousemove'){
+            e.preventDefault();
+            positionX = e.clientX;
+            positionY = e.clientY;
+        }
+        pos1 = pos3 - positionX;
+        pos2 = pos4 - positionY;
+        pos3 = positionX;
+        pos4 = positionY;
         if (action != 'dontmove') {
             if (action != 'resize-w' && action != 'resize-e') {
                 element.style.top = (element.offsetTop - pos2) + "px";
@@ -273,7 +288,9 @@ function dragElement(element) {
 
     function closeDragElement() {
         document.onmouseup = null;
+        document.ontouchup = null;
         document.onmousemove = null;
+        document.ontouchmove = null;
         disableMove = false;
         action = 'idle';
         offsetX = 0;
