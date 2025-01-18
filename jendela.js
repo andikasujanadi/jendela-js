@@ -127,32 +127,52 @@ const minimizeWindow = (el) => {
     window.classList.remove('maximized');
     window.classList.add('minimized');
     animateWindow(window);
+
+}
+
+function addMouseAndTouchListener(element, event, handler) {
+    element.addEventListener(event, handler);
+    element.addEventListener(`touch${event.slice(5)}`, handler);
 }
 
 function dragElement(element) {
-    element.insertAdjacentHTML('afterbegin', `<div class="topHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="bottomHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="startHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="endHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="nwHandle cornerHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="neHandle cornerHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="swHandle cornerHandle"></div>`);
-    element.insertAdjacentHTML('afterbegin', `<div class="seHandle cornerHandle"></div>`);
+    element.insertAdjacentHTML('afterbegin', `
+        <div class="topHandle"></div>
+        <div class="bottomHandle"></div>
+        <div class="startHandle"></div>
+        <div class="endHandle"></div>
+        <div class="nwHandle cornerHandle"></div>
+        <div class="neHandle cornerHandle"></div>
+        <div class="swHandle cornerHandle"></div>
+        <div class="seHandle cornerHandle"></div>
+    `);
+
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     let action = 'idle';
     let minHeight = 200, minWidth = 200;
     let offsetX = 0, offsetY = 0;
+
     if (element.querySelector(".header")) {
-        element.querySelector(".bottomHandle").onmousedown = resizeS;
-        element.querySelector(".topHandle").onmousedown = resizeN;
-        element.querySelector(".endHandle").onmousedown = resizeE;
-        element.querySelector(".startHandle").onmousedown = resizeW;
-        element.querySelector(".nwHandle").onmousedown = resizeNW;
-        element.querySelector(".neHandle").onmousedown = resizeNE;
-        element.querySelector(".swHandle").onmousedown = resizeSW;
-        element.querySelector(".seHandle").onmousedown = resizeSE;
-        element.querySelector(".header").onmousedown = dragMouseDown;
-        element.querySelector(".header").ontouchstart = dragMouseDown;
+        const handleBindings = [
+            { selector: ".bottomHandle", event: resizeS },
+            { selector: ".topHandle", event: resizeN },
+            { selector: ".endHandle", event: resizeE },
+            { selector: ".startHandle", event: resizeW },
+            { selector: ".nwHandle", event: resizeNW },
+            { selector: ".neHandle", event: resizeNE },
+            { selector: ".swHandle", event: resizeSW },
+            { selector: ".seHandle", event: resizeSE },
+            { selector: ".header", event: dragMouseDown },
+        ];
+
+        handleBindings.forEach(({ selector, event }) => {
+            const handle = element.querySelector(selector);
+            if (handle) {
+                handle.onmousedown = event;
+                handle.ontouchstart = event;
+            }
+        });
+
         let buttons = element.querySelectorAll(".headerButton");
         buttons.forEach((e) => {
             e.onmousedown = preventDrag;
@@ -206,8 +226,8 @@ function dragElement(element) {
         }
         e = e || window.event;
         e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        pos3 = (e.type === 'touchstart') ? e.changedTouches[0].clientX : e.clientX;
+        pos4 = (e.type === 'touchstart') ? e.changedTouches[0].clientY : e.clientY;
         document.onmouseup = closeDragElement;
         document.ontouchend = closeDragElement;
         document.onmousemove = elementDrag;
@@ -216,68 +236,57 @@ function dragElement(element) {
 
     function elementDrag(e) {
         e = e || window.event;
-        positionX = 0;
-        positionY = 0;
-        if(e.type=='touchmove'){
-            positionX = e.changedTouches[0].clientX;
-            positionY = e.changedTouches[0].clientY;
-        }
-        else if(e.type=='mousemove'){
-            e.preventDefault();
-            positionX = e.clientX;
-            positionY = e.clientY;
-        }
+        let positionX = (e.type === 'touchmove') ? e.changedTouches[0].clientX : e.clientX;
+        let positionY = (e.type === 'touchmove') ? e.changedTouches[0].clientY : e.clientY;
+
         pos1 = pos3 - positionX;
         pos2 = pos4 - positionY;
         pos3 = positionX;
         pos4 = positionY;
-        if (action != 'dontmove') {
-            if (action != 'resize-w' && action != 'resize-e') {
+
+        if (action !== 'dontmove') {
+            if (action !== 'resize-w' && action !== 'resize-e') {
                 element.style.top = (element.offsetTop - pos2) + "px";
             }
-            if (action != 'resize-n' && action != 'resize-s') {
+            if (action !== 'resize-n' && action !== 'resize-s') {
                 element.style.left = (element.offsetLeft - pos1) + "px";
             }
         }
 
-        if (action != 'move') {
-            if (action == 'resize-n' || action == 'resize-nw' || action == 'resize-ne') {
+        if (action !== 'move') {
+            if (action === 'resize-n' || action === 'resize-nw' || action === 'resize-ne') {
                 if (element.clientHeight + pos2 >= minHeight && offsetY >= 0) {
                     element.style.height = `${element.clientHeight + pos2}px`;
-                }
-                else {
+                } else {
                     element.style.height = `${minHeight}px`;
                     element.style.top = `${element.offsetTop + pos2}px`;
                     offsetY += pos2;
                 }
             }
-            if (action == 'resize-s' || action == 'resize-sw' || action == 'resize-se') {
+            if (action === 'resize-s' || action === 'resize-sw' || action === 'resize-se') {
                 if (element.clientHeight - pos2 >= minHeight && offsetY <= 0) {
                     element.style.top = `${element.offsetTop + pos2}px`;
                     element.style.height = `${element.clientHeight - pos2}px`;
-                }
-                else {
+                } else {
                     element.style.height = `${minHeight}px`;
                     element.style.top = `${element.offsetTop + pos2}px`;
                     offsetY += pos2;
                 }
             }
-            if (action == 'resize-w' || action == 'resize-nw' || action == 'resize-sw') {
+            if (action === 'resize-w' || action === 'resize-nw' || action === 'resize-sw') {
                 if (element.clientWidth + pos1 >= minWidth && offsetX >= 0) {
                     element.style.width = (element.clientWidth + pos1) + "px";
-                }
-                else {
+                } else {
                     element.style.width = `${minWidth}px`;
                     element.style.left = (element.offsetLeft + pos1) + "px";
                     offsetX += pos1;
                 }
             }
-            if (action == 'resize-e' || action == 'resize-ne' || action == 'resize-se') {
+            if (action === 'resize-e' || action === 'resize-ne' || action === 'resize-se') {
                 if (element.clientWidth - pos1 >= minWidth && offsetX <= 0) {
                     element.style.left = (element.offsetLeft + pos1) + "px";
                     element.style.width = (element.clientWidth - pos1) + "px";
-                }
-                else {
+                } else {
                     element.style.width = `${minWidth}px`;
                     element.style.left = (element.offsetLeft + pos1) + "px";
                     offsetX += pos1;
@@ -291,7 +300,6 @@ function dragElement(element) {
         document.ontouchup = null;
         document.onmousemove = null;
         document.ontouchmove = null;
-        disableMove = false;
         action = 'idle';
         offsetX = 0;
         offsetY = 0;
