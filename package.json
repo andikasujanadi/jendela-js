@@ -11,6 +11,13 @@
     "test": "node test/spec",
     "pretest": "npm run build"
   },
+  "repository":{
+    "type":"git",
+    "url":"git+https://github.com/andikasujanadi/jendela-js.git"
+  },
+  "bugs":{
+    "url":"https://github.com/andikasujanadi/jendela-js/issues"
+  },
   "keywords": [
     "jendela",
     "window"
