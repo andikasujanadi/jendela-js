@@ -2,10 +2,9 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import pkg from "./package.json";
-import postcss from 'rollup-plugin-postcss';
+import postcss from "rollup-plugin-postcss";
 import livereload from "rollup-plugin-livereload";
 import serve from "rollup-plugin-serve";
-import css from "rollup-plugin-import-css";
 
 export default [
   {
@@ -16,21 +15,20 @@ export default [
       format: "umd",
     },
     plugins: [
-      css(),
-      serve({
-        open:true,
-        contentBase: ''
+      postcss({
+        extract: "dist/styles.css", // Specify output CSS file
+        minimize: true, // Minify CSS
       }),
-      livereload('dist'),
       resolve(),
       commonjs(),
       babel({
         exclude: ["node_modules/**"],
       }),
-      postcss({
-        extract: true,
-        minimize: true,
+      serve({
+        open: true,
+        contentBase: "",
       }),
+      livereload("dist"),
     ],
   },
   {
@@ -40,12 +38,14 @@ export default [
       { file: pkg.module, format: "es" },
     ],
     plugins: [
+      postcss({
+        extract: "dist/styles.css", // Specify output CSS file
+        minimize: true, // Minify CSS
+      }),
+      resolve(),
+      commonjs(),
       babel({
         exclude: ["node_modules/**"],
-      }),
-      postcss({
-        extract: true,
-        minimize: true,
       }),
     ],
   },
