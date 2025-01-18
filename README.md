@@ -10,20 +10,21 @@
 
 ## Installation
 
-### Option 1: Download Release Package (coming soon)
+### Option 1: Download Release Package [here](https://github.com/andikasujanadi/jendela-js/releases/)
+
+Or copy this link below
+
 ```bash
-git clone https://github.com/andikasujanadi/jendela-js.git
+https://github.com/andikasujanadi/jendela-js/releases/
 ```
 And import Jendela-JS CSS and javascript file to your project
 ```html
-<link rel="stylesheet" href="jendela.css">
-```
-```html
-<script src="jendela.js"></script>
+<link rel="stylesheet" href="../dist/styles.umd.css">
+<script src="../dist/jendela.umd.js"></script>
 ```
 ### Option 2: Using NPM
 
-You can include the library in your project by downloading the module from NPM.
+You can include the library in your project by downloading the module from NPM
 ```bash
 npm i @andikasujanadi/jendela.js
 ```
@@ -36,7 +37,9 @@ Import the module
 
 ### Initialize a Window
 
-In your JavaScript file, use the following code to create a new window:
+This function will add a new window directly to HTML body.
+
+Use the following code to create a new window:
 ```javascript
 addWindow({
     title:'Testing Window',
@@ -44,7 +47,14 @@ addWindow({
     body:'this is body',
 });
 ```
-This function will add a new window directly to HTML body.
+or
+```javascript
+jendelaJS.addWindow({
+    title:'Testing Window',
+    theme:'jendela-xp',
+    body:'this is body',
+});
+```
 ### Window Class Structure
 This class structure is for reference to make a new style
 ```html
