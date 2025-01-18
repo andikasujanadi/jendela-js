@@ -7,6 +7,7 @@
   "browser": "dist/jendela.umd.js",
   "scripts": {
     "build": "rollup -c",
+    "dev": "rollup -c -w",
     "test": "node test/spec",
     "pretest": "npm run build"
   },
@@ -22,8 +23,10 @@
     "rollup": "^2.79.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-serve": "^1.1.1"
   },
   "files": [
     "dist",

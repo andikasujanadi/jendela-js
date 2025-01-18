@@ -1,6 +1,6 @@
 import './jendela.css';
-import './jendela-linux.css';
-import './jendela-windows.css';
+import './theme/jendela-linux.css';
+import './theme/jendela-windows.css';
 
 export const themes = {
     classic: "jendela-classic",
