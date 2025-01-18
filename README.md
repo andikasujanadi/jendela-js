@@ -188,9 +188,10 @@ add_window({
 - [x] Support touch screen device
 - [x] add libadwaita theme
 - [x] add parameter: min, max, position, size
+- [x] NPM support
+- [ ] Fix css bug in minify css
 
 ### Next Version
-- [ ] NPM support
 - [ ] Window animation on create
 - [ ] Dark theme variant
 - [ ] Snap to grid
@@ -204,12 +205,38 @@ add_window({
 
 ## Contributing
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix (`git checkout -b feature-name`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add feature-name'`).
-5. Push to the branch (`git push origin feature-name`).
-6. Create a new Pull Request.
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+   ```bash
+   git checkout -b feature-name
+   ```
+- Install node modules.
+
+  ```bash
+  npm i
+  ```
+  or
+  ```bash
+  npm install
+  ```
+- Run development mode server.
+    ```bash
+  npm run dev
+  ```
+- You can access it in example folder. Make sure to include index.html.
+  ```
+  http://localhost:10001/example/index.html
+  ```
+- Make your changes inside src folder.
+- Commit your changes.
+   ```bash
+   git commit -m 'Add feature-name'
+   ```
+- Push to the branch.
+   ```bash
+   git push origin feature-name
+   ```
+- Create a new Pull Request.
 
 ## License
 
