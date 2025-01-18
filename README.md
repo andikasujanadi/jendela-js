@@ -178,8 +178,8 @@ add_window({
 - [x] Focus/Blur theme variant
 - [x] Dynamic border radius style for button
 - [x] add default theme for guide
-- [ ] Support touch screen device
-- [ ] add gnome theme
+- [x] Support touch screen device
+- [x] add libadwaita theme
 
 ### Next Version
 - [ ] NPM support
