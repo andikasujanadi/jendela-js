@@ -180,6 +180,7 @@ add_window({
 - [x] add default theme for guide
 - [x] Support touch screen device
 - [x] add libadwaita theme
+- [ ] add parameter: min, max, position, size
 
 ### Next Version
 - [ ] NPM support
