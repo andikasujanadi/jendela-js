@@ -1,0 +1,128 @@
+.jendela-libadwaita {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fafafa;
+    transition: box-shadow ease 0.3s;
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.2);
+    border: #d4d4d4 solid 1px;
+    border-radius: 12px;
+    .cornerHandle{
+        height: 20px;
+        width: 20px;
+        z-index: 2;
+    }
+    .header {
+        padding: 8px;
+        display: flex;
+    }
+    .title {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+    }
+    .body {
+        padding: 8px;
+    }
+    .headerButtonContainer{
+        margin-left: auto;
+        gap: 8px;
+        padding-left: 8px;
+    }
+    .headerButton {
+        background: #e7e7e7;
+        border-radius: 100px;
+        height: 20px!important;
+        width: 20px!important;
+        transition: background ease 0.2s;
+    }
+    .headerButton:hover {
+        background: #b9b9b9;
+        border-radius: 100px;
+        height: 20px!important;
+        width: 20px!important;
+    }
+    .headerButton:active {
+        background: #777777;
+        border-radius: 100px;
+        height: 20px!important;
+        width: 20px!important;
+    }
+    .nwHandle {
+        top: 0;
+        right: calc(100% - 10px);
+        cursor: nw-resize;
+    }
+    
+    .fixTop .nwHandle {
+        bottom: calc(100% - 10px);
+        top: unset;
+        right: calc(100% - 10px);
+        cursor: nw-resize;
+    }
+    
+    .neHandle {
+        top: 0;
+        left: calc(100% - 10px);
+        cursor: ne-resize;
+    }
+    
+    .fixTop .neHandle {
+        bottom: calc(100% - 10px);
+        top: unset;
+        left: calc(100% - 10px);
+        cursor: ne-resize;
+    }
+    .swHandle {
+        top: calc(100% - 10px);
+        right: calc(100% - 10px);
+    }
+    .seHandle {
+        top: calc(100% - 10px);
+        left: calc(100% - 10px);
+    }
+    .headerButton .icon{
+        position: absolute;
+        margin: 5px;
+        height: 10px;
+        width: 10px;
+    }
+    .headerButtonMinimize .icon {
+        top:2px;
+        position: absolute;
+        background-image: url("data:image/svg+xml,%3Csvg%20width='10'%20height='1'%20viewBox='0%200%2010%201'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M0%200H10V1H0V0Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        filter: invert(1);
+    }
+
+    .headerButtonResize .icon {
+        position: absolute;
+        background-image: url("data:image/svg+xml,%3Csvg%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Crect%20x='0.5'%20y='0.5'%20width='9'%20height='9'%20rx='1.5'%20stroke='white'%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        filter: invert(1);
+    }
+
+    .headerButtonClose .icon {
+        position: absolute;
+        background-image: url("data:image/svg+xml,%3Csvg%20width='11'%20height='11'%20viewBox='0%200%2011%2011'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%2010L5.5%205.5M10%201L5.5%205.5M5.5%205.5L1%201M5.5%205.5L10%2010'%20stroke='white'%20stroke-linecap='square'%2F%3E%3C%2Fsvg%3E");        
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        filter: invert(1);
+    }
+
+}
+.jendela-libadwaita.inactive{
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    .title {
+        opacity: 0.5;
+    }
+    .headerButton .icon{
+        opacity: 0.5;
+    }
+    .headerButton:hover .icon{
+        opacity: 1;
+    }
+}
