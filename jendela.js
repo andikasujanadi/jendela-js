@@ -21,6 +21,16 @@ const add_window = (params = {}) => {
     const minimize_button = params.minimize_button ?? true;
     const resize_button = params.resize_button ?? true;
     const close_button = params.close_button ?? true;
+    let min_width = params.min_width ?? 200;
+    let min_height = params.min_height ?? 200;
+    let width = params.width ?? min_width;
+    let height = params.height ?? min_height;
+    let left = params.left ?? `calc(50% - ${width/2}px)`;
+    let top = params.top ?? `calc(50% - ${height/2}px)`;
+    if(Number.isInteger(width)){width = `${width}px`;}
+    if(Number.isInteger(height)){height = `${height}px`;}
+    if(Number.isInteger(left)){left = `${left}px`;}
+    if(Number.isInteger(top)){top = `${top}px`;}
 
     const newWindow = document.createElement('div');
     newWindow.className = `jendela ${theme}`;
@@ -28,6 +38,12 @@ const add_window = (params = {}) => {
 
     newWindow.setAttribute('tabindex', '0');
     document.body.appendChild(newWindow);
+    newWindow.style.width = width;
+    newWindow.style.height = height;
+    newWindow.style.left = left;
+    newWindow.style.top = top;
+    newWindow.setAttribute('data-min-width', min_width);
+    newWindow.setAttribute('data-min-height', min_height);
     newWindow.focus();
     dragElement(newWindow);
     windows.push(newWindow);
@@ -149,7 +165,8 @@ function dragElement(element) {
 
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     let action = 'idle';
-    let minHeight = 200, minWidth = 200;
+    const minWidth = parseInt(element.getAttribute('data-min-width'));
+    const minHeight = parseInt(element.getAttribute('data-min-height'));
     let offsetX = 0, offsetY = 0;
 
     if (element.querySelector(".header")) {

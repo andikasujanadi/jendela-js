@@ -1,11 +1,7 @@
 .jendela {
-    position: absolute;
-    height: 200px;
-    width: 200px;
     user-select: none;
-    top: calc(50% - 100px);
-    left: calc(50% - 100px);
     outline: none;
+    position: absolute;
 }
 
 .animateWindow {

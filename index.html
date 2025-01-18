@@ -26,7 +26,7 @@
             <option value="0">Select Window Style:</option>
             <option value="jendela-debug">Jendela Debug</option>
             <option value="jendela-legacy" selected>Jendela Default</option>
-            <option value="jendela-libadwaita" selected>Jendela Libadwaita</option>
+            <option value="jendela-libadwaita">Jendela Libadwaita</option>
             <option value="jendela-classic">Jendela Classic</option>
             <option value="jendela-xp">Jendela XP</option>
             <option value="jendela-7">Jendela 7</option>
@@ -48,13 +48,14 @@
         add_window(
             {
             title:'Testing Window',
-            theme:'jendela-libadwaita',
+            theme:'jendela-legacy',
+            min_width:350,
             body:`
             <select onchange="changeStyle(this)">
                 <option value="0">Select Window Style:</option>
                 <option value="jendela-debug">Jendela Debug</option>
                 <option value="jendela-legacy">Jendela Default</option>
-                <option value="jendela-libadwaita" selected>Jendela Libadwaita</option>
+                <option value="jendela-libadwaita">Jendela Libadwaita</option>
                 <option value="jendela-classic">Jendela Classic</option>
                 <option value="jendela-xp">Jendela XP</option>
                 <option value="jendela-7">Jendela 7</option>
