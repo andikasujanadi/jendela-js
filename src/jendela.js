@@ -53,18 +53,21 @@ const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButt
         window.style.transform = 'scale(0.75)';
         window.style.opacity = '0';
         setTimeout(() => {
-            if (minimizeListener) {
-                windowMinimize.removeEventListener('mouseup', minimizeListener);
-                windowMinimize.removeEventListener('ontouchend', minimizeListener);
-            }
-            if (maximizeListener) {
-                windowResize.removeEventListener('mouseup', maximizeListener);
-                windowResize.removeEventListener('ontouchend', maximizeListener);
-            }
-            if (closeListener) {
-                windowClose.removeEventListener('mouseup', closeListener);
-                windowClose.removeEventListener('ontouchend', closeListener);
-            }
+            try {
+                if (minimizeListener) {
+                    windowMinimize.removeEventListener('mouseup', minimizeListener);
+                    windowMinimize.removeEventListener('ontouchend', minimizeListener);
+                }} catch (error) {}
+            try {
+                if (maximizeListener) {
+                    windowResize.removeEventListener('mouseup', maximizeListener);
+                    windowResize.removeEventListener('ontouchend', maximizeListener);
+                }} catch (error) {}
+            try {
+                if (closeListener) {
+                    windowClose.removeEventListener('mouseup', closeListener);
+                    windowClose.removeEventListener('ontouchend', closeListener);
+                }} catch (error) {}
             window.remove();
         }, 300);
     };

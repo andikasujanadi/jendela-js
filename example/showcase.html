@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../dist/styles.umd.css">
     <style>
         body {
             margin: 0;
@@ -13,7 +15,7 @@
             overflow: hidden;
             background: #FFF;
         }
-        .grid {
+        .grid-bg {
             position: absolute;
             inset: 0;
             height: 100%;
@@ -34,108 +36,112 @@
             background: #1b1b1b;
         }
     </style>
-    <link rel="stylesheet" href="jendela.css">
-    <link rel="stylesheet" href="theme/jendela-windows.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
-<body class="grid">
-    <div style="
-        top:100px;
-        left:100px;
-        width:300px;
-        height:200px;
-        " class="jendela jendela-classic">
-        <div class="header">
-            <div class="title">Jendela Classic</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+<body class="grid-bg">
+    <div onclick="openSetting()" class="m-4 flex bg-gray-100 h-12 w-12 border border-gray-300 rounded-xl cursor-pointer shadow-lg">
+        <i class="my-auto mx-auto text-2xl fa-solid fa-gear text-gray-500"></i>
+    </div>
+    <script src="../dist/jendela.umd.js"></script>
+    <script>
+        const openSetting = () => {
+            jendelaJS.addWindow({
+            title: 'Setting',
+            theme: 'jendela-libadwaita',
+            minimize_button: false,
+            top:72,
+            left:16,
+            minWidth:260,
+            height:274,
+            body: `
+            <div class="flex flex-col w-full h-full gap-2 overflow-auto">
+            <input class="border min-h-8 px-2 rounded-lg outline-none" id="titleInput" type="text" placeholder="title">
+            <select class="border min-h-8 px-2 rounded-lg outline-none" id="themePicker">
+                <option value="0">Select Window Style:</option>
+                <option value="jendela-debug">Jendela Debug</option>
+                <option value="jendela-legacy" selected>Jendela Default</option>
+                <option value="jendela-libadwaita">Jendela Libadwaita</option>
+                <option value="jendela-classic">Jendela Classic</option>
+                <option value="jendela-xp">Jendela XP</option>
+                <option value="jendela-7">Jendela 7</option>
+                <option value="jendela-8">Jendela 8</option>
+                <option value="jendela-10">Jendela 10</option>
+                <option value="jendela-11">Jendela 11</option>
+            </select>
+            <div>
+                <input type="checkbox" id="minimize_button" name="minimize_button" value="minimize_button" checked>
+                <label for="minimize_button">minimize button</label>
             </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-    top:350px;
-    left:100px;
-    width:300px;
-    height:400px;
-    " class="jendela jendela-8">
-    <div class="header">
-        <div class="title">Jendela 8</div>
-        <div class="headerButtonContainer">
-            <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-            <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-            <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-        </div>
-    </div>
-    <div class="body"></div>
-</div>
-    <div style="
-        top:100px;
-        left:450px;
-        width:450px;
-        height:400px;
-        " class="jendela jendela-7">
-        <div class="header">
-            <div class="title">Jendela 7</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+            <div>
+            <input type="checkbox" id="resize_button" name="resize_button" value="resize_button" checked>
+            <label for="resize_button">maximize button</label>
             </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-        top:550px;
-        left:450px;
-        width:450px;
-        height:200px;
-        " class="jendela jendela-10">
-        <div class="header">
-            <div class="title">Jendela 10</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+            <div>
+            <input type="checkbox" id="close_button" name="close_button" value="close_button" checked>
+            <label for="close_button">close button</label>
             </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-        top:100px;
-        left:950px;
-        width:500px;
-        height:300px;
-        " class="jendela jendela-xp">
-        <div class="header">
-            <div class="title">Jendela XP</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
+            <button class="bg-blue-500 py-2 text-white font-bold rounded-xl" onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimize_button:minimize_button.checked, resize_button:resize_button.checked, close_button:close_button.checked})">add new window</button>
             </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <div style="
-        top:450px;
-        left:950px;
-        width:500px;
-        height:300px;
-        " class="jendela jendela-11">
-        <div class="header">
-            <div class="title">Jendela 11</div>
-            <div class="headerButtonContainer">
-                <div class="headerButton headerButtonMinimize" onmouseup="minimizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonResize" onmouseup="maximizeWindow(this)"><div class="icon"></div></div>
-                <div class="headerButton headerButtonClose" onmouseup="closeWindow(this)"><div class="icon"></div></div>
-            </div>
-        </div>
-        <div class="body"></div>
-    </div>
-    <script src="jendela.js"></script>
+            `,
+        });
+        }
+        jendelaJS.addWindow({
+            title: 'Jendela Classic',
+            body: 'This is a window with custom settings.',
+            theme: 'jendela-classic',
+            top:100,
+            left:100,
+            width:300,
+            height:200,
+        });
+        jendelaJS.addWindow({
+            title: 'Jendela 7',
+            body: 'This is a window with custom settings.',
+            theme: 'jendela-7',
+            top:100,
+            left:450,
+            width:450,
+            height:400,
+        });
+        jendelaJS.addWindow({
+            title: 'Jendela XP',
+            body: 'This is a window with custom settings.',
+            theme: 'jendela-xp',
+            top:100,
+            left:950,
+            width:500,
+            height:300,
+        });
+        jendelaJS.addWindow({
+            title: 'Jendela 8',
+            body: 'This is a window with custom settings.',
+            theme: 'jendela-8',
+            top:350,
+            left:100,
+            width:300,
+            height:400,
+        });
+        jendelaJS.addWindow({
+            title: 'Jendela 10',
+            body: 'This is a window with custom settings.',
+            theme: 'jendela-10',
+            top:550,
+            left:450,
+            width:450,
+            height:200,
+        });
+        jendelaJS.addWindow({
+            title: 'Jendela 11',
+            body: 'This is a window with custom settings.',
+            theme: 'jendela-11',
+            top:450,
+            left:950,
+            width:500,
+            height:300,
+        });
+    </script>
 </body>
 
 </html>

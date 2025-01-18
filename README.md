@@ -169,11 +169,11 @@ You can customize the following options when creating a window:
 | `title`             | The title of the window.                   | `''`              |
 | `body`              | The content inside the window.             | `''`              |
 | `theme`             | Set the theme of the window.               | `jendela-classic` |
-| `minimize_button`   | Set to `true` to show the minimize button. | `true`            |
-| `resize_button`     | Set to `true` to show the resize button.   | `true`            |
-| `close_button`      | Set to `true` to show the close button.    | `true`            |
-| `min_width`         | The minimum width of the window, preventing resizing smaller than this value. | `200` |
-| `min_height`        | The minimum height of the window, preventing resizing smaller than this value.| `200` |
+| `minimizeButton`    | Set to `true` to show the minimize button. | `true`            |
+| `resizeButton`      | Set to `true` to show the resize button.   | `true`            |
+| `closeButton`       | Set to `true` to show the close button.    | `true`            |
+| `minWidth`          | The minimum width of the window, preventing resizing smaller than this value. | `200` |
+| `minHeight`         | The minimum height of the window, preventing resizing smaller than this value.| `200` |
 | `width`             | The initial width of the window.                         | `min_width`                |
 | `height`            | The initial height of the window.                        | `min_height`               |
 | `left`              | The initial horizontal position of the window.           | `calc(50% - ${width/2}px)` |
@@ -186,8 +186,8 @@ addWindow({
     title: 'My Custom Window',
     body: 'This is a window with custom settings.',
     theme: 'jendela-xp',
-    minimize_button: false,
-    min_width: 300,
+    minimizeButton: false,
+    minWidth: 300,
 });
 ```
 ## Planned Features
