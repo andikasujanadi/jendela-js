@@ -3,6 +3,7 @@
     outline: none;
     position: absolute;
     box-sizing: unset;
+    overflow: hidden;
     *, ::after, ::before{
         box-sizing: unset;
     }
@@ -40,6 +41,7 @@
 .jendela .body {
     user-select: text;
     overflow: hidden;
+    height: 100%;
 }
 
 .jendela .header {
