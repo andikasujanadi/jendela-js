@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="w-screen overflow-x-hidden">
+<html lang="en" class="w-screen">
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="grid-bg w-screen overflow-hidden !font-sans">
+<body class="grid-bg w-screen !font-sans">
     <div class="flex flex-wrap p-4 gap-2">
         <div onclick="addWindowModal()"
                 class="flex bg-gray-100 border px-2 py-1 gap-2 font-medium border-gray-300 rounded-lg cursor-pointer shadow">
@@ -102,11 +102,11 @@
         </div>
         <div id="welcomeBody">
             <div temp-id="welcomeModal" class="p-4 pb-1 h-full overflow-auto flex flex-col">
-                <div class="text-center text-4xl text-blue-500 mb-4">
-                <i class="fa-solid fa-person-through-window"></i>
+                <div class="text-center text-4xl text-blue-500 my-4">
+                    <i class="fa-solid fa-person-through-window"></i>
                 </div>
                 <div class="text-center font-medium mb-2">Welcome to Jendela JS demo!</div>
-                <div class="leading-5 text-center mb-4">Feel free to explore this art, don't forget to give me any feedback that can be usefull for next update.❤️</div>
+                <div class="leading-5 text-center mb-8">Feel free to explore this art, don't forget to give me any feedback that can be usefull for next update.❤️</div>
                 <div class="flex gap-2 flex-wrap max-w-screen-sm mx-auto w-full">
                     <a class="grow font-medium text-center p-1 px-3 rounded-lg transition duration-200 bg-neutral-900 hover:bg-blue-600 text-white"
                         href="https://andikasujanadi.github.io/" target="_blank">
@@ -162,7 +162,7 @@
                     minimizeButton: false,
                     resizeButton: false,
                     width:350,
-                    height:300,
+                    height:325,
                     body:welcomeBody.innerHTML.replaceAll('temp-id','id'),
                 });
             }
