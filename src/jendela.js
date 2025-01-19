@@ -119,7 +119,7 @@ export const addWindow = (params = {}) => {
     const animateWindow = (t = 300) => {
         newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms, opacity ease ${t}ms, transform ease ${t}ms`;
         setTimeout(() => {
-            newWindow.style.transition = "none";
+            newWindow.style.transition = `box-shadow ease ${t}ms`;
         }, t);
     };
 
