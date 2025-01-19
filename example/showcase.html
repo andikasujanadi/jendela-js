@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="w-screen overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../dist/styles.umd.css">
     <style>
-        body {
-            margin: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            background: #FFF;
-        }
         .grid-bg {
             position: absolute;
             inset: 0;
@@ -23,9 +16,6 @@
             background-image: linear-gradient(to right, #80808012 2px, transparent 2px),
                 linear-gradient(to bottom, #80808012 2px, transparent 2px);
             background-size: 48px 48px;
-        }
-        body.dark{
-                background: #262626;
         }
         .grid.dark{
             background-image: linear-gradient(to right, #80808042 2px, transparent 2px),
@@ -40,107 +30,143 @@
 
 </head>
 
-<body class="grid-bg">
-    <div onclick="openSetting()" class="m-4 flex bg-gray-100 h-12 w-12 border border-gray-300 rounded-xl cursor-pointer shadow-lg">
-        <i class="my-auto mx-auto text-2xl fa-solid fa-gear text-gray-500"></i>
+<body class="grid-bg w-screen overflow-x-hidden">
+    <div class="flex flex-wrap p-4 gap-2">
+        <div onclick="addWindowModal()"
+                class="flex bg-gray-100 h-10 border px-3 gap-2 border-gray-300 rounded-lg cursor-pointer shadow">
+            <i class="my-auto mx-auto text-xl fa-solid fa-square-plus text-gray-500"></i>
+            <div class="my-auto">Add Window</div>
+        </div>
+        <div onclick="addDesktopGroupWindows()"
+                class="hidden xl:flex bg-gray-100 h-10 border px-3 gap-2 border-gray-300 rounded-lg cursor-pointer shadow">
+            <i class="my-auto mx-auto text-xl fa-solid fa-computer text-gray-500"></i>
+            <div class="my-auto">Desktop Showcase</div>
+        </div>
+    </div>
+    <div class="hidden">
+        <div id="addWindowBody">
+            <div class="flex flex-col w-full h-full gap-2 overflow-auto p-2">
+                <input class="border min-h-8 px-2 rounded-lg outline-none" temp-id="titleInput" type="text" placeholder="title">
+                <select class="border min-h-8 px-2 rounded-lg outline-none" temp-id="themePicker">
+                    <option value="0">Select Window Style:</option>
+                    <option value="jendela-debug">Jendela Debug</option>
+                    <option value="jendela-legacy" selected>Jendela Default</option>
+                    <option value="jendela-libadwaita">Jendela Libadwaita</option>
+                    <option value="jendela-classic">Jendela Classic</option>
+                    <option value="jendela-xp">Jendela XP</option>
+                    <option value="jendela-7">Jendela 7</option>
+                    <option value="jendela-8">Jendela 8</option>
+                    <option value="jendela-10">Jendela 10</option>
+                    <option value="jendela-11">Jendela 11</option>
+                </select>
+                <div class="flex gap-2 hover:underline">
+                    <input type="checkbox" class="my-auto" temp-id="minimizeButton" name="minimizeButton" value="minimizeButton" checked>
+                    <label class="grow" for="minimizeButton">minimize button</label>
+                </div>
+                <div class="flex gap-2 hover:underline">
+                    <input type="checkbox" class="my-auto" temp-id="resizeButton" name="resizeButton" value="resizeButton" checked>
+                    <label class="grow" for="resizeButton">maximize button</label>
+                </div>
+                <div class="flex gap-2 hover:underline">
+                    <input type="checkbox" class="my-auto" temp-id="closeButton" name="closeButton" value="closeButton" checked>
+                    <label class="grow" for="closeButton">close button</label>
+                </div>
+                <button class="bg-blue-500 cursor-pointer py-2 text-white font-bold rounded-xl"
+                    onclick="jendelaJS.addWindow({
+                        title:titleInput.value,
+                        theme: themePicker.value,
+                        minimizeButton:minimizeButton.checked,
+                        resizeButton:resizeButton.checked,
+                        closeButton:closeButton.checked
+                        });closeAddWindowModal();">
+                    add a new window
+                </button>
+            </div>
+        </div>
     </div>
     <script src="../dist/jendela.umd.js"></script>
     <script>
-        const openSetting = () => {
-            jendelaJS.addWindow({
-            title: 'Setting',
+        let addWIndowModalElement;
+        const addWindowModal = () => {
+            addWIndowModalElement = jendelaJS.addWindow({
+            title: 'Add Window',
             theme: 'jendela-libadwaita',
             minimize_button: false,
             top:72,
             left:16,
-            minWidth:260,
-            height:274,
-            body: `
-            <div class="flex flex-col w-full h-full gap-2 overflow-auto p-2">
-            <input class="border min-h-8 px-2 rounded-lg outline-none" id="titleInput" type="text" placeholder="title">
-            <select class="border min-h-8 px-2 rounded-lg outline-none" id="themePicker">
-                <option value="0">Select Window Style:</option>
-                <option value="jendela-debug">Jendela Debug</option>
-                <option value="jendela-legacy" selected>Jendela Default</option>
-                <option value="jendela-libadwaita">Jendela Libadwaita</option>
-                <option value="jendela-classic">Jendela Classic</option>
-                <option value="jendela-xp">Jendela XP</option>
-                <option value="jendela-7">Jendela 7</option>
-                <option value="jendela-8">Jendela 8</option>
-                <option value="jendela-10">Jendela 10</option>
-                <option value="jendela-11">Jendela 11</option>
-            </select>
-            <div class="flex gap-2 hover:underline">
-                <input type="checkbox" class="my-auto" id="minimizeButton" name="minimizeButton" value="minimizeButton" checked>
-                <label class="grow" for="minimizeButton">minimize button</label>
-            </div>
-            <div class="flex gap-2 hover:underline">
-            <input type="checkbox" class="my-auto" id="resizeButton" name="resizeButton" value="resizeButton" checked>
-            <label class="grow" for="resizeButton">maximize button</label>
-            </div>
-            <div class="flex gap-2 hover:underline">
-            <input type="checkbox" class="my-auto" id="closeButton" name="closeButton" value="closeButton" checked>
-            <label class="grow" for="closeButton">close button</label>
-            </div>
-            <button class="bg-blue-500 cursor-pointer py-2 text-white font-bold rounded-xl" onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimizeButton:minimizeButton.checked, resizeButton:resizeButton.checked, closeButton:closeButton.checked})">add new window</button>
-            </div>
-            `,
-        });
+            minWidth:290,
+            height:270,
+            body: addWindowBody.innerHTML.replaceAll('temp-id','id'),
+            });
         }
-        jendelaJS.addWindow({
-            title: 'Jendela Classic',
-            body: 'This is a window with custom settings.',
-            theme: 'jendela-classic',
-            top:100,
-            left:100,
-            width:300,
-            height:200,
-        });
-        jendelaJS.addWindow({
-            title: 'Jendela 7',
-            body: 'This is a window with custom settings.',
-            theme: 'jendela-7',
-            top:100,
-            left:450,
-            width:450,
-            height:400,
-        });
-        jendelaJS.addWindow({
-            title: 'Jendela XP',
-            body: 'This is a window with custom settings.',
-            theme: 'jendela-xp',
-            top:100,
-            left:950,
-            width:500,
-            height:300,
-        });
-        jendelaJS.addWindow({
-            title: 'Jendela 8',
-            body: 'This is a window with custom settings.',
-            theme: 'jendela-8',
-            top:350,
-            left:100,
-            width:300,
-            height:400,
-        });
-        jendelaJS.addWindow({
-            title: 'Jendela 10',
-            body: 'This is a window with custom settings.',
-            theme: 'jendela-10',
-            top:550,
-            left:450,
-            width:450,
-            height:200,
-        });
-        jendelaJS.addWindow({
-            title: 'Jendela 11',
-            body: 'This is a window with custom settings.',
-            theme: 'jendela-11',
-            top:450,
-            left:950,
-            width:500,
-            height:300,
-        });
+
+        const closeAddWindowModal = () => {
+            if (addWIndowModalElement && addWIndowModalElement.element) {
+                addWIndowModalElement.close();
+            }
+        }
+
+        const addDesktopGroupWindows = () => {
+            windows = [{
+                title: 'Jendela Classic',
+                body: 'This is a window with custom settings.',
+                theme: 'jendela-classic',
+                top:100,
+                left:100,
+                width:300,
+                height:200,
+            },
+            {
+                title: 'Jendela 7',
+                body: 'This is a window with custom settings.',
+                theme: 'jendela-7',
+                top:100,
+                left:450,
+                width:450,
+                height:400,
+            },
+            {
+                title: 'Jendela XP',
+                body: 'This is a window with custom settings.',
+                theme: 'jendela-xp',
+                top:100,
+                left:950,
+                width:500,
+                height:300,
+            },
+            {
+                title: 'Jendela 8',
+                body: 'This is a window with custom settings.',
+                theme: 'jendela-8',
+                top:350,
+                left:100,
+                width:300,
+                height:400,
+            },
+            {
+                title: 'Jendela 10',
+                body: 'This is a window with custom settings.',
+                theme: 'jendela-10',
+                top:550,
+                left:450,
+                width:450,
+                height:200,
+            },
+            {
+                title: 'Jendela 11',
+                body: 'This is a window with custom settings.',
+                theme: 'jendela-11',
+                top:450,
+                left:950,
+                width:500,
+                height:300,
+            }]
+            windows.forEach((window, index) => {
+                setTimeout(() => {
+                    jendelaJS.addWindow(window);
+                }, index * 20);
+            });
+        }
     </script>
 </body>
 

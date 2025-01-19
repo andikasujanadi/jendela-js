@@ -13,71 +13,8 @@ export const themes = {
     win11: "jendela-11",
 };
 
-const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButton) => {
+const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButton, control) => {
     let minimizeListener, maximizeListener, closeListener;
-
-    const animateWindow = (t = 300) => {
-        root.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms`;
-        setTimeout(() => {
-            root.style.transition = "none";
-        }, t);
-    };
-
-    const maximizeWindow = () => {
-        const window = root;
-        let classes = window.classList;
-        let isMaximized = false;
-        let isMinimized = false;
-        classes.forEach(className => {
-            if (className.includes('maximized')) {
-                isMaximized = true;
-            }
-            if (className.includes('minimized')) {
-                isMinimized = true;
-            }
-        });
-        if (isMaximized) {
-            window.classList.remove('maximized');
-        } else if (isMinimized) {
-            window.classList.remove('minimized');
-        } else {
-            window.classList.add('maximized');
-            window.classList.remove('minimized');
-        }
-        animateWindow(250);
-    };
-
-    const closeWindow = () => {
-        const window = root;
-        window.style.transition = 'transform ease 0.3s, opacity ease 0.2s';
-        window.style.transform = 'scale(0.75)';
-        window.style.opacity = '0';
-        setTimeout(() => {
-            try {
-                if (minimizeListener) {
-                    windowMinimize.removeEventListener('mouseup', minimizeListener);
-                    windowMinimize.removeEventListener('ontouchend', minimizeListener);
-                }} catch (error) {}
-            try {
-                if (maximizeListener) {
-                    windowResize.removeEventListener('mouseup', maximizeListener);
-                    windowResize.removeEventListener('ontouchend', maximizeListener);
-                }} catch (error) {}
-            try {
-                if (closeListener) {
-                    windowClose.removeEventListener('mouseup', closeListener);
-                    windowClose.removeEventListener('ontouchend', closeListener);
-                }} catch (error) {}
-            window.remove();
-        }, 300);
-    };
-
-    const minimizeWindow = () => {
-        const window = root;
-        window.classList.remove('maximized');
-        window.classList.add('minimized');
-        animateWindow(250);
-    };
 
     const windowHeader = document.createElement('div');
     windowHeader.className = 'header';
@@ -93,9 +30,9 @@ const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButt
         const windowMinimize = document.createElement('div');
         windowMinimize.className = 'headerButton headerButtonMinimize';
         windowMinimize.innerHTML = '<div class="icon"></div>'
-        minimizeListener = minimizeWindow;
+        minimizeListener = control.minimizeWindow;
         windowMinimize.addEventListener('mouseup', minimizeListener);
-        windowMinimize.addEventListener('ontouchend', minimizeListener);
+        windowMinimize.addEventListener('touchend', minimizeListener);
 
         windowButton.appendChild(windowMinimize);
     }
@@ -104,9 +41,9 @@ const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButt
         const windowResize = document.createElement('div');
         windowResize.className = 'headerButton headerButtonResize';
         windowResize.innerHTML = '<div class="icon"></div>'
-        maximizeListener = maximizeWindow;
+        maximizeListener = control.maximizeWindow;
         windowResize.addEventListener('mouseup', maximizeListener);
-        windowResize.addEventListener('ontouchend', maximizeListener);
+        windowResize.addEventListener('touchend', maximizeListener);
 
         windowButton.appendChild(windowResize);
     }
@@ -115,9 +52,9 @@ const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButt
         const windowClose = document.createElement('div');
         windowClose.className = 'headerButton headerButtonClose';
         windowClose.innerHTML = '<div class="icon"></div>';
-        closeListener = closeWindow;
+        closeListener = control.closeWindow;
         windowClose.addEventListener('mouseup', closeListener);
-        windowClose.addEventListener('ontouchend', closeListener);
+        windowClose.addEventListener('touchend', closeListener);
 
         windowButton.appendChild(windowClose);
     }
@@ -142,8 +79,46 @@ export const addWindow = (params = {}) => {
     let minHeight = params.minHeight ?? 200;
     let width = params.width ?? minWidth;
     let height = params.height ?? minHeight;
-    let left = params.left ?? `calc(50% - ${width / 2}px)`;
-    let top = params.top ?? `calc(50% - ${height / 2}px)`;
+    let left = params.left ?? false;
+    let top = params.top ?? false;
+
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    width = Math.min(parseInt(width), viewportWidth - 40);
+    height = Math.min(parseInt(height), viewportHeight - 40);
+    width = Math.max(width, minWidth);
+    height = Math.max(height, minHeight);
+
+    const parsedWidth = parseInt(width);
+    const parsedHeight = parseInt(height);
+    if(left){
+        let parsedLeft = parseInt(left);
+        if (parsedLeft + parsedWidth > viewportWidth) {
+            parsedLeft = viewportWidth - parsedWidth - 20;
+        }
+        if (parsedLeft < 0) {
+            parsedLeft = 0;
+        }
+        left = parsedLeft;
+    }
+    else{
+        left = `calc(50% - ${width / 2}px)`;
+    }
+    if(top){
+        let parsedTop = parseInt(top);
+        if (parsedTop + parsedHeight > viewportHeight) {
+            parsedTop = viewportHeight - parsedHeight - 20;
+        }
+        if (parsedTop < 0) {
+            parsedTop = 0;
+        }
+        top = parsedTop;
+    }
+    else{
+        top = `calc(50% - ${height / 2}px)`;
+    }
+
     if (Number.isInteger(width)) { width = `${width}px`; }
     if (Number.isInteger(height)) { height = `${height}px`; }
     if (Number.isInteger(left)) { left = `${left}px`; }
@@ -152,7 +127,75 @@ export const addWindow = (params = {}) => {
     const newWindow = document.createElement('div');
     newWindow.className = `jendela ${theme}`;
 
-    const windowHeader = createWindowHeader(newWindow, title, minimizeButton, resizeButton, closeButton);
+    const animateWindow = (t = 300) => {
+        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms`;
+        setTimeout(() => {
+            newWindow.style.transition = "none";
+        }, t);
+    };
+
+    const maximizeWindow = () => {
+        const window = newWindow;
+        let classes = window.classList;
+        let isMaximized = false;
+        let isMinimized = false;
+        classes.forEach(className => {
+            if (className.includes('maximized')) {
+                isMaximized = true;
+            }
+            if (className.includes('minimized')) {
+                isMinimized = true;
+            }
+        });
+        if (isMaximized) {
+            window.classList.remove('maximized');
+        } else if (isMinimized) {
+            window.classList.remove('minimized');
+        } else {
+            window.classList.add('maximized');
+            window.classList.remove('minimized');
+        }
+        animateWindow(250);
+    };
+
+    const minimizeWindow = () => {
+        const window = newWindow;
+        window.classList.remove('maximized');
+        window.classList.add('minimized');
+        animateWindow(250);
+    };
+
+    const closeWindow = () => {
+        const window = newWindow;
+        window.style.transition = 'transform ease 0.3s, opacity ease 0.2s';
+        window.style.transform = 'scale(0.75)';
+        window.style.opacity = '0';
+        setTimeout(() => {
+            try {
+                if (minimizeListener) {
+                    windowMinimize.removeEventListener('mouseup', minimizeListener);
+                    windowMinimize.removeEventListener('touchend', minimizeListener);
+                }} catch (error) {}
+            try {
+                if (maximizeListener) {
+                    windowResize.removeEventListener('mouseup', maximizeListener);
+                    windowResize.removeEventListener('touchend', maximizeListener);
+                }} catch (error) {}
+            try {
+                if (closeListener) {
+                    windowClose.removeEventListener('mouseup', closeListener);
+                    windowClose.removeEventListener('touchend', closeListener);
+                }} catch (error) {}
+            window.remove();
+        }, 300);
+    };
+    const control = {
+        maximizeWindow : maximizeWindow,
+        minimizeWindow : minimizeWindow,
+        closeWindow : closeWindow,
+    };
+
+    const windowHeader = createWindowHeader(newWindow, title, minimizeButton, resizeButton, closeButton, control);
     newWindow.appendChild(windowHeader);
 
     const windowBody = document.createElement('div');
@@ -185,10 +228,15 @@ export const addWindow = (params = {}) => {
         handleWindowClick(newWindow);
         newWindow.classList.remove('inactive');
     });
-
     newWindow.addEventListener('blur', () => {
         newWindow.classList.add('inactive');
     });
+    return {
+        element: newWindow,
+        close: closeWindow,
+        minimize: minimizeWindow,
+        maximize: maximizeWindow,
+    };
 };
 
 function updateWindowZIndices() {
