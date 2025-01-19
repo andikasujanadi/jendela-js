@@ -1,7 +1,7 @@
 .jendela {
     user-select: none;
     outline: none;
-    position: absolute;
+    position: fixed;
     box-sizing: unset;
     *, ::after, ::before{
         box-sizing: unset;
