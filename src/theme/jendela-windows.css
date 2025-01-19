@@ -9,13 +9,12 @@
     }
 
     .title {
-        padding: 6px;
+        padding: 0px 8px;
     }
 
     .headerButtonContainer {
-        padding-top: 2px;
-        padding-right: 2px;
         gap: 2px;
+        padding: 2px;
     }
 
     .headerButton {
@@ -88,7 +87,8 @@
     }
 
     .title {
-        padding-top: 5px;
+        padding-top: 2px;
+        padding-left: 2px;
     }
 
     .header {
@@ -129,14 +129,15 @@
     .headerButton .icon{
         position: absolute;
         margin: 5px 5px;
-        height: 11px!important;
-        width: 11px!important;
+        height: 11px;
+        width: 11px;
     }
 
     .headerButtonMinimize .icon {
         top:4px;
         left: -1px;
         position: absolute;
+        width: 7px;
         background-image: url("data:image/svg+xml,%3Csvg%20width='7'%20height='3'%20viewBox='0%200%207%203'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M0%200H7V3H0V0Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
         background-repeat: no-repeat;
         background-position: center;
@@ -221,10 +222,9 @@
     }
 
     .title {
-        position: absolute;
         padding: 6px;
         width: 100%;
-        margin: 0px auto;
+        margin: auto auto;
         text-shadow: 0px 0px 10px #FFFFFFFF,
             0px 0px 10px #FFFFFFFF,
             0px 0px 10px #FFFFFFFF;
@@ -232,7 +232,7 @@
 
     .headerButtonContainer {
         margin-left: auto;
-        margin-bottom: 8px;
+        margin-bottom: auto;
         border: 1px #c0e3ff solid;
         border-top: 1px #000000 solid;
         border-radius: 0 0 6px 6px;
@@ -301,8 +301,8 @@
     .headerButton .icon{
         position: absolute;
         margin: 4px 9px;
-        height: 11px!important;
-        width: 11px!important;
+        height: 11px;
+        width: 11px;
     }
 
     .headerButtonMinimize .icon {
@@ -402,15 +402,17 @@
 
     .header {
         background: #88d3ff;
-        color: black;
-        text-align: center;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .title {
+        left: 0;
         position: absolute;
-        padding: 6px;
+        text-align: center;
+        color: black;
         width: 100%;
-        margin: 0px auto;
+        margin: auto;
     }
 
     .headerButtonContainer {
@@ -434,11 +436,12 @@
     .headerButton .icon{
         position: absolute;
         margin: 6px 8px;
-        height: 11px!important;
-        width: 11px!important;
+        height: 11px;
+        width: 11px;
     }
 
     .headerButtonMinimize .icon {
+        width: 9px;
         top:3px;
         position: absolute;
         background-image: url("data:image/svg+xml,%3Csvg%20width='8'%20height='2'%20viewBox='0%200%208%202'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M0%200H8V2H0V0Z'%20fill='white'%2F%3E%3C%2Fsvg%3E");
@@ -524,7 +527,8 @@
     }
 
     .title {
-        padding: 6px;
+        padding-left: 8px;
+        padding-top: 2px;
     }
 
     .headerButtonContainer {
@@ -547,8 +551,8 @@
     .headerButton .icon{
         position: absolute;
         margin: 7px 15px;
-        height: 11px!important;
-        width: 11px!important;
+        height: 11px;
+        width: 11px;
     }
 
     .headerButtonMinimize .icon {
@@ -622,10 +626,12 @@
         border-radius: 8px 8px 0px 0px;
         overflow: hidden;
         transition: background ease 0.25s, border ease 0.25s, box-shadow ease 0.25s;
+        height: 34px;
+        min-height: 34px;
     }
 
     .title {
-        padding: 6px;
+        padding: unset 12px;
     }
     
     .body {

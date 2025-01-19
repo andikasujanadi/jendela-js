@@ -46,17 +46,21 @@
 .jendela .header {
     position: relative;
     display: flex;
+    box-sizing: border-box!important;
 }
 
 .jendela .header .title {
-    margin-right: auto;
+    margin: auto unset;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: clip;
+    box-sizing: border-box!important;
+    font-size: 11pt;
 }
 
 .jendela .header .headerButtonContainer {
     display: flex;
+    margin-left: auto;
 }
 
 .jendela .header .headerButtonContainer .headerButton {
@@ -230,7 +234,6 @@
 
 
 .jendela-legacy {
-    font-family: Arial, Helvetica, sans-serif;
     background-color: #fff;
     transition: box-shadow ease 0.3s;
     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.2);

@@ -2,18 +2,7 @@ import './jendela.css';
 import './theme/jendela-linux.css';
 import './theme/jendela-windows.css';
 
-export const themes = {
-    classic: "jendela-classic",
-    legacy: "jendela-legacy",
-    libadwaita: "jendela-libadwaita",
-    xp: "jendela-xp",
-    win7: "jendela-7",
-    win8: "jendela-8",
-    win10: "jendela-10",
-    win11: "jendela-11",
-};
-
-const createWindowHeader = (root, title, minimizeButton, resizeButton, closeButton, control) => {
+const createWindowHeader = (title, minimizeButton, resizeButton, closeButton, control) => {
     let minimizeListener, maximizeListener, closeListener;
 
     const windowHeader = document.createElement('div');
@@ -128,7 +117,7 @@ export const addWindow = (params = {}) => {
     newWindow.className = `jendela ${theme}`;
 
     const animateWindow = (t = 300) => {
-        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms`;
+        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms, opacity ease ${t}ms, transform ease ${t}ms`;
         setTimeout(() => {
             newWindow.style.transition = "none";
         }, t);
@@ -195,7 +184,7 @@ export const addWindow = (params = {}) => {
         closeWindow : closeWindow,
     };
 
-    const windowHeader = createWindowHeader(newWindow, title, minimizeButton, resizeButton, closeButton, control);
+    const windowHeader = createWindowHeader(title, minimizeButton, resizeButton, closeButton, control);
     newWindow.appendChild(windowHeader);
 
     const windowBody = document.createElement('div');
@@ -215,6 +204,14 @@ export const addWindow = (params = {}) => {
     dragElement(newWindow);
     windows.push(newWindow);
     updateWindowZIndices();
+    newWindow.style.opacity = 0;
+    newWindow.style.transform = 'scale(0.75)';
+    setTimeout(() => {
+        animateWindow(100);
+        newWindow.style.opacity = 1;
+        newWindow.style.transform = 'scale(1)';
+    }, 50);
+
 
     newWindow.addEventListener('mousedown', (e) => {
         e.stopPropagation();

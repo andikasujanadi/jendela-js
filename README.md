@@ -30,7 +30,7 @@
 
 ## Installation
 
-### Option 1: Download Release Package [here](https://github.com/andikasujanadi/jendela-js/releases/)
+### Option 1: Download Release Package [Here](https://github.com/andikasujanadi/jendela-js/releases/)
 
 Or copy this link below
 
@@ -61,15 +61,15 @@ This function will add a new window directly to HTML body.
 
 Use the following code to create a new window:
 ```javascript
-addWindow({
+jendelaJS.addWindow({
     title:'Testing Window',
     theme:'jendela-xp',
     body:'this is body',
 });
 ```
-or
+Or if you import from NPM
 ```javascript
-jendelaJS.addWindow({
+addWindow({
     title:'Testing Window',
     theme:'jendela-xp',
     body:'this is body',
@@ -123,13 +123,12 @@ This is the example of jendela classic theme CSS:
     }
 
     .title {
-        padding: 6px;
+        padding: 0px 8px;
     }
 
     .headerButtonContainer {
-        padding-top: 2px;
-        padding-right: 2px;
         gap: 2px;
+        padding: 2px;
     }
 
     .headerButton {
@@ -191,6 +190,7 @@ This is the example of jendela classic theme CSS:
 </details>
 
 ## Window Parameters
+### Creating a Window
 
 You can customize the following options when creating a window:
 
@@ -199,9 +199,9 @@ You can customize the following options when creating a window:
 | `title`             | The title of the window.                   | `''`              |
 | `body`              | The content inside the window.             | `''`              |
 | `theme`             | Set the theme of the window.               | `jendela-classic` |
-| `minimizeButton`    | Set to `true` to show the minimize button. | `true`            |
-| `resizeButton`      | Set to `true` to show the resize button.   | `true`            |
-| `closeButton`       | Set to `true` to show the close button.    | `true`            |
+| `minimizeButton`    | Set to `false` to hide the minimize button.| `true`            |
+| `resizeButton`      | Set to `false` to hide the resize button.  | `true`            |
+| `closeButton`       | Set to `false` to hide the close button.   | `true`            |
 | `minWidth`          | The minimum width of the window, preventing resizing smaller than this value. | `200` |
 | `minHeight`         | The minimum height of the window, preventing resizing smaller than this value.| `200` |
 | `width`             | The initial width of the window.                         | `min_width`                |
@@ -212,7 +212,7 @@ You can customize the following options when creating a window:
 
 Example:
 ```javascript
-addWindow({
+jendelaJS.addWindow({
     title: 'My Custom Window',
     body: 'This is a window with custom settings.',
     theme: 'jendela-xp',
@@ -220,9 +220,30 @@ addWindow({
     minWidth: 300,
 });
 ```
+
+### Window Control Functions
+
+
+| **Function**          | **Description**                                                                                 | **Usage Example**                   |
+|------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------|
+| `close`               | Closes the window, removes it from the DOM, and ensures it is removed from the internal list.   | `windowInstance.close();`           |
+| `minimize`            | Minimizes the window, reducing its size and hiding its content while keeping it accessible.     | `windowInstance.minimize();`        |
+| `maximize`            | Maximizes the window to fill the available screen area.                                        | `windowInstance.maximize();`        |
+
+Example:
+```javascript
+const my_window = jendelaJS.addWindow({
+    title: 'My Custom Window',
+    body: 'This is an example for window control function.'
+});
+my_window.maximize();
+```
+
 ## Planned Features
 
 ### Version 1.0
+<details>
+
 - [x] Customizable themes
 - [x] Resizable windows
 - [x] Minimize/Restore functionality
@@ -240,9 +261,11 @@ addWindow({
 - [x] add parameter: min, max, position, size
 - [x] NPM support
 - [x] Fix CSS bug in minify CSS
-- [ ] Body size bug in CSS
-- [ ] Window maximize size bug in CSS 
-- [ ] Window animation on create
+- [x] Body size bug in CSS
+- [x] Window maximize size bug in CSS 
+- [x] Window animation on create
+
+</details>
 
 ### Next Version
 - [ ] Improve resize and minimize function
