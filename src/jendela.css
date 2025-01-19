@@ -251,7 +251,7 @@
         border-bottom: #ececec solid 1px;
     }
     .body {
-        padding: 8px;
+        border-radius: 0 0 16px 16px;
     }
     .headerButtonContainer{
         margin-right: 12px;
