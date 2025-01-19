@@ -4,9 +4,29 @@
 
 ## Features
 
-- **Draggable Windows**: Move windows around the screen.
-- **Customizable**: Easily modify window behavior and appearance.
-- **Lightweight**: Minimal dependencies, just pure JavaScript.
+- **Draggable Windows**:  
+  Users can click and drag the title bar of each window to move it around the screen, allowing for a flexible and customizable window layout.
+
+- **Resizable Windows**:  
+  Resize windows by dragging the edges or corners, giving users full control over the window dimensions. The windows also support minimum size constraints to ensure a consistent user experience.
+
+- **Closable Windows**:  
+  Each window comes with a close button that allows users to remove the window from the screen. The window closes with a smooth animation for a polished user interface.
+
+- **Minimizable Windows**:  
+  Windows can be minimized, collapsing them into a smaller size, while still allowing for future restoration. This provides a space-saving feature without losing the content.
+
+- **Customizable**:  
+  The window behavior (e.g., draggable, resizable, closable) and appearance (e.g., themes, size, position) can be easily modified through simple options when creating the window.
+
+- **Lightweight**:  
+  The system is built using pure JavaScript with minimal external dependencies, ensuring fast load times and an efficient user experience.
+
+- **Focus Management**:  
+  Windows automatically focus when clicked, and the active window is highlighted, while inactive windows are visually distinguished with a subtle fade effect.
+
+- **Smooth Animations**:  
+  The window transitions (such as minimize, maximize, and close) are enhanced with smooth animations to create a more engaging and visually appealing user experience.
 
 ## Installation
 
@@ -219,10 +239,12 @@ addWindow({
 - [x] add libadwaita theme
 - [x] add parameter: min, max, position, size
 - [x] NPM support
-- [x] Fix css bug in minify css
+- [x] Fix CSS bug in minify CSS
+- [ ] Body size bug in CSS
+- [ ] Window maximize size bug in CSS 
+- [ ] Window animation on create
 
 ### Next Version
-- [ ] Window animation on create
 - [ ] Improve resize and minimize function
 - [ ] Dark theme variant
 - [ ] Out of border safety
