@@ -4,6 +4,9 @@
 
 ## Features
 
+<details>
+<summary>Expand feature</summary>
+
 - **Draggable Windows**:  
   Users can click and drag the title bar of each window to move it around the screen, allowing for a flexible and customizable window layout.
 
@@ -27,6 +30,8 @@
 
 - **Smooth Animations**:  
   The window transitions (such as minimize, maximize, and close) are enhanced with smooth animations to create a more engaging and visually appealing user experience.
+
+</details>
 
 ## Installation
 
@@ -107,9 +112,8 @@ This class structure is for reference to make a new style
 
 ### Adding Your Own Styles
 
-This is the example of jendela classic theme CSS:
 <details>
-<summary>Click to expand</summary>
+<summary>This is the example of jendela classic theme CSS:</summary>
 
 ```css
 .jendela-classic {
@@ -262,11 +266,12 @@ my_window.maximize();
 - [x] NPM support
 - [x] Fix CSS bug in minify CSS
 - [x] Body size bug in CSS
-- [x] Window maximize size bug in CSS 
+- [x] Window maximize size bug in CSS
 - [x] Window animation on create
-
+  
 </details>
 
+- [ ] Add custom parent or container
 ### Next Version
 - [ ] Improve resize and minimize function
 - [ ] Dark theme variant

@@ -86,7 +86,7 @@
                         <input type="checkbox" class="my-auto" temp-id="closeButton" name="closeButton" value="closeButton" checked>
                         <label class="grow" for="closeButton">close button</label>
                     </div>
-                    <button class="bg-blue-600 cursor-pointer py-2 text-white font-bold rounded-xl mt-auto"
+                    <button class="transition duration-300 bg-blue-600 hover:bg-blue-700 cursor-pointer py-2 text-white font-bold rounded-xl mt-auto"
                         onclick="windows.push(jendelaJS.addWindow({
                             title:titleInput.value,
                             theme: themePicker.value,
@@ -101,18 +101,18 @@
             </div>
         </div>
         <div id="welcomeBody">
-            <div class="p-4 pb-1 h-full overflow-auto flex flex-col">
+            <div temp-id="welcomeModal" class="p-4 pb-1 h-full overflow-auto flex flex-col">
                 <div class="text-center text-4xl text-blue-500 mb-4">
                 <i class="fa-solid fa-person-through-window"></i>
                 </div>
                 <div class="text-center font-medium mb-2">Welcome to Jendela JS demo!</div>
-                <div class="leading-5 text-center mb-2">Feel free to explore this art, don't forget to give me any feedback that can be usefull for next update.❤️</div>
-                <div class="flex gap-2 flex-wrap">
-                    <a class="grow font-medium text-center p-1 px-3 rounded-lg bg-neutral-900 text-white"
+                <div class="leading-5 text-center mb-4">Feel free to explore this art, don't forget to give me any feedback that can be usefull for next update.❤️</div>
+                <div class="flex gap-2 flex-wrap max-w-screen-sm mx-auto w-full">
+                    <a class="grow font-medium text-center p-1 px-3 rounded-lg transition duration-200 bg-neutral-900 hover:bg-blue-600 text-white"
                         href="https://andikasujanadi.github.io/" target="_blank">
                         <i class="fa-solid fa-earth-asia me-2"></i>Github Page
                     </a>
-                    <a class="grow font-medium text-center p-1 px-3 rounded-lg bg-neutral-900 text-white"
+                    <a class="grow font-medium text-center p-1 px-3 rounded-lg transition duration-200 bg-neutral-900 hover:bg-blue-600 text-white"
                         href="https://github.com/andikasujanadi/jendela-js" target="_blank">
                         <i class="fa-brands fa-github me-2"></i>Repository
                     </a>
@@ -126,34 +126,46 @@
         let windows = [];
         let addWIndowModalElement;
         const addWindowModal = () => {
-            try {
-                addWIndowModalElement.close();
-            } catch (error) {}
-            addWIndowModalElement = jendelaJS.addWindow({
-            title: 'Add Window',
-            theme: 'jendela-libadwaita',
-            top:58,
-            left:16,
-            minWidth:290,
-            height:270,
-            body: addWindowBody.innerHTML.replaceAll('temp-id','id'),
-            });
+            const created = (document.getElementById('titleInput')!==null);
+            if(created){
+                addWIndowModalElement.element.focus();
+            }
+            else{
+                try {
+                    addWIndowModalElement.close();
+                } catch (error) {}
+                addWIndowModalElement = jendelaJS.addWindow({
+                title: 'Add Window',
+                theme: 'jendela-libadwaita',
+                top:58,
+                left:16,
+                minWidth:290,
+                height:270,
+                body: addWindowBody.innerHTML.replaceAll('temp-id','id'),
+                });
+            }
         }
 
         let welcomeElement;
         const openWelcome = () => {
-            try {
-                welcomeElement.close();
-            } catch (error) {}
-            welcomeElement = jendelaJS.addWindow({
-                title:'welcome',
-                theme:'jendela-libadwaita',
-                minimizeButton: false,
-                resizeButton: false,
-                width:350,
-                height:300,
-                body:welcomeBody.innerHTML,
-            });
+            const created = (document.getElementById('welcomeModal')!==null);
+            if(created){
+                welcomeElement.element  .focus();
+            }
+            else{
+                try {
+                    welcomeElement.close();
+                } catch (error) {}
+                welcomeElement = jendelaJS.addWindow({
+                    title:'welcome',
+                    theme:'jendela-libadwaita',
+                    minimizeButton: false,
+                    resizeButton: false,
+                    width:350,
+                    height:300,
+                    body:welcomeBody.innerHTML.replaceAll('temp-id','id'),
+                });
+            }
         }
         openWelcome();
         const closeAddWindowModal = () => {
@@ -253,6 +265,24 @@
             `,
             `
             Seahorses are fascinating creatures with some unique traits! One of the most remarkable facts is that male seahorses are the ones that get pregnant and give birth. The female seahorse transfers her eggs into a pouch on the male's abdomen, where he fertilizes and incubates them. Depending on the species, he can carry anywhere from a few dozen to thousands of eggs until they hatch. Seahorses are also poor swimmers, relying on their dorsal fin to propel them and their small pectoral fins for steering. To avoid being swept away by currents, they use their prehensile tails to anchor themselves to seagrass or coral. These enchanting creatures are monogamous and often form strong pair bonds, even performing daily "dances" to reinforce their connection! 🐚🐴
+            `,
+            `
+            Most of the elements in our bodies, such as carbon, nitrogen, and oxygen, were created inside stars! Stars are like cosmic factories that fuse lighter elements, such as hydrogen and helium, into heavier elements through nuclear fusion. When massive stars reach the end of their life cycle and explode in a supernova, they scatter these elements across space, enriching the interstellar medium and eventually forming new stars, planets, and even life. In a way, we are literally made of stardust, as the very elements that make up our bodies were once born in the hearts of stars! ✨🌌
+            `,
+            `
+            A teaspoon of a neutron star would weigh about 6 billion tons! Neutron stars are the remnants of massive stars that have exploded in a supernova. After the explosion, the core collapses into an incredibly dense object, where protons and electrons merge to form neutrons. This makes the neutron star incredibly compact, with a mass about 1.5 times that of the sun, but squeezed into a sphere roughly the size of a city. Despite their small size, the density is so high that a small amount of neutron star material is extraordinarily heavy. It's a mind-boggling example of how extreme conditions in the universe can defy our everyday experiences! 🌠
+            `,
+            `
+            Tea is the second most consumed beverage in the world, after water! It has been enjoyed for thousands of years, with its origins dating back to ancient China. The most common types of tea—black, green, white, and oolong—are all made from the same plant, Camellia sinensis. The difference in their flavors and colors comes from how the leaves are processed. For example, black tea leaves are fully oxidized, while green tea leaves are quickly dried to prevent oxidation. Tea is not only loved for its taste, but it also has numerous health benefits, such as antioxidants that may help improve heart health and boost metabolism. 🍵
+            `,
+            `
+            Milk is a fascinating and versatile beverage! It’s not only a rich source of calcium, which is essential for strong bones and teeth, but it also provides other vital nutrients like protein, vitamin D, and potassium. Interestingly, humans are the only species that regularly drink milk from other animals, such as cows, goats, and buffalo. Milk has been a staple in human diets for thousands of years, with evidence of dairy farming dating back to around 8,000 years ago. However, not everyone can digest milk easily—about 65% of the global population has some level of lactose intolerance, which means they have difficulty digesting lactose, the sugar found in milk. Despite this, innovations like lactose-free milk and plant-based alternatives have made it more accessible to people worldwide. 🥛
+            `,
+            `
+            Lactose intolerance is a common condition where people have difficulty digesting lactose, the sugar found in milk and other dairy products. This happens because their bodies produce insufficient amounts of lactase, the enzyme needed to break down lactose into simpler sugars for absorption. Symptoms often include bloating, stomach cramps, gas, and diarrhea after consuming dairy. Interestingly, most mammals naturally lose the ability to digest lactose after weaning, but some human populations, especially in Europe and parts of Africa, evolved lactase persistence due to dairy farming practices. This genetic adaptation allows them to digest lactose throughout their lives. For those who are lactose intolerant, options like lactose-free milk, plant-based alternatives (such as almond, soy, or oat milk), and lactase enzyme supplements make it easier to enjoy dairy-like foods without discomfort. 🥛🚫
+            `,
+            `
+            Here’s a fun fact about ChatGPT: It doesn’t “think” like humans do, but it generates responses based on patterns in the massive amounts of text it was trained on! It uses a neural network model to predict the next word in a sentence based on the input it receives. While ChatGPT doesn’t have consciousness or personal experiences, it can process and generate information in a conversational way, making it feel interactive and engaging. It’s also constantly improving, with newer versions being fine-tuned to provide better answers, maintain context, and assist with more complex tasks. Think of it as a helpful tool for exploring knowledge and ideas in a collaborative way! 🤖✨
             `,
         ];
             const template = `
