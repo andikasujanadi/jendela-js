@@ -627,6 +627,10 @@
     .title {
         padding: 6px;
     }
+    
+    .body {
+        border-radius: 0 0 8px 8px;
+    }
 
     .headerButtonContainer {
         margin-left: auto;

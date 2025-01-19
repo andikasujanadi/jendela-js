@@ -19,6 +19,9 @@
         width: 100%;
         text-align: center;
     }
+    .body {
+        border-radius: 0 0 12px 12px;
+    }
     .headerButtonContainer{
         margin-left: auto;
         gap: 8px;

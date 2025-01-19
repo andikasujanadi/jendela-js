@@ -17,20 +17,24 @@
                 linear-gradient(to bottom, #80808012 2px, transparent 2px);
             background-size: 48px 48px;
         }
-        .grid.dark{
+        .dark{
+            background: #1b1b1b;
+        }
+        .grid-bg.dark{
             background-image: linear-gradient(to right, #80808042 2px, transparent 2px),
                 linear-gradient(to bottom, #80808042 2px, transparent 2px);
             background-size: 48px 48px;
         }
-        .dark .jendela{
-            background: #1b1b1b;
+        .dark .body{
+            background: #252525;
+            color: white;
         }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body class="grid-bg w-screen overflow-hidden">
+<body class="grid-bg w-screen overflow-hidden dark">
     <div class="flex flex-wrap p-4 gap-2">
         <div onclick="addWindowModal()"
                 class="flex bg-gray-100 h-10 border px-3 gap-2 border-gray-300 rounded-lg cursor-pointer shadow">
