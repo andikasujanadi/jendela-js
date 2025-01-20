@@ -1,13 +1,17 @@
-# jendela-js
+<div align="center">
+<img src="assets/jendelajs.svg" alt="JendelaJS Logo" width="150">
+</div>
 
-**jendela-js** is a simple JavaScript library for creating draggable windows. It allows you to add interactive window components to your web applications. This project is currently in development and is open for contributions.
+# JendelaJS
+
+**JendelaJS** is a simple JavaScript library for creating draggable windows. It allows you to add interactive window components to your web applications. This project is currently in development and is open for contributions.
 
 ## Demo
 Check out the live demo to see JendelaJS in action by clicking [here](https://andikasujanadi.github.io/jendelajs/)! Experience draggable, resizable, and customizable windows right in your browser. This lightweight JavaScript library lets you create modern and interactive window components with ease.
 
 Feel free to explore the features and integrate them into your projects effortlessly. Try the demo now and unleash the potential of JendelaJS!
 
-### [Demo here](https://andikasujanadi.github.io/jendelajs/)
+### [Demo Link](https://andikasujanadi.github.io/jendelajs/)
 ## Features
 
 <details>
@@ -48,7 +52,7 @@ Or copy this link below
 ```bash
 https://github.com/andikasujanadi/jendela-js/releases/
 ```
-And import Jendela-JS CSS and javascript file to your project
+And import JendelaJS CSS and javascript file to your project
 ```html
 <link rel="stylesheet" href="../dist/styles.umd.css">
 <script src="../dist/jendela.umd.js"></script>
