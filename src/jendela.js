@@ -117,7 +117,7 @@ export const addWindow = (params = {}) => {
     newWindow.className = `jendela ${theme}`;
 
     const animateWindow = (t = 300) => {
-        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms, opacity ease ${t}ms, transform ease ${t}ms`;
+        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms, opacity ease ${t/3*2}ms ${t/3*1}ms, transform ease ${t}ms`;
         setTimeout(() => {
             newWindow.style.transition = `box-shadow ease ${t}ms`;
         }, t);
@@ -207,10 +207,10 @@ export const addWindow = (params = {}) => {
     newWindow.style.opacity = 0;
     newWindow.style.transform = 'scale(0.75)';
     setTimeout(() => {
-        animateWindow(100);
+        animateWindow(250);
         newWindow.style.opacity = 1;
         newWindow.style.transform = 'scale(1)';
-    }, 50);
+    }, 0);
 
 
     newWindow.addEventListener('mousedown', (e) => {

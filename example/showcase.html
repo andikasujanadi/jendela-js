@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows</title>
+    <title>Jendela JS</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/jendelajs.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../dist/styles.umd.css">
     <style>
@@ -102,9 +103,7 @@
         </div>
         <div id="welcomeBody">
             <div temp-id="welcomeModal" class="p-4 pb-1 h-full overflow-auto flex flex-col">
-                <div class="text-center text-4xl text-blue-500 my-4">
-                    <i class="fa-solid fa-person-through-window"></i>
-                </div>
+                <img class="my-6 h-20" src="../assets/jendelajs.svg" alt="">
                 <div class="text-center font-medium mb-2">Welcome to Jendela JS demo!</div>
                 <div class="leading-5 text-center mb-8">Feel free to explore this art, don't forget to give me any feedback that can be usefull for next update.❤️</div>
                 <div class="flex gap-2 flex-wrap max-w-screen-sm mx-auto w-full">
@@ -162,7 +161,7 @@
                     minimizeButton: false,
                     resizeButton: false,
                     width:350,
-                    height:325,
+                    height:372,
                     body:welcomeBody.innerHTML.replaceAll('temp-id','id'),
                 });
             }
