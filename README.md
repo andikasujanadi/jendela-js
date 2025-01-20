@@ -2,6 +2,12 @@
 
 **jendela-js** is a simple JavaScript library for creating draggable windows. It allows you to add interactive window components to your web applications. This project is currently in development and is open for contributions.
 
+## Demo
+Check out the live demo to see JendelaJS in action by clicking [here](https://andikasujanadi.github.io/jendelajs/)! Experience draggable, resizable, and customizable windows right in your browser. This lightweight JavaScript library lets you create modern and interactive window components with ease.
+
+Feel free to explore the features and integrate them into your projects effortlessly. Try the demo now and unleash the potential of JendelaJS!
+
+### [Demo here](https://andikasujanadi.github.io/jendelajs/)
 ## Features
 
 <details>
