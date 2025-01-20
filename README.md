@@ -218,10 +218,12 @@ You can customize the following options when creating a window:
 | `closeButton`       | Set to `false` to hide the close button.   | `true`            |
 | `minWidth`          | The minimum width of the window, preventing resizing smaller than this value. | `200` |
 | `minHeight`         | The minimum height of the window, preventing resizing smaller than this value.| `200` |
-| `width`             | The initial width of the window.                         | `min_width`                |
-| `height`            | The initial height of the window.                        | `min_height`               |
-| `left`              | The initial horizontal position of the window.           | `calc(50% - ${width/2}px)` |
-| `top`               | The initial vertical position of the window.             | `calc(50% - ${height/2}px)`|
+| `width`             | The initial width of the window.           | `min_width`                 |
+| `height`            | The initial height of the window.          | `min_height`                |
+| `left`              | The initial left position of the window.   | `calc(50% - ${width/2}px)`  |
+| `right`             | The initial right position of the window. (will be disabled if left have value)  | `false` |
+| `top`               | The initial top position of the window.                                          | `calc(50% - ${height/2}px)`|
+| `bottom`            | The initial bottom position of the window. (will be disabled if top have value)  | `false`|
 
 
 Example:
@@ -281,7 +283,6 @@ my_window.maximize();
   
 </details>
 
-- [ ] Add custom parent or container
 ### Next Version
 - [ ] Improve resize and minimize function
 - [ ] Dark theme variant
