@@ -219,6 +219,7 @@
         background: #6999d0;
         background: radial-gradient(circle, #3f73b0 30%, #6999d0 100%);
         color: black;
+        min-height: 34px;
     }
 
     .title {
