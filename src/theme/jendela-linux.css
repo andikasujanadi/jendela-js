@@ -83,9 +83,9 @@
     }
     .headerButton .icon{
         position: absolute;
-        margin: 5px;
-        height: 10px;
-        width: 10px;
+        margin: 6px;
+        height: 8px;
+        width: 8px;
     }
     .headerButtonMinimize .icon {
         top:2px;
@@ -126,5 +126,44 @@
     }
     .headerButton:hover .icon{
         opacity: 1;
+    }
+}
+.dark { 
+    .jendela-libadwaita{
+        background-color: #242424;
+        border: #242424 solid 1px;
+        box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.5);
+        .headerButton {
+            background: #454545;
+            border-radius: 100px;
+            height: 20px!important;
+            width: 20px!important;
+            transition: background ease 0.2s;
+        }
+        .headerButton:hover {
+            background: #535353;
+            border-radius: 100px;
+            height: 20px!important;
+            width: 20px!important;
+        }
+        .headerButton:active {
+            background: #6b6b6b;
+            border-radius: 100px;
+            height: 20px!important;
+            width: 20px!important;
+        }
+        .headerButton .icon{
+            filter: invert(0)!important;
+        }
+    }
+    .jendela-libadwaita.inactive{
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.4);
+        .title {
+            opacity: 0.5;
+        }
+        .header {
+            border-radius: 12px 12px 0 0;
+            background: #303030;
+        }
     }
 }
