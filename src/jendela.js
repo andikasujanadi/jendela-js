@@ -70,6 +70,8 @@ export const addWindow = (params = {}) => {
     let height = params.height ?? minHeight;
     let left = params.left ?? false;
     let top = params.top ?? false;
+    let right = params.right ?? false;
+    let bottom = params.bottom ?? false;
 
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -91,6 +93,16 @@ export const addWindow = (params = {}) => {
         }
         left = parsedLeft;
     }
+    else if(right){
+        let parsedRight = parseInt(right);
+        if (parsedRight + parsedWidth > viewportWidth) {
+            parsedRight = viewportWidth - parsedWidth - 20;
+        }
+        if (parsedRight < 0) {
+            parsedRight = 0;
+        }
+        right = parsedRight;
+    }   
     else{
         left = `calc(50% - ${width / 2}px)`;
     }
@@ -104,14 +116,34 @@ export const addWindow = (params = {}) => {
         }
         top = parsedTop;
     }
+    else if(bottom){
+        let parsedBottom = parseInt(bottom);
+        if (parsedBottom + parsedHeight > viewportHeight) {
+            parsedBottom = viewportHeight - parsedHeight - 20;
+        }
+        if (parsedBottom < 0) {
+            parsedBottom = 0;
+        }
+        bottom = parsedBottom;
+    }
     else{
         top = `calc(50% - ${height / 2}px)`;
     }
 
     if (Number.isInteger(width)) { width = `${width}px`; }
     if (Number.isInteger(height)) { height = `${height}px`; }
-    if (Number.isInteger(left)) { left = `${left}px`; }
-    if (Number.isInteger(top)) { top = `${top}px`; }
+    if(left){
+        if (Number.isInteger(left)) { left = `${left}px`; }
+    }
+    else{
+        if (Number.isInteger(right)) { right = `${right}px`; }
+    }
+    if(top){
+        if (Number.isInteger(top)) { top = `${top}px`; }
+    }
+    else{
+        if (Number.isInteger(bottom)) { bottom = `${bottom}px`; }
+    }
 
     const newWindow = document.createElement('div');
     newWindow.className = `jendela ${theme}`;
@@ -196,8 +228,18 @@ export const addWindow = (params = {}) => {
     document.body.appendChild(newWindow);
     newWindow.style.width = width;
     newWindow.style.height = height;
-    newWindow.style.left = left;
-    newWindow.style.top = top;
+    if(left){
+        newWindow.style.left = left;
+    }
+    else{
+        newWindow.style.right = right;
+    }
+    if(top){
+        newWindow.style.top = top;
+    }
+    else{
+        newWindow.style.bottom = bottom;
+    }
     newWindow.setAttribute('data-min-width', minWidth);
     newWindow.setAttribute('data-min-height', minHeight);
     newWindow.focus();
