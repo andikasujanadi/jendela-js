@@ -208,22 +208,22 @@ This class structure is for reference to make a new style
 
 You can customize the following options when creating a window:
 
-| **Option**          | **Description**                            | **Default**       |
-|---------------------|--------------------------------------------|-------------------|
-| `title`             | The title of the window.                   | `''`              |
-| `body`              | The content inside the window.             | `''`              |
-| `theme`             | Set the theme of the window.               | `jendela-classic` |
-| `minimizeButton`    | Set to `false` to hide the minimize button.| `true`            |
-| `resizeButton`      | Set to `false` to hide the resize button.  | `true`            |
-| `closeButton`       | Set to `false` to hide the close button.   | `true`            |
-| `minWidth`          | The minimum width of the window, preventing resizing smaller than this value. | `200` |
-| `minHeight`         | The minimum height of the window, preventing resizing smaller than this value.| `200` |
-| `width`             | The initial width of the window.           | `min_width`                 |
-| `height`            | The initial height of the window.          | `min_height`                |
-| `left`              | The initial left position of the window.   | `calc(50% - ${width/2}px)`  |
-| `right`             | The initial right position of the window. (will be disabled if left have value)  | `false` |
-| `top`               | The initial top position of the window.                                          | `calc(50% - ${height/2}px)`|
-| `bottom`            | The initial bottom position of the window. (will be disabled if top have value)  | `false`|
+| **Option**       | **Description**                                                                                     | **Default**                 |
+| ---------------- | --------------------------------------------------------------------------------------------------- | --------------------------- |
+| `title`          | The title of the window.                                                                            | `''`                        |
+| `body`           | The content inside the window. add "jendela-id" inside body will automatically replace it with "id" | `''`                        |
+| `theme`          | Set the theme of the window.                                                                        | `jendela-classic`           |
+| `minimizeButton` | Set to `false` to hide the minimize button.                                                         | `true`                      |
+| `resizeButton`   | Set to `false` to hide the resize button.                                                           | `true`                      |
+| `closeButton`    | Set to `false` to hide the close button.                                                            | `true`                      |
+| `minWidth`       | The minimum width of the window, preventing resizing smaller than this value.                       | `200`                       |
+| `minHeight`      | The minimum height of the window, preventing resizing smaller than this value.                      | `200`                       |
+| `width`          | The initial width of the window.                                                                    | `min_width`                 |
+| `height`         | The initial height of the window.                                                                   | `min_height`                |
+| `left`           | The initial left position of the window.                                                            | `calc(50% - ${width/2}px)`  |
+| `right`          | The initial right position of the window. (will be disabled if left have value)                     | `false`                     |
+| `top`            | The initial top position of the window.                                                             | `calc(50% - ${height/2}px)` |
+| `bottom`         | The initial bottom position of the window. (will be disabled if top have value)                     | `false`                     |
 
 
 Example:
@@ -240,11 +240,11 @@ jendelaJS.addWindow({
 ### Window Control Functions
 
 
-| **Function**          | **Description**                                                                                 | **Usage Example**                   |
-|------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------|
-| `close`               | Closes the window, removes it from the DOM, and ensures it is removed from the internal list.   | `windowInstance.close();`           |
-| `minimize`            | Minimizes the window, reducing its size and hiding its content while keeping it accessible.     | `windowInstance.minimize();`        |
-| `maximize`            | Maximizes the window to fill the available screen area.                                        | `windowInstance.maximize();`        |
+| **Function** | **Description**                                                                               | **Usage Example**            |
+| ------------ | --------------------------------------------------------------------------------------------- | ---------------------------- |
+| `close`      | Closes the window, removes it from the DOM, and ensures it is removed from the internal list. | `windowInstance.close();`    |
+| `minimize`   | Minimizes the window, reducing its size and hiding its content while keeping it accessible.   | `windowInstance.minimize();` |
+| `maximize`   | Maximizes the window to fill the available screen area.                                       | `windowInstance.maximize();` |
 
 Example:
 ```javascript
@@ -284,7 +284,7 @@ my_window.maximize();
 </details>
 
 ### Next Version
-- [ ] Improve resize and minimize function
+- [x] Improve resize and minimize function
 - [ ] Dark theme variant
 - [ ] Out of border safety
 - [ ] Snap to grid

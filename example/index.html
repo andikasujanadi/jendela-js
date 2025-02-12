@@ -25,6 +25,7 @@
             <option value="0">Select Window Style:</option>
             <option value="jendela-debug">Jendela Debug</option>
             <option value="jendela-legacy" selected>Jendela Default</option>
+            <option value="jendela-retro" selected>Jendela Default</option>
             <option value="jendela-libadwaita">Jendela Libadwaita</option>
             <option value="jendela-classic">Jendela Classic</option>
             <option value="jendela-xp">Jendela XP</option>
@@ -40,7 +41,9 @@
         <label for="resizeButton">maximize button</label><br>
         <input type="checkbox" id="closeButton" name="closeButton" value="closeButton" checked>
         <label for="closeButton">close button</label><br>
-        <button onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimizeButton: minimizeButton.checked, resizeButton:resizeButton.checked, closeButton:closeButton.checked})">add new window</button>
+        <button
+            onclick="jendelaJS.addWindow({title:titleInput.value, theme: themePicker.value, minimizeButton: minimizeButton.checked, resizeButton:resizeButton.checked, closeButton:closeButton.checked})">add
+            new window</button>
     </div>
     <!-- IMPORT THIS -->
     <script src="../dist/jendela.umd.js"></script>
@@ -48,10 +51,10 @@
         // CALL THIS TO SPAWN NEW WINDOW
         jendelaJS.addWindow(
             {
-            title: 'Testing Window',
-            theme: 'jendela-legacy',
-            minWidth: 350,
-            body:`
+                title: 'Testing Window',
+                theme: 'jendela-legacy',
+                minWidth: 350,
+                body: `
             <select onchange="changeStyle(this)">
                 <option value="0">Select Window Style:</option>
                 <option value="jendela-debug">Jendela Debug</option>
