@@ -1,6 +1,7 @@
 import './jendela.css';
 import './theme/jendela-linux.css';
 import './theme/jendela-windows.css';
+import './theme/jendela-retro.css';
 
 const createWindowHeader = (title, minimizeButton, resizeButton, closeButton, control) => {
     let minimizeListener, maximizeListener, closeListener;
@@ -11,10 +12,10 @@ const createWindowHeader = (title, minimizeButton, resizeButton, closeButton, co
     const windowTitle = document.createElement('div');
     windowTitle.className = 'title';
     windowTitle.innerText = title;
-    
+
     const windowButton = document.createElement('div');
     windowButton.className = 'headerButtonContainer';
-    
+
     if (minimizeButton) {
         const windowMinimize = document.createElement('div');
         windowMinimize.className = 'headerButton headerButtonMinimize';
@@ -25,7 +26,7 @@ const createWindowHeader = (title, minimizeButton, resizeButton, closeButton, co
 
         windowButton.appendChild(windowMinimize);
     }
-    
+
     if (resizeButton) {
         const windowResize = document.createElement('div');
         windowResize.className = 'headerButton headerButtonResize';
@@ -36,7 +37,7 @@ const createWindowHeader = (title, minimizeButton, resizeButton, closeButton, co
 
         windowButton.appendChild(windowResize);
     }
-    
+
     if (closeButton) {
         const windowClose = document.createElement('div');
         windowClose.className = 'headerButton headerButtonClose';
@@ -83,7 +84,7 @@ export const addWindow = (params = {}) => {
 
     const parsedWidth = parseInt(width);
     const parsedHeight = parseInt(height);
-    if(left){
+    if (left) {
         let parsedLeft = parseInt(left);
         if (parsedLeft + parsedWidth > viewportWidth) {
             parsedLeft = viewportWidth - parsedWidth - 20;
@@ -93,7 +94,7 @@ export const addWindow = (params = {}) => {
         }
         left = parsedLeft;
     }
-    else if(right){
+    else if (right) {
         let parsedRight = parseInt(right);
         if (parsedRight + parsedWidth > viewportWidth) {
             parsedRight = viewportWidth - parsedWidth - 20;
@@ -102,11 +103,11 @@ export const addWindow = (params = {}) => {
             parsedRight = 0;
         }
         right = parsedRight;
-    }   
-    else{
+    }
+    else {
         left = `calc(50% - ${width / 2}px)`;
     }
-    if(top){
+    if (top) {
         let parsedTop = parseInt(top);
         if (parsedTop + parsedHeight > viewportHeight) {
             parsedTop = viewportHeight - parsedHeight - 20;
@@ -116,7 +117,7 @@ export const addWindow = (params = {}) => {
         }
         top = parsedTop;
     }
-    else if(bottom){
+    else if (bottom) {
         let parsedBottom = parseInt(bottom);
         if (parsedBottom + parsedHeight > viewportHeight) {
             parsedBottom = viewportHeight - parsedHeight - 20;
@@ -126,22 +127,22 @@ export const addWindow = (params = {}) => {
         }
         bottom = parsedBottom;
     }
-    else{
+    else {
         top = `calc(50% - ${height / 2}px)`;
     }
 
     if (Number.isInteger(width)) { width = `${width}px`; }
     if (Number.isInteger(height)) { height = `${height}px`; }
-    if(left){
+    if (left) {
         if (Number.isInteger(left)) { left = `${left}px`; }
     }
-    else{
+    else {
         if (Number.isInteger(right)) { right = `${right}px`; }
     }
-    if(top){
+    if (top) {
         if (Number.isInteger(top)) { top = `${top}px`; }
     }
-    else{
+    else {
         if (Number.isInteger(bottom)) { bottom = `${bottom}px`; }
     }
 
@@ -149,7 +150,7 @@ export const addWindow = (params = {}) => {
     newWindow.className = `jendela ${theme}`;
 
     const animateWindow = (t = 300) => {
-        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms, opacity ease ${t/3*2}ms ${t/3*1}ms, transform ease ${t}ms`;
+        newWindow.style.transition = `height ease ${t}ms, width ease ${t}ms, top ease ${t}ms, left ease ${t}ms, border ease ${t}ms, left ease ${t}ms, opacity ease ${t / 3 * 2}ms ${t / 3 * 1}ms, transform ease ${t}ms`;
         setTimeout(() => {
             newWindow.style.transition = `box-shadow ease ${t}ms`;
         }, t);
@@ -181,9 +182,26 @@ export const addWindow = (params = {}) => {
 
     const minimizeWindow = () => {
         const window = newWindow;
-        window.classList.remove('maximized');
-        window.classList.add('minimized');
-        animateWindow(250);
+        let classes = window.classList;
+        let isMaximized = false;
+        let isMinimized = false;
+        classes.forEach(className => {
+            if (className.includes('maximized')) {
+                isMaximized = true;
+            }
+            if (className.includes('minimized')) {
+                isMinimized = true;
+            }
+        });
+        if (isMinimized) {
+            window.classList.remove('minimized');
+            animateWindow(250);
+        }
+        else {
+            window.classList.remove('maximized');
+            window.classList.add('minimized');
+            animateWindow(250);
+        }
     };
 
     const closeWindow = () => {
@@ -196,24 +214,27 @@ export const addWindow = (params = {}) => {
                 if (minimizeListener) {
                     windowMinimize.removeEventListener('mouseup', minimizeListener);
                     windowMinimize.removeEventListener('touchend', minimizeListener);
-                }} catch (error) {}
+                }
+            } catch (error) { }
             try {
                 if (maximizeListener) {
                     windowResize.removeEventListener('mouseup', maximizeListener);
                     windowResize.removeEventListener('touchend', maximizeListener);
-                }} catch (error) {}
+                }
+            } catch (error) { }
             try {
                 if (closeListener) {
                     windowClose.removeEventListener('mouseup', closeListener);
                     windowClose.removeEventListener('touchend', closeListener);
-                }} catch (error) {}
+                }
+            } catch (error) { }
             window.remove();
         }, 300);
     };
     const control = {
-        maximizeWindow : maximizeWindow,
-        minimizeWindow : minimizeWindow,
-        closeWindow : closeWindow,
+        maximizeWindow: maximizeWindow,
+        minimizeWindow: minimizeWindow,
+        closeWindow: closeWindow,
     };
 
     const windowHeader = createWindowHeader(title, minimizeButton, resizeButton, closeButton, control);
@@ -221,23 +242,23 @@ export const addWindow = (params = {}) => {
 
     const windowBody = document.createElement('div');
     windowBody.className = 'body';
-    windowBody.innerHTML = body;
+    windowBody.innerHTML = body.replaceAll('jendela-id', 'id');
     newWindow.appendChild(windowBody);
-    
+
     newWindow.setAttribute('tabindex', '0');
     document.body.appendChild(newWindow);
     newWindow.style.width = width;
     newWindow.style.height = height;
-    if(left){
+    if (left) {
         newWindow.style.left = left;
     }
-    else{
+    else {
         newWindow.style.right = right;
     }
-    if(top){
+    if (top) {
         newWindow.style.top = top;
     }
-    else{
+    else {
         newWindow.style.bottom = bottom;
     }
     newWindow.setAttribute('data-min-width', minWidth);
@@ -295,15 +316,17 @@ function handleWindowClick(windowElement) {
 }
 
 const refreshWindows = () => {
-    const windows = document.querySelectorAll(".jendela");
-    if (windows.length) {
+    if (typeof document !== 'undefined') {
+        const windows = document.querySelectorAll(".jendela");
         windows.forEach(window => {
             dragElement(window);
         });
     }
 };
 
-refreshWindows();
+if (typeof window !== 'undefined') {
+    refreshWindows();
+}
 
 function addMouseAndTouchListener(element, event, handler) {
     element.addEventListener(event, handler);
